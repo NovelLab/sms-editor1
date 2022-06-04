@@ -6,6 +6,15 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // init ui
+    initOutline();
+    initMainTab();
+    initGeneral();
+    initDraft();
+
+    // default
+    setDefaultGeneralTab();
 }
 
 MainWindow::~MainWindow()
@@ -19,3 +28,50 @@ void MainWindow::on_actionQuit_triggered()
     qApp->quit();
 }
 
+// init ui
+void MainWindow::initDraft()
+{
+    // draft tab
+    draftTable = ui->draftTableView;
+    draftEdit = ui->textEdit;
+}
+
+void MainWindow::initGeneral()
+{
+    // general tab
+    generalTitle = ui->lineBook_title;
+    generalSubtitle = ui->lineBook_subtitle;
+    generalSeries = ui->lineBook_series;
+    generalVolume = ui->lineBook_volume;
+    generalGenre = ui->lineBook_genre;
+    generalLicense = ui->lineBook_license;
+    generalAuthorName = ui->lineAuthor_name;
+    generalAuthorEmail = ui->lineAuthor_email;
+}
+
+void MainWindow::initMainTab()
+{
+    // main tab
+    mainTab = ui->mainTabWidget;
+
+    mainTab->tabBar()->setCurrentIndex(0);
+}
+
+void MainWindow::initOutline()
+{
+    // outline list view
+    outlineList = ui->outlineListView;
+}
+
+// set default
+void MainWindow::setDefaultGeneralTab()
+{
+    generalTitle->setText("作品タイトル");
+    generalSubtitle->setText("サブタイトル");
+    generalSeries->setText("シリーズ名");
+    generalVolume->setText("第１巻");
+    generalGenre->setText("ジャンル");
+    generalLicense->setText("(C)20xx");
+    generalAuthorName->setText("作者名");
+    generalAuthorEmail->setText("email@address");
+}
