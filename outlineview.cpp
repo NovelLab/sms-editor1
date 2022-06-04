@@ -1,7 +1,7 @@
 #include "outlineview.h"
 
 OutlineView::OutlineView(QWidget *parent)
-    : QListView{parent}
+    : QTreeView{parent}
 {
     // constructor
 }

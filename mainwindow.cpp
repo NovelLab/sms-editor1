@@ -60,7 +60,7 @@ void MainWindow::initMainTab()
 void MainWindow::initOutline()
 {
     // outline list view
-    outlineList = ui->outlineListView;
+    outlineTree = ui->outlineTreeView;
 }
 
 // set default

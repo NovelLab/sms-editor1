@@ -1,9 +1,9 @@
 #ifndef OUTLINEVIEW_H
 #define OUTLINEVIEW_H
 
-#include <QListView>
+#include <QTreeView>
 
-class OutlineView : public QListView
+class OutlineView : public QTreeView
 {
     Q_OBJECT
 public:

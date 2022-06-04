@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="OutlineView" name="outlineListView"/>
+     <widget class="OutlineView" name="outlineTreeView"/>
     </item>
     <item>
      <widget class="QTabWidget" name="mainTabWidget">
@@ -178,14 +178,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>OutlineView</class>
-   <extends>QListView</extends>
-   <header>outlineview.h</header>
-  </customwidget>
-  <customwidget>
    <class>CardView</class>
    <extends>QTableView</extends>
    <header>cardview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>OutlineView</class>
+   <extends>QTreeView</extends>
+   <header>outlineview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

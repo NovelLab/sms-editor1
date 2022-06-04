@@ -33,7 +33,7 @@ private:
     void setDefaultGeneralTab();
 
     Ui::MainWindow *ui;
-    OutlineView *outlineList;
+    OutlineView *outlineTree;
     QTabWidget *mainTab;
     // general
     QLineEdit *generalTitle;
