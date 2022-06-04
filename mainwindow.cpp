@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     initDraft();
 
     // default
+    setDefaultOutlineTree();
     setDefaultGeneralTab();
 }
 
@@ -59,8 +60,8 @@ void MainWindow::initMainTab()
 
 void MainWindow::initOutline()
 {
-    // outline list view
-    outlineTree = ui->outlineTreeView;
+    // outline tree view
+    outlineTree = ui->outlineTreeWidget;
 }
 
 // set default
@@ -74,4 +75,9 @@ void MainWindow::setDefaultGeneralTab()
     generalLicense->setText("(C)20xx");
     generalAuthorName->setText("作者名");
     generalAuthorEmail->setText("email@address");
+}
+
+void MainWindow::setDefaultOutlineTree()
+{
+    outlineTree->clear();
 }

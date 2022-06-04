@@ -8,7 +8,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class CardView;
-class OutlineView;
+class QTreeWidget;
 class QTabWidget;
 class QTextEdit;
 class QLineEdit;
@@ -30,10 +30,11 @@ private:
     void initGeneral();
     void initDraft();
 
+    void setDefaultOutlineTree();
     void setDefaultGeneralTab();
 
     Ui::MainWindow *ui;
-    OutlineView *outlineTree;
+    QTreeWidget *outlineTree;
     QTabWidget *mainTab;
     // general
     QLineEdit *generalTitle;
