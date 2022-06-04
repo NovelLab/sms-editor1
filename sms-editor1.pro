@@ -12,11 +12,13 @@ SOURCES += \
     cardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    outlinemodel.cpp \
     outlineview.cpp
 
 HEADERS += \
     cardview.h \
     mainwindow.h \
+    outlinemodel.h \
     outlineview.h
 
 FORMS += \
