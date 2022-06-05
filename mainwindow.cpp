@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "outlinetree.h"
+#include "notepaditem.h"
 
 #include <QTreeWidgetItem>
 
@@ -29,14 +30,24 @@ MainWindow::~MainWindow()
 }
 
 // my methods
-void MainWindow::displayCardView()
+void MainWindow::displayCardView(QTreeWidgetItem *item)
 {
+    displayMainTab(CategoryType::kDraft);
 
+    draftTable_->show();
+    draftEdit_->hide();
 }
 
-void MainWindow::displayEditor()
+void MainWindow::displayEditor(QTreeWidgetItem *item)
 {
+    displayMainTab(CategoryType::kDraft);
 
+    draftTable_->hide();
+    draftEdit_->show();
+
+    NotepadItem *note = qvariant_cast<NotepadItem*>(item->data(0, Qt::UserRole));
+
+    draftEdit_->setText(note->getText());
 }
 
 void MainWindow::displayMainTab(CategoryType type)
@@ -51,6 +62,9 @@ void MainWindow::initDraft()
     // draft tab
     draftTable_ = ui_->draftTableView;
     draftEdit_ = ui_->textEdit;
+
+    draftTable_->show();
+    draftEdit_->hide();
 }
 
 void MainWindow::initGeneral()
@@ -124,18 +138,17 @@ void MainWindow::on_btnDel_clicked()
 
 void MainWindow::on_outlineTreeWidget_itemClicked(QTreeWidgetItem *item, int column)
 {
+    Q_UNUSED(column);
+
     ItemType type = outlineTree_->getItemType();
 
     switch (type) {
       case ItemType::kCategory:
-        displayMainTab(outlineTree_->getCategoryType());
-        break;
+        return displayMainTab(outlineTree_->getCategoryType());
       case ItemType::kFolder:
-        qDebug() << ">> (Folder)";
-        break;
+        return displayCardView(item);
       case ItemType::kNotepad:
-        qDebug() << ">> (Notepad)";
-        break;
+        return displayEditor(item);
       default:
         return;
     }

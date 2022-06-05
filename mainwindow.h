@@ -44,8 +44,8 @@ private:
     void setDefaultGeneralTab();
 
     void displayMainTab(CategoryType type);
-    void displayCardView();
-    void displayEditor();
+    void displayCardView(QTreeWidgetItem *item);
+    void displayEditor(QTreeWidgetItem *item);
 
     Ui::MainWindow *ui_;
     OutlineTree *outlineTree_;
