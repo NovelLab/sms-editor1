@@ -4,11 +4,13 @@
 
 #include <QTreeWidgetItem>
 
+#include <QDebug>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui_(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui_->setupUi(this);
 
     // init ui
     initOutline();
@@ -23,84 +25,118 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete ui_;
 }
 
-
-void MainWindow::on_actionQuit_triggered()
+// my methods
+void MainWindow::displayCardView()
 {
-    qApp->quit();
+
+}
+
+void MainWindow::displayEditor()
+{
+
+}
+
+void MainWindow::displayMainTab(CategoryType type)
+{
+    int index = static_cast<int>(type);
+    mainTab_->tabBar()->setCurrentIndex(index);
 }
 
 // init ui
 void MainWindow::initDraft()
 {
     // draft tab
-    draftTable = ui->draftTableView;
-    draftEdit = ui->textEdit;
+    draftTable_ = ui_->draftTableView;
+    draftEdit_ = ui_->textEdit;
 }
 
 void MainWindow::initGeneral()
 {
     // general tab
-    generalTitle = ui->lineBook_title;
-    generalSubtitle = ui->lineBook_subtitle;
-    generalSeries = ui->lineBook_series;
-    generalVolume = ui->lineBook_volume;
-    generalGenre = ui->lineBook_genre;
-    generalLicense = ui->lineBook_license;
-    generalAuthorName = ui->lineAuthor_name;
-    generalAuthorEmail = ui->lineAuthor_email;
+    generalTitle_ = ui_->lineBook_title;
+    generalSubtitle_ = ui_->lineBook_subtitle;
+    generalSeries_ = ui_->lineBook_series;
+    generalVolume_ = ui_->lineBook_volume;
+    generalGenre_ = ui_->lineBook_genre;
+    generalLicense_ = ui_->lineBook_license;
+    generalAuthorName_ = ui_->lineAuthor_name;
+    generalAuthorEmail_ = ui_->lineAuthor_email;
 }
 
 void MainWindow::initMainTab()
 {
     // main tab
-    mainTab = ui->mainTabWidget;
+    mainTab_ = ui_->mainTabWidget;
 
-    mainTab->tabBar()->setCurrentIndex(0);
+    mainTab_->tabBar()->setCurrentIndex(0);
 }
 
 void MainWindow::initOutline()
 {
     // outline tree view
-    outlineTree = ui->outlineTreeWidget;
+    outlineTree_ = ui_->outlineTreeWidget;
 }
 
 // set default
 void MainWindow::setDefaultGeneralTab()
 {
-    generalTitle->setText("作品タイトル");
-    generalSubtitle->setText("サブタイトル");
-    generalSeries->setText("シリーズ名");
-    generalVolume->setText("第１巻");
-    generalGenre->setText("ジャンル");
-    generalLicense->setText("(C)20xx");
-    generalAuthorName->setText("作者名");
-    generalAuthorEmail->setText("email@address");
+    generalTitle_->setText("作品タイトル");
+    generalSubtitle_->setText("サブタイトル");
+    generalSeries_->setText("シリーズ名");
+    generalVolume_->setText("第１巻");
+    generalGenre_->setText("ジャンル");
+    generalLicense_->setText("(C)20xx");
+    generalAuthorName_->setText("作者名");
+    generalAuthorEmail_->setText("email@address");
 }
 
 void MainWindow::setDefaultOutlineTree()
 {
-    outlineTree->clear();
+    outlineTree_->clear();
 
-    outlineTree->setDefaultFolder("General");
-    outlineTree->setDefaultFolder("Draft");
+    outlineTree_->setDefaultCategory("General");
+    outlineTree_->setDefaultCategory("Draft");
 }
 
 // slots
+void MainWindow::on_actionQuit_triggered()
+{
+    qApp->quit();
+}
+
 void MainWindow::on_btnFolder_clicked()
 {
-    outlineTree->addNewFolder();
+    outlineTree_->addNewFolder();
 }
 
 void MainWindow::on_btnAdd_clicked()
 {
-    outlineTree->addNewNotepad();
+    outlineTree_->addNewNotepad();
 }
 
 void MainWindow::on_btnDel_clicked()
 {
-    outlineTree->removeItem();
+    outlineTree_->removeItem();
 }
 
+void MainWindow::on_outlineTreeWidget_itemClicked(QTreeWidgetItem *item, int column)
+{
+    ItemType type = outlineTree_->getItemType();
+
+    switch (type) {
+      case ItemType::kCategory:
+        displayMainTab(outlineTree_->getCategoryType());
+        break;
+      case ItemType::kFolder:
+        qDebug() << ">> (Folder)";
+        break;
+      case ItemType::kNotepad:
+        qDebug() << ">> (Notepad)";
+        break;
+      default:
+        return;
+    }
+}

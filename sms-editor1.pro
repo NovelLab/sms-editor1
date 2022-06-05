@@ -12,11 +12,13 @@ SOURCES += \
     cardview.cpp \
     main.cpp \
     mainwindow.cpp \
+    notepaditem.cpp \
     outlinetree.cpp
 
 HEADERS += \
     cardview.h \
     mainwindow.h \
+    notepaditem.h \
     outlinetree.h
 
 FORMS += \

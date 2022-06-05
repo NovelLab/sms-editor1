@@ -4,8 +4,14 @@
 #include <QTreeWidget>
 
 enum class ItemType {
+    kCategory,
     kFolder,
     kNotepad,
+};
+
+enum class CategoryType {
+    kGeneral,
+    kDraft,
 };
 
 class OutlineTree : public QTreeWidget
@@ -19,7 +25,9 @@ public:
     void addNewFolder();
     void addNewNotepad();
     void removeItem();
-    void setDefaultFolder(const QString &title);
+    void setDefaultCategory(const QString &title);
+    ItemType getItemType();
+    CategoryType getCategoryType();
 
 private:
     QTreeWidgetItem* createFolderItem(QTreeWidgetItem *parent);
