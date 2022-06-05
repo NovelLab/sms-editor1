@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     cardview.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    outlinetree.cpp
 
 HEADERS += \
     cardview.h \
-    mainwindow.h
+    mainwindow.h \
+    outlinetree.h
 
 FORMS += \
     mainwindow.ui

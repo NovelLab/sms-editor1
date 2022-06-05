@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "outlinetree.h"
+
+#include <QTreeWidgetItem>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -79,5 +82,27 @@ void MainWindow::setDefaultGeneralTab()
 
 void MainWindow::setDefaultOutlineTree()
 {
-    outlineTree->clear();
+    /*outlineTree->clear();
+
+    QTreeWidgetItem *item = new QTreeWidgetItem();
+    item->setIcon(0, QIcon::fromTheme("folder"));
+    item->setText(1, "TEST");
+    outlineTree->addTopLevelItem(item);*/
 }
+
+// slots
+void MainWindow::on_btnFolder_clicked()
+{
+    outlineTree->addNewFolder();
+}
+void MainWindow::on_btnAdd_clicked()
+{
+    outlineTree->addNewNotepad();
+}
+
+
+void MainWindow::on_btnDel_clicked()
+{
+    outlineTree->removeItem();
+}
+

@@ -8,7 +8,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class CardView;
-class QTreeWidget;
+class OutlineTree;
 class QTabWidget;
 class QTextEdit;
 class QLineEdit;
@@ -24,6 +24,12 @@ public:
 private slots:
     void on_actionQuit_triggered();
 
+    void on_btnFolder_clicked();
+
+    void on_btnAdd_clicked();
+
+    void on_btnDel_clicked();
+
 private:
     void initOutline();
     void initMainTab();
@@ -34,7 +40,7 @@ private:
     void setDefaultGeneralTab();
 
     Ui::MainWindow *ui;
-    QTreeWidget *outlineTree;
+    OutlineTree *outlineTree;
     QTabWidget *mainTab;
     // general
     QLineEdit *generalTitle;
