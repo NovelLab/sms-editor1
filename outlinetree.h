@@ -3,6 +3,11 @@
 
 #include <QTreeWidget>
 
+enum class ItemType {
+    kFolder,
+    kNotepad,
+};
+
 class OutlineTree : public QTreeWidget
 {
     Q_OBJECT
@@ -14,10 +19,12 @@ public:
     void addNewFolder();
     void addNewNotepad();
     void removeItem();
+    void setDefaultFolder(const QString &title);
 
 private:
     QTreeWidgetItem* createFolderItem(QTreeWidgetItem *parent);
     QTreeWidgetItem* createNotepadItem(QTreeWidgetItem *parent);
+    QIcon getItemIcon(ItemType type);
 };
 
 #endif // OUTLINETREE_H
