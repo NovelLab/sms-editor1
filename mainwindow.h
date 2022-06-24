@@ -7,13 +7,16 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class CardView;
-class OutlineTree;
-class QTabWidget;
+class OutlineView;
+class GeneralView;
+class PlotView;
+class PersonView;
+class DataView;
+class MainTabView;
+class TextEdit;
+
 class QTreeWidgetItem;
-class QTextEdit;
-class QLineEdit;
-enum class CategoryType;
+class QSettings;
 
 class MainWindow : public QMainWindow
 {
@@ -24,43 +27,59 @@ public:
     ~MainWindow();
 
 private slots:
+    // menu
+    void on_actionOpen_triggered();
+    void on_actionSave_triggered();
+    void on_actionSave_As_triggered();
     void on_actionQuit_triggered();
-
+    // buttons
     void on_btnFolder_clicked();
-
     void on_btnAdd_clicked();
-
     void on_btnDel_clicked();
+    // tree views
+    void on_outlineView_itemClicked(QTreeWidgetItem *item, int column);
+    void OnTreeItemTitleChanged(QTreeWidgetItem *item, int column);
+    void OnTreeItemChangedForSave(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+    // general views
+    void on_lineTitle_editingFinished();
+    void on_lineSubtitle_editingFinished();
+    void on_lineSeries_editingFinished();
+    void on_lineVolume_editingFinished();
+    void on_lineGenre_editingFinished();
+    void on_lineLicense_editingFinished();
+    void on_lineAuthorname_editingFinished();
+    void on_lineEmail_editingFinished();
 
-    void on_outlineTreeWidget_itemClicked(QTreeWidgetItem *item, int column);
+    void on_actionCompile_triggered();
 
 private:
-    void initOutline();
-    void initMainTab();
-    void initGeneral();
-    void initDraft();
+    void InitDefaultCategories_();
+    bool IsValidatedTreeItem_(const QTreeWidgetItem *item);
+    void DisplayFolderView_(const QTreeWidgetItem *item);
+    void DisplayFileView_(const QTreeWidgetItem *item);
+    void DisplayGeneralView_(const QTreeWidgetItem *item);
 
-    void setDefaultOutlineTree();
-    void setDefaultGeneralTab();
+    void DisplayCharCounts(const QTreeWidgetItem *item);
 
-    void displayMainTab(CategoryType type);
-    void displayCardView(QTreeWidgetItem *item);
-    void displayEditor(QTreeWidgetItem *item);
+    void UpdateGeneralData_();
+    void SetupGeneralData_();
 
-    Ui::MainWindow *ui_;
-    OutlineTree *outlineTree_;
-    QTabWidget *mainTab_;
-    // general
-    QLineEdit *generalTitle_;
-    QLineEdit *generalSubtitle_;
-    QLineEdit *generalSeries_;
-    QLineEdit *generalVolume_;
-    QLineEdit *generalGenre_;
-    QLineEdit *generalLicense_;
-    QLineEdit *generalAuthorName_;
-    QLineEdit *generalAuthorEmail_;
-    // draft
-    CardView *draftTable_;
-    QTextEdit *draftEdit_;
+    void UpdateEditorData_(const QTreeWidgetItem *item);
+    void SetupEditorData_(const QTreeWidgetItem *item);
+
+    QString ValidatedFilename_(const QString &fname);
+    void SaveFile_(const QString &fname);
+
+    Ui::MainWindow *ui;
+
+    OutlineView *outline_view_;
+    GeneralView *general_view_;
+    PlotView *plot_view_;
+    PersonView *person_view_;
+    DataView *data_view_;
+    MainTabView *tab_view_;
+    TextEdit *editor_;
+
+    QSettings *settings_;
 };
 #endif // MAINWINDOW_H

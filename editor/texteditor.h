@@ -3,11 +3,17 @@
 
 #include <QTextEdit>
 
-class TextEditor : public QTextEdit
+class ItemData;
+
+class TextEdit : public QTextEdit
 {
     Q_OBJECT
 public:
-    TextEditor();
+    explicit TextEdit(QWidget *parent = nullptr);
+    ~TextEdit();
+
+    void SetData(ItemData *data);
+    void UpdateData(ItemData *data);
 };
 
 #endif // TEXTEDITOR_H

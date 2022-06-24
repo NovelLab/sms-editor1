@@ -17,6 +17,7 @@ SOURCES += \
     models/datamodel.cpp \
     models/personmodel.cpp \
     models/plotmodel.cpp \
+    tools/datacounter.cpp \
     tools/itemchecker.cpp \
     tools/itemdatareader.cpp \
     tools/itemdatawriter.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     models/datamodel.h \
     models/personmodel.h \
     models/plotmodel.h \
+    tools/datacounter.h \
     tools/itemchecker.h \
     tools/itemdatareader.h \
     tools/itemdatawriter.h \

@@ -3,11 +3,16 @@
 
 #include "basemainview.h"
 
+class PlotModel;
+
 class PlotView : public BaseMainView
 {
     Q_OBJECT
 public:
-    PlotView();
+    explicit PlotView(QWidget *parent = nullptr);
+    virtual ~PlotView() override;
+
+    virtual void UpdateView(const QTreeWidgetItem *item) override;
 };
 
 #endif // PLOTVIEW_H

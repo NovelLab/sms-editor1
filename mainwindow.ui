@@ -23,7 +23,7 @@
       <widget class="QWidget" name="verticalLayoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="TreeView" name="treeView">
+         <widget class="OutlineView" name="outlineView">
           <column>
            <property name="text">
             <string notr="true">Binder</string>
@@ -66,7 +66,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="TabView" name="tabView">
+      <widget class="MainTabView" name="tabView">
        <property name="currentIndex">
         <number>0</number>
        </property>
@@ -293,17 +293,6 @@
    <header>editor/textedit.h</header>
   </customwidget>
   <customwidget>
-   <class>TabView</class>
-   <extends>QTabWidget</extends>
-   <header>views/tabview.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TreeView</class>
-   <extends>QTreeWidget</extends>
-   <header>views/treeview.h</header>
-  </customwidget>
-  <customwidget>
    <class>PlotView</class>
    <extends>QTableView</extends>
    <header>views/plotview.h</header>
@@ -317,6 +306,17 @@
    <class>PersonView</class>
    <extends>QTableView</extends>
    <header>views/personview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>OutlineView</class>
+   <extends>QTreeWidget</extends>
+   <header>views/outlineview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MainTabView</class>
+   <extends>QTabWidget</extends>
+   <header>views/maintabview.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
