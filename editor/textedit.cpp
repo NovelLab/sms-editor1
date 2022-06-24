@@ -1,4 +1,4 @@
-#include "texteditor.h"
+#include "textedit.h"
 
 #include "items/dataenums.h"
 #include "items/itemdata.h"
@@ -21,9 +21,9 @@ void TextEdit::SetData(ItemData *data)
     if (!data)
         return;
 
-    //ItemDataReader reader;
+    ItemDataReader reader;
 
-    this->setPlainText(data->Data(2).toString());
+    this->setPlainText(reader.ReadText(data).toString());
 }
 
 void TextEdit::UpdateData(ItemData *data)
@@ -34,6 +34,6 @@ void TextEdit::UpdateData(ItemData *data)
     if (!this->document()->isModified())
         return;
 
-    //ItemDataWriter writer;
-    data->SetData(2, this->toPlainText());
+    ItemDataWriter writer;
+    writer.WriteText(data, this->toPlainText());
 }

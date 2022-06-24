@@ -1,5 +1,5 @@
-#ifndef TEXTEDITOR_H
-#define TEXTEDITOR_H
+#ifndef TEXTEDIT_H
+#define TEXTEDIT_H
 
 #include <QTextEdit>
 
@@ -16,4 +16,4 @@ public:
     void UpdateData(ItemData *data);
 };
 
-#endif // TEXTEDITOR_H
+#endif // TEXTEDIT_H

@@ -39,7 +39,7 @@ bool ItemChecker::IsGenerel(const QTreeWidgetItem *item)
     ItemDataReader reader;
     if (data->TypeOf() == DataType::Category
             && data->FileTypeOf() == FileType::None
-            && reader.ReadTitleOfName(data) == "General"
+            && reader.ReadTitleOrName(data) == "General"
             && item->data(1, Qt::UserRole).canConvert<ItemData*>()) {
         return true;
     }
@@ -55,7 +55,7 @@ bool ItemChecker::IsTrash(const QTreeWidgetItem *item)
     ItemDataReader reader;
     if (data->TypeOf() == DataType::Category
             && data->FileTypeOf() == FileType::None
-            && reader.ReadTitleOfName(data) == "Trash") {
+            && reader.ReadTitleOrName(data) == "Trash") {
         return true;
     }
     return false;

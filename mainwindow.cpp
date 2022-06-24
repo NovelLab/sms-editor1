@@ -8,7 +8,7 @@
 #include "views/maintabview.h"
 #include "views/outlineview.h"
 
-#include "editor/texteditor.h"
+#include "editor/textedit.h"
 
 #include "items/dataenums.h"
 #include "items/itemdata.h"

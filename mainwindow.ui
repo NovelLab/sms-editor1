@@ -288,11 +288,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>editor/textedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>PlotView</class>
    <extends>QTableView</extends>
    <header>views/plotview.h</header>
@@ -317,6 +312,11 @@
    <extends>QTabWidget</extends>
    <header>views/maintabview.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>editor/textedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

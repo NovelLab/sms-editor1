@@ -9,7 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    editor/texteditor.cpp \
+    editor/textedit.cpp \
     items/itemdata.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -33,7 +33,7 @@ SOURCES += \
     xmls/xmlwriter.cpp
 
 HEADERS += \
-    editor/texteditor.h \
+    editor/textedit.h \
     items/dataenums.h \
     items/itemdata.h \
     mainwindow.h \
