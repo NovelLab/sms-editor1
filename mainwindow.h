@@ -13,7 +13,9 @@ class PlotView;
 class PersonView;
 class DataView;
 class MainTabView;
+
 class TextEdit;
+class MdHighlighter;
 
 class QTreeWidgetItem;
 class QSettings;
@@ -54,6 +56,7 @@ private slots:
 
 private:
     void InitDefaultCategories_();
+    void InitEditor_();
     bool IsValidatedTreeItem_(const QTreeWidgetItem *item);
     void DisplayFolderView_(const QTreeWidgetItem *item);
     void DisplayFileView_(const QTreeWidgetItem *item);
@@ -79,6 +82,8 @@ private:
     DataView *data_view_;
     MainTabView *tab_view_;
     TextEdit *editor_;
+
+    MdHighlighter *highlighter_;
 
     QSettings *settings_;
 };

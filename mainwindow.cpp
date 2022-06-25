@@ -9,6 +9,7 @@
 #include "views/outlineview.h"
 
 #include "editor/textedit.h"
+#include "editor/mdhighlighter.h"
 
 #include "items/dataenums.h"
 #include "items/itemdata.h"
@@ -34,6 +35,7 @@
 #include <QDebug>
 
 static const QString kProjectPath = "PROJECT_PATH";
+static const int kDefaultFontSize = 12;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -73,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(outline_view_, &OutlineView::currentItemChanged, this, &MainWindow::OnTreeItemChangedForSave);
 
     InitDefaultCategories_();
+    InitEditor_();
 }
 
 MainWindow::~MainWindow()
@@ -249,6 +252,27 @@ void MainWindow::on_lineEmail_editingFinished()
     UpdateGeneralData_();
 }
 
+void MainWindow::on_outlineView_itemClicked(QTreeWidgetItem *item, int column)
+{
+    Q_UNUSED(column);
+
+    if (!item)
+        return;
+
+    ItemChecker checker;
+    if (checker.IsCategory(item)) {
+        if (checker.IsGenerel(item)) {
+            tab_view_->ChangeGeneral();
+        } else {
+            DisplayFolderView_(item);
+        }
+    } else if (checker.IsFolder(item)) {
+        DisplayFolderView_(item);
+    } else if (checker.IsFile(item)) {
+        DisplayFileView_(item);
+    }
+}
+
 void MainWindow::OnTreeItemChangedForSave(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
     if (!current || !previous)
@@ -356,6 +380,19 @@ void MainWindow::InitDefaultCategories_()
     SetupGeneralData_();
 }
 
+void MainWindow::InitEditor_()
+{
+    // setup
+    QFont font;
+    font.setFamily("Takao");
+    font.setFixedPitch(true);
+    font.setPointSize(kDefaultFontSize);
+
+    editor_->setFont(font);
+
+    highlighter_ = new MdHighlighter(kDefaultFontSize, editor_->document());
+}
+
 bool MainWindow::IsValidatedTreeItem_(const QTreeWidgetItem *item)
 {
     if (!item)
@@ -445,25 +482,3 @@ QString MainWindow::ValidatedFilename_(const QString &fname)
     else
         return QString("%1.%2").arg(fname).arg("xml");
 }
-
-void MainWindow::on_outlineView_itemClicked(QTreeWidgetItem *item, int column)
-{
-    Q_UNUSED(column);
-
-    if (!item)
-        return;
-
-    ItemChecker checker;
-    if (checker.IsCategory(item)) {
-        if (checker.IsGenerel(item)) {
-            tab_view_->ChangeGeneral();
-        } else {
-            DisplayFolderView_(item);
-        }
-    } else if (checker.IsFolder(item)) {
-        DisplayFolderView_(item);
-    } else if (checker.IsFile(item)) {
-        DisplayFileView_(item);
-    }
-}
-
