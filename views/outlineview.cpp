@@ -194,6 +194,20 @@ void OutlineView::RemoveItem(QTreeWidgetItem *item)
     delete item;
 }
 
+void OutlineView::MoveItemToTrash(QTreeWidgetItem *item)
+{
+    if (!item)
+        return;
+
+    QTreeWidgetItem *par = item->parent();
+    if (!par)
+        return;
+
+    par->removeChild(item);
+    QTreeWidgetItem *trash = this->topLevelItem(9);
+    trash->addChild(item);
+}
+
 QTreeWidgetItem* OutlineView::ToplevelParentFrom(const QTreeWidgetItem *item)
 {
     if (!item)

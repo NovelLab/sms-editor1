@@ -200,7 +200,11 @@ void MainWindow::on_btnDel_clicked()
     ItemChecker checker;
     if (!checker.IsCategory(cur_item)) {
         QTreeWidgetItem *parent = outline_view_->ToplevelParentFrom(cur_item);
-        outline_view_->RemoveItem(cur_item);
+        if (parent->text(0) == "Trash")
+            return;
+
+        //outline_view_->RemoveItem(cur_item);
+        outline_view_->MoveItemToTrash(cur_item);
         DisplayFolderView_(parent);
     }
 }

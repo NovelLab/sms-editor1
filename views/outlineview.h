@@ -18,6 +18,7 @@ public:
     void AddFolder(QTreeWidgetItem *parent);
     void AddFile(FileType type, QTreeWidgetItem *parent);
     void RemoveItem(QTreeWidgetItem *item);
+    void MoveItemToTrash(QTreeWidgetItem *item);
 
     QTreeWidgetItem* ToplevelParentFrom(const QTreeWidgetItem *item);
     FileType FileCategoryFrom(const QTreeWidgetItem *item);

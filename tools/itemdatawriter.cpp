@@ -39,14 +39,14 @@ bool ItemDataWriter::Write(ItemData *data, KeyPlot key, const QVariant &value)
     return Write_(data, DataType::File, FileType::Plot, static_cast<int>(key), value);
 }
 
-bool ItemDataWriter::Write(ItemData *data, KeyStage key, const QVariant &value)
-{
-    return Write_(data, DataType::File, FileType::Stage, static_cast<int>(key), value);
-}
-
 bool ItemDataWriter::Write(ItemData *data, KeyPerson key, const QVariant &value)
 {
     return Write_(data, DataType::File, FileType::Person, static_cast<int>(key), value);
+}
+
+bool ItemDataWriter::Write(ItemData *data, KeyStage key, const QVariant &value)
+{
+    return Write_(data, DataType::File, FileType::Stage, static_cast<int>(key), value);
 }
 
 bool ItemDataWriter::Write(ItemData *data, KeyItem key, const QVariant &value)
