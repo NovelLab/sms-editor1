@@ -8,6 +8,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class ViewChanger;
+class DraftTree;
 
 class MainWindow : public QMainWindow
 {
@@ -23,6 +24,7 @@ private slots:
     void on_actionSave_triggered();
     void on_actionSave_As_triggered();
     void on_actionNew_triggered();
+    void on_actionClose_triggered();
     void on_actionCompile_triggered();
     void on_btnBookInfo_clicked();
     void on_btnDraft_clicked();
@@ -33,9 +35,13 @@ private slots:
     void on_btnNotes_clicked();
     void on_btnRubi_clicked();
     void on_btnTrash_clicked();
+    void on_btnFolderDraft_clicked();
+    void on_btnAddDraft_clicked();
+    void on_btnDelDraft_clicked();
 
 private:
     Ui::MainWindow *ui;
     ViewChanger *view_changer_;
+    DraftTree *draft_tree_;
 };
 #endif // MAINWINDOW_H

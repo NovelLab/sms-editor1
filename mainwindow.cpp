@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     view_changer_ = new ViewChanger(ui);
+    draft_tree_ = ui->draftTreeView;
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
@@ -23,10 +24,16 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete view_changer_;
+    delete draft_tree_;
     delete ui;
 }
 
 // slots (menu)
+void MainWindow::on_actionClose_triggered()
+{
+    qDebug() << "(unimp) menu - Close";
+}
+
 void MainWindow::on_actionCompile_triggered()
 {
     qDebug() << "(unimp) menu - Compile";
@@ -102,3 +109,20 @@ void MainWindow::on_btnWorlds_clicked()
 {
     view_changer_->Change(Category::Worlds);
 }
+
+// slots (draft tree)
+void MainWindow::on_btnAddDraft_clicked()
+{
+    draft_tree_->AddFile(draft_tree_->currentItem());
+}
+
+void MainWindow::on_btnDelDraft_clicked()
+{
+    draft_tree_->RemoveItem(draft_tree_->currentItem());
+}
+
+void MainWindow::on_btnFolderDraft_clicked()
+{
+    draft_tree_->AddFolder(draft_tree_->currentItem());
+}
+

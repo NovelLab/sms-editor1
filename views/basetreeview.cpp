@@ -4,7 +4,8 @@
 #include "items/treeitem.h"
 
 static const QStringList kMimeTypes = {"text/plain"};
-static const Qt::ItemFlags kItemFlags = Qt::ItemIsEditable
+static const Qt::ItemFlags kItemFlags = Qt::ItemIsEnabled
+        | Qt::ItemIsEditable
         | Qt::ItemIsDragEnabled
         | Qt::ItemIsDropEnabled;
 
