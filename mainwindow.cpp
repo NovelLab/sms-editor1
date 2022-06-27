@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     view_changer_ = new ViewChanger(ui);
+
+    ui->frameChanger->setMaximumWidth(120);
 }
 
 MainWindow::~MainWindow()
