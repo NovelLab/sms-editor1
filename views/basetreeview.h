@@ -28,6 +28,10 @@ protected:
 
     virtual const QTreeWidgetItem* GetParentOrRoot_(const QTreeWidgetItem *item) const;
 
+    virtual QMimeData* mimeData(const QList<QTreeWidgetItem *> items) const override;
+    virtual QStringList mimeTypes() const override;
+    virtual void dropEvent(QDropEvent *event) override;
+
 private:
     Category base_category_;
 };

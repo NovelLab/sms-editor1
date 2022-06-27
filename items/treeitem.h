@@ -16,6 +16,9 @@ public:
     QVariant DataOf(int column) const;
     bool SetData(int column, const QVariant &value);
 
+    ItemType TypeOf() const;
+    Category CategoryOf() const;
+
 private:
     bool IsValidColumn_(int column) const;
 

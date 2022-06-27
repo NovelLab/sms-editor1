@@ -12,6 +12,7 @@ SOURCES += \
     items/treeitem.cpp \
     main.cpp \
     mainwindow.cpp \
+    utils/itemutility.cpp \
     views/drafttree.cpp \
     views/viewchanger.cpp \
     views/basetreeview.cpp
@@ -20,6 +21,7 @@ HEADERS += \
     enums/generaltypes.h \
     items/treeitem.h \
     mainwindow.h \
+    utils/itemutility.h \
     views/drafttree.h \
     views/viewchanger.h \
     views/basetreeview.h

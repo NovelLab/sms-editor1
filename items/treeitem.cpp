@@ -18,6 +18,11 @@ TreeItem::~TreeItem()
 }
 
 // methods
+Category TreeItem::CategoryOf() const
+{
+    return category_;
+}
+
 QVariant TreeItem::DataOf(int column) const
 {
     if (!IsValidColumn_(column))
@@ -31,6 +36,11 @@ bool TreeItem::SetData(int column, const QVariant &value)
         return false;
     values_[column] = value;
     return true;
+}
+
+ItemType TreeItem::TypeOf() const
+{
+    return type_;
 }
 
 // methods (private)
