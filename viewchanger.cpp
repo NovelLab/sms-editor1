@@ -1,17 +1,26 @@
 #include "viewchanger.h"
 
+#include "ui_mainwindow.h"
+
 #include "enums/generaltypes.h"
 
 #include <QDebug>
 
-ViewChanger::ViewChanger()
+ViewChanger::ViewChanger(Ui::MainWindow *ui)
 {
-
+    // set ui widgets
+    outline_tab_ = ui->outlineTab;
+    main_tab_ = ui->mainViewTab;
+    main_editor_ = ui->mainEditor;
+    side_tab_ = ui->sideTab;
 }
 
 ViewChanger::~ViewChanger()
 {
-
+    delete outline_tab_;
+    delete main_tab_;
+    delete main_editor_;
+    delete side_tab_;
 }
 
 // methods
@@ -54,45 +63,53 @@ void ViewChanger::Change(Category category)
 // methods (private)
 void ViewChanger::ChangeBookInfo_()
 {
-    qDebug() << "(unimp) change to book info.";
+    ShowHideViews_(ViewDisp::OFF, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
 }
 
 void ViewChanger::ChangeDraft_()
 {
-    qDebug() << "(unimp) change to draft.";
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
 }
 
 void ViewChanger::ChangePlot_()
 {
-    qDebug() << "(unimp) change to plot.";
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
 }
 
 void ViewChanger::ChangePersons_()
 {
-    qDebug() << "(unimp) change to persons.";
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
 }
 
 void ViewChanger::ChangeWorlds_()
 {
-    qDebug() << "(unimp) change to worlds.";
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
 }
 
 void ViewChanger::ChangeResearch_()
 {
-    qDebug() << "(unimp) change to research.";
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
 }
 
 void ViewChanger::ChangeNotes_()
 {
-    qDebug() << "(unimp) change to note.";
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
 }
 
 void ViewChanger::ChangeRubi_()
 {
-    qDebug() << "(unimp) change to rubi.";
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
 }
 
 void ViewChanger::ChangeTrash_()
 {
-    qDebug() << "(unimp) change to trash.";
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
+}
+
+void ViewChanger::ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp editor, ViewDisp side)
+{
+    outline_tab_->setVisible(static_cast<bool>(outline));
+    main_tab_->setVisible(static_cast<bool>(mtab));
+    main_editor_->setVisible(static_cast<bool>(editor));
+    side_tab_->setVisible(static_cast<bool>(side));
 }

@@ -12,8 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    view_changer_ = new ViewChanger();
-
+    view_changer_ = new ViewChanger(ui);
 }
 
 MainWindow::~MainWindow()
