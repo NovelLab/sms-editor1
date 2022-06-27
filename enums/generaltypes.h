@@ -13,4 +13,9 @@ enum class Category {
     Trash,
 };
 
+enum class ItemType {
+    Folder = 0,
+    File,
+};
+
 #endif // GENERALTYPES_H

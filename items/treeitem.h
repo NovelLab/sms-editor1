@@ -1,0 +1,27 @@
+#ifndef TREEITEM_H
+#define TREEITEM_H
+
+#include <QVariant>
+#include <QVector>
+
+enum class Category;
+enum class ItemType;
+
+class TreeItem
+{
+public:
+    explicit TreeItem(ItemType type, Category category);
+    ~TreeItem();
+
+    QVariant DataOf(int column) const;
+    bool SetData(int column, const QVariant &value);
+
+private:
+    bool IsValidColumn_(int column) const;
+
+    QVector<QVariant> values_;
+    ItemType type_;
+    Category category_;
+};
+
+#endif // TREEITEM_H
