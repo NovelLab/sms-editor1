@@ -3,7 +3,7 @@
 
 #include "enums/generaltypes.h"
 
-#include "viewchanger.h"
+#include "views/viewchanger.h"
 
 #include <QDebug>
 

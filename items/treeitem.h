@@ -24,4 +24,6 @@ private:
     Category category_;
 };
 
+Q_DECLARE_METATYPE(TreeItem*);
+
 #endif // TREEITEM_H

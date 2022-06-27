@@ -12,14 +12,14 @@ SOURCES += \
     items/treeitem.cpp \
     main.cpp \
     mainwindow.cpp \
-    viewchanger.cpp \
+    views/viewchanger.cpp \
     views/basetreeview.cpp
 
 HEADERS += \
     enums/generaltypes.h \
     items/treeitem.h \
     mainwindow.h \
-    viewchanger.h \
+    views/viewchanger.h \
     views/basetreeview.h
 
 FORMS += \
