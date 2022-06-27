@@ -145,6 +145,11 @@
          <string>Rubi</string>
         </attribute>
        </widget>
+       <widget class="QWidget" name="tabTrashTree">
+        <attribute name="title">
+         <string>Trash</string>
+        </attribute>
+       </widget>
       </widget>
       <widget class="QTabWidget" name="mainViewTab">
        <property name="currentIndex">

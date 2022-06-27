@@ -64,46 +64,82 @@ void ViewChanger::Change(Category category)
 void ViewChanger::ChangeBookInfo_()
 {
     ShowHideViews_(ViewDisp::OFF, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
+    ChangeMainTab_(MainTabCat::BookInfo);
 }
 
 void ViewChanger::ChangeDraft_()
 {
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ChangeOutlineTree_(OutlineCat::Draft);
+    ChangeMainTab_(MainTabCat::Corkboard);
+    ChangeSideTab_(SideTabCat::Draft);
 }
 
 void ViewChanger::ChangePlot_()
 {
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ChangeOutlineTree_(OutlineCat::Plot);
+    ChangeMainTab_(MainTabCat::Corkboard);
+    ChangeSideTab_(SideTabCat::Plot);
 }
 
 void ViewChanger::ChangePersons_()
 {
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ChangeOutlineTree_(OutlineCat::Persons);
+    ChangeMainTab_(MainTabCat::PersonsTable);
+    ChangeSideTab_(SideTabCat::Persons);
 }
 
 void ViewChanger::ChangeWorlds_()
 {
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ChangeOutlineTree_(OutlineCat::Worlds);
+    ChangeMainTab_(MainTabCat::WorldsTable);
+    ChangeSideTab_(SideTabCat::Worlds);
 }
 
 void ViewChanger::ChangeResearch_()
 {
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
+    ChangeOutlineTree_(OutlineCat::Research);
+    ChangeMainTab_(MainTabCat::Corkboard);
 }
 
 void ViewChanger::ChangeNotes_()
 {
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
+    ChangeOutlineTree_(OutlineCat::Notes);
+    ChangeMainTab_(MainTabCat::Corkboard);
 }
 
 void ViewChanger::ChangeRubi_()
 {
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
+    ChangeOutlineTree_(OutlineCat::Rubi);
+    ChangeMainTab_(MainTabCat::RubiTable);
 }
 
 void ViewChanger::ChangeTrash_()
 {
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
+    ChangeOutlineTree_(OutlineCat::Trash);
+    ChangeMainTab_(MainTabCat::Corkboard);
+}
+
+void ViewChanger::ChangeOutlineTree_(OutlineCat cat)
+{
+    outline_tab_->setCurrentIndex(static_cast<int>(cat));
+}
+
+void ViewChanger::ChangeMainTab_(MainTabCat cat)
+{
+    main_tab_->setCurrentIndex(static_cast<int>(cat));
+}
+
+void ViewChanger::ChangeSideTab_(SideTabCat cat)
+{
+    side_tab_->setCurrentIndex(static_cast<int>(cat));
 }
 
 void ViewChanger::ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp editor, ViewDisp side)

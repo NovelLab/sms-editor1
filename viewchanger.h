@@ -26,6 +26,30 @@ private:
         OFF = 0,
         ON,
     };
+    enum class OutlineCat {
+        Draft,
+        Plot,
+        Persons,
+        Worlds,
+        Research,
+        Notes,
+        Rubi,
+        Trash,
+    };
+    enum class MainTabCat {
+        BookInfo,
+        Corkboard,
+        PersonsTable,
+        WorldsTable,
+        RubiTable,
+    };
+    enum class SideTabCat {
+        Draft,
+        Plot,
+        Persons,
+        Worlds,
+    };
+
     void ChangeBookInfo_();
     void ChangeDraft_();
     void ChangePlot_();
@@ -35,6 +59,10 @@ private:
     void ChangeNotes_();
     void ChangeRubi_();
     void ChangeTrash_();
+
+    void ChangeOutlineTree_(OutlineCat cat);
+    void ChangeMainTab_(MainTabCat cat);
+    void ChangeSideTab_(SideTabCat cat);
 
     void ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp editor, ViewDisp side);
 
