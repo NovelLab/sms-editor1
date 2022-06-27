@@ -19,6 +19,19 @@ MainWindow::MainWindow(QWidget *parent)
     ui->frameChanger->setMaximumWidth(120);
     ui->outlineTab->setMaximumWidth(200);
     ui->sideTab->setMaximumWidth(400);
+
+    ui->outlineTab->tabBar()->hide();
+    ui->mainViewTab->tabBar()->hide();
+    ui->sideTab->tabBar()->hide();
+
+#ifdef QT_DEBUG
+    ui->outlineTab->tabBar()->show();
+    ui->mainViewTab->tabBar()->show();
+    ui->sideTab->tabBar()->show();
+#endif
+
+    // start view setting
+    view_changer_->Change(Category::BookInfo);
 }
 
 MainWindow::~MainWindow()
