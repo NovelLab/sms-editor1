@@ -2,7 +2,7 @@
 #define GENERALTYPES_H
 
 enum class Category {
-    BookInfo,
+    BookInfo = 0,
     Draft,
     Plot,
     Persons,

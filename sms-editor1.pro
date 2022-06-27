@@ -10,10 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    viewchanger.cpp
 
 HEADERS += \
-    mainwindow.h
+    enums/generaltypes.h \
+    mainwindow.h \
+    viewchanger.h
 
 FORMS += \
     mainwindow.ui
