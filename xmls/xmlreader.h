@@ -28,6 +28,8 @@ private:
     void ReadDraftFolder_(QTreeWidgetItem *item);
     void ReadDraftFile_(QTreeWidgetItem *item);
 
+    void ClearWidgets_();
+
     QXmlStreamReader xml_;
     DraftTree *draft_view_;
 };

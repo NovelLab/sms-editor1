@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     models/cardmodel.cpp \
+    saveload/savedatafiler.cpp \
     utils/itemutility.cpp \
     views/corkboardview.cpp \
     views/drafttree.cpp \
@@ -24,12 +25,14 @@ SOURCES += \
     xmls/xmlwriter.cpp
 
 HEADERS += \
+    common/appsettings.h \
     editor/markdownhighlighter.h \
     editor/textedit.h \
     enums/generaltypes.h \
     items/treeitem.h \
     mainwindow.h \
     models/cardmodel.h \
+    saveload/savedatafiler.h \
     utils/itemutility.h \
     views/corkboardview.h \
     views/drafttree.h \

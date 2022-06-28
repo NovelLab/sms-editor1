@@ -1,21 +1,31 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "common/appsettings.h"
 #include "editor/markdownhighlighter.h"
 #include "enums/generaltypes.h"
 #include "models/cardmodel.h"
+#include "saveload/savedatafiler.h"
 #include "views/viewchanger.h"
+
+#include <QSettings>
+#include <QTextCodec>
 
 #include <QDebug>
 
-static const int kDefaultFontSize = 12;
-static const QString kProjectPath = "PROJECT_PATH";
+static const int kDefaultFontSize = DefaultSettings::kFontSize;
+static const QString kProjectPath = AppSettings::kProjectPath;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // settings
+    settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope, "sms", "sms");
+    settings_->setIniCodec(QTextCodec::codecForName("UTF-8"));
+
     view_changer_ = new ViewChanger(ui);
     draft_tree_ = ui->draftTreeView;
 
@@ -80,7 +90,10 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    qDebug() << "(unimp) menu - Open";
+    SaveDataFiler filer;
+    if (filer.OpenFile(this, ui, settings_)) {
+        this->statusBar()->showMessage("file loaded.", 2000);
+    }
 }
 
 void MainWindow::on_actionQuit_triggered()

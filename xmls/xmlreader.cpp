@@ -29,14 +29,21 @@ bool XmlReader::Read(QIODevice *device)
 
     if (xml_.readNextStartElement()) {
         if (xml_.name() == "sms-data") {
+            ClearWidgets_();
             ReadXmlData_();
+            return true;
         }
     }
 
-    return true;
+    return false;
 }
 
 // methods (private)
+void XmlReader::ClearWidgets_()
+{
+    draft_view_->clear();
+}
+
 void XmlReader::ReadXmlData_()
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "sms-data");
@@ -86,6 +93,8 @@ void XmlReader::ReadCategory_()
 
 void XmlReader::ReadDraft_()
 {
+    draft_view_->clear();
+
     QTreeWidgetItem *root = draft_view_->invisibleRootItem();
 
     while (xml_.readNextStartElement()) {

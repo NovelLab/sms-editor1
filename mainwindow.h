@@ -7,10 +7,11 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class QSettings;
 class QTreeWidgetItem;
 
-class ViewChanger;
 class DraftTree;
+class ViewChanger;
 
 class MainWindow : public QMainWindow
 {
@@ -45,6 +46,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QSettings *settings_;
+
     ViewChanger *view_changer_;
     DraftTree *draft_tree_;
 };
