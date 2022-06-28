@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    editor/markdownhighlighter.cpp \
     editor/textedit.cpp \
     items/treeitem.cpp \
     main.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
     views/basetreeview.cpp
 
 HEADERS += \
+    editor/markdownhighlighter.h \
     editor/textedit.h \
     enums/generaltypes.h \
     items/treeitem.h \

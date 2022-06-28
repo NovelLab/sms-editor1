@@ -1,11 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "editor/markdownhighlighter.h"
 #include "enums/generaltypes.h"
 #include "models/cardmodel.h"
 #include "views/viewchanger.h"
 
 #include <QDebug>
+
+static const int kDefaultFontSize = 12;
+static const QString kProjectPath = "PROJECT_PATH";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -36,6 +40,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     // start view setting
     view_changer_->Change(Category::BookInfo);
+
+    // setup editor
+    MarkdownHighlighter *highlighter = new MarkdownHighlighter(ui->mainEditor->document());
+
+    QFont font;
+    font.setFamily("Takao");
+    font.setFixedPitch(true);
+    font.setPointSize(kDefaultFontSize);
+    ui->mainEditor->setFont(font);
+    highlighter->SetBaseFontSize(kDefaultFontSize);
 
     // connects
     connect(card_model, &CardModel::UpdatedItemData, ui->draftTreeView, &DraftTree::UpdateItemData);
@@ -85,6 +99,7 @@ void MainWindow::on_actionSave_As_triggered()
 }
 
 // slots (changer buttons)
+// TODO: update and saved each view data?
 void MainWindow::on_btnBookInfo_clicked()
 {
     view_changer_->Change(Category::BookInfo);
@@ -153,6 +168,8 @@ void MainWindow::on_btnFolderDraft_clicked()
 
 void MainWindow::on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
+    Q_UNUSED(current);
+    Q_UNUSED(previous);
     view_changer_->Update(Category::Draft);
 }
 
