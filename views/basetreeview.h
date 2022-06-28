@@ -5,6 +5,7 @@
 
 class QTreeWidgetItem;
 class TreeItem;
+class XmlReader;
 
 enum class Category;
 
@@ -39,6 +40,8 @@ private slots:
     void OnTitleChanged(QTreeWidgetItem *item, int column);
 
 private:
+    friend XmlReader;
+
     Category base_category_;
 };
 
