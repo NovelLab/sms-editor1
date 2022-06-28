@@ -406,7 +406,7 @@
         </attribute>
        </widget>
       </widget>
-      <widget class="QTextEdit" name="mainEditor"/>
+      <widget class="TextEdit" name="mainEditor"/>
       <widget class="QTabWidget" name="sideTab">
        <property name="currentIndex">
         <number>0</number>
@@ -521,6 +521,11 @@
    <class>CorkboardView</class>
    <extends>QTableView</extends>
    <header>views/corkboardview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>editor/textedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

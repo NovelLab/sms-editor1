@@ -8,10 +8,10 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class QTabWidget;
-class QTextEdit;
 
 class DraftTree;
 class CorkboardView;
+class TextEdit;
 
 enum class Category;
 
@@ -73,7 +73,7 @@ private:
 
     QTabWidget *outline_tab_;
     QTabWidget *main_tab_;
-    QTextEdit *main_editor_;
+    TextEdit *main_editor_;
     QTabWidget *side_tab_;
 
     DraftTree *draft_tree_;

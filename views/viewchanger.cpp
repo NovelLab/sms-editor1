@@ -199,7 +199,7 @@ void ViewChanger::UpdateDraft_()
         main_tab_->show();
         main_editor_->hide();
     } else if (util.IsFile(cur)) {
-        qDebug() << "(unimp) update editor text";
+        main_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
     }
