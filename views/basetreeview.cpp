@@ -8,6 +8,8 @@
 #include <QMimeData>
 #include <QDropEvent>
 
+#include <QDebug>
+
 static const QStringList kMimeTypes = {"text/plain"};
 static const Qt::ItemFlags kItemFlags = Qt::ItemIsEnabled
         | Qt::ItemIsEditable
@@ -24,6 +26,8 @@ BaseTreeView::BaseTreeView(Category category, QWidget *parent)
     this->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->setDefaultDropAction(Qt::MoveAction);
     this->setDragDropOverwriteMode(false);
+
+    connect(this, &QTreeWidget::itemChanged, this, &BaseTreeView::OnTitleChanged);
 }
 
 BaseTreeView::~BaseTreeView()
@@ -160,4 +164,18 @@ void BaseTreeView::dropEvent(QDropEvent *event)
             return;
     }
     QTreeWidget::dropEvent(event);
+}
+
+// slots (private)
+void BaseTreeView::OnTitleChanged(QTreeWidgetItem *item, int column)
+{
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(item))
+        return;
+
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (column < 0 || column >= data->ColumnCount())
+        return;
+
+    data->SetData(0, item->text(0));
 }

@@ -35,6 +35,9 @@ protected:
     virtual QStringList mimeTypes() const override;
     virtual void dropEvent(QDropEvent *event) override;
 
+private slots:
+    void OnTitleChanged(QTreeWidgetItem *item, int column);
+
 private:
     Category base_category_;
 };
