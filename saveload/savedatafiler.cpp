@@ -53,3 +53,57 @@ bool SaveDataFiler::OpenFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *se
         return true;
     }
 }
+
+bool SaveDataFiler::SaveFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings)
+{
+    QString filename = settings->value(kProjectPath).toString();
+    if (filename.isEmpty()) {
+        return SaveFileAs(mwin, ui, settings);
+    } else {
+        return SaveFile_(mwin, ui, settings, filename);
+    }
+}
+
+bool SaveDataFiler::SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings)
+{
+    QString fileName = QFileDialog::getSaveFileName(mwin,
+                                                    tr("Save File"),
+                                                    QDir::currentPath(),
+                                                    tr("XML Files (*.xml);;All Files (*)"));
+
+    return SaveFile_(mwin, ui, settings, fileName);
+}
+
+// methods (private)
+bool SaveDataFiler::SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, const QString &filename)
+{
+    if (filename.isEmpty())
+        return false;
+
+    QString f_name = ValidatedFilename_(filename);
+
+    QFile file(f_name);
+    if (!file.open(QFile::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(mwin, tr("Xml Stream"),
+                             tr("Cannot write file %1:\n%2.")
+                             .arg(QDir::toNativeSeparators(f_name),
+                                  file.errorString()));
+        return false;
+    }
+
+    XmlWriter writer(ui);
+    if (writer.WriteFile(&file)) {
+        settings->setValue(kProjectPath, f_name);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+QString SaveDataFiler::ValidatedFilename_(const QString &fname)
+{
+    if (fname.contains(".xml"))
+        return fname;
+    else
+        return QString("%1.%2").arg(fname).arg("xml");
+}

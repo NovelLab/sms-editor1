@@ -103,12 +103,18 @@ void MainWindow::on_actionQuit_triggered()
 
 void MainWindow::on_actionSave_triggered()
 {
-    qDebug() << "(unimp) menu - Save";
+    SaveDataFiler filer;
+    if (filer.SaveFile(this, ui, settings_)) {
+        this->statusBar()->showMessage("file saved", 2000);
+    }
 }
 
 void MainWindow::on_actionSave_As_triggered()
 {
-    qDebug() << "(unimp) menu - Save As";
+    SaveDataFiler filer;
+    if (filer.SaveFileAs(this, ui, settings_)) {
+        this->statusBar()->showMessage("file saved", 2000);
+    }
 }
 
 // slots (changer buttons)

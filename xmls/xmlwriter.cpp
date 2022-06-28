@@ -60,6 +60,27 @@ void XmlWriter::WriteDraftFile_(const QTreeWidgetItem *item)
     if (!data)
         return;
 
+    xml_.writeStartElement("file");
+
+    xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("synopsys", data->DataOf(1).toString());
+    xml_.writeTextElement("text", data->DataOf(2).toString());
+    xml_.writeTextElement("note", data->DataOf(3).toString());
+    xml_.writeTextElement("pov", data->DataOf(4).toString());
+    xml_.writeTextElement("stage", data->DataOf(5).toString());
+    xml_.writeTextElement("date", data->DataOf(6).toString());
+    xml_.writeTextElement("time", data->DataOf(7).toString());
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteDraftFolder_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
@@ -72,27 +93,6 @@ void XmlWriter::WriteDraftFile_(const QTreeWidgetItem *item)
             WriteDraftFile_(child);
         }
     }
-
-    xml_.writeEndElement();
-}
-
-void XmlWriter::WriteDraftFolder_(const QTreeWidgetItem *item)
-{
-    ItemUtility util;
-    TreeItem *data = util.ItemFromTreeWidgetItem(item);
-    if (!data)
-        return;
-
-    xml_.writeStartElement("file");
-
-    xml_.writeTextElement("title", data->DataOf(0).toString());
-    xml_.writeTextElement("synopsys", data->DataOf(1).toString());
-    xml_.writeTextElement("text", data->DataOf(2).toString());
-    xml_.writeTextElement("note", data->DataOf(3).toString());
-    xml_.writeTextElement("pov", data->DataOf(4).toString());
-    xml_.writeTextElement("stage", data->DataOf(5).toString());
-    xml_.writeTextElement("date", data->DataOf(6).toString());
-    xml_.writeTextElement("time", data->DataOf(7).toString());
 
     xml_.writeEndElement();
 }

@@ -16,6 +16,12 @@ public:
     explicit SaveDataFiler();
 
     bool OpenFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
+    bool SaveFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
+    bool SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
+
+private:
+    bool SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, const QString &filename);
+    QString ValidatedFilename_(const QString &fname);
 };
 
 #endif // SAVEDATAFILER_H
