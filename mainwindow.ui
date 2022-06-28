@@ -376,7 +376,7 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="lblCorkboardTitle">
               <property name="text">
                <string>Folder title</string>
               </property>
