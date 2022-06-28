@@ -19,6 +19,8 @@ public:
     ItemType TypeOf() const;
     Category CategoryOf() const;
 
+    int ColumnCount() const;
+
 private:
     bool IsValidColumn_(int column) const;
 

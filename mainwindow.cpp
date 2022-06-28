@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "enums/generaltypes.h"
-
+#include "models/cardmodel.h"
 #include "views/viewchanger.h"
 
 #include <QDebug>
@@ -29,6 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->mainViewTab->tabBar()->show();
     ui->sideTab->tabBar()->show();
 #endif
+
+    // set model
+    CardModel *card_model = new CardModel();
+    ui->corkboardView->setModel(card_model);
 
     // start view setting
     view_changer_->Change(Category::BookInfo);
@@ -86,6 +90,7 @@ void MainWindow::on_btnBookInfo_clicked()
 void MainWindow::on_btnDraft_clicked()
 {
     view_changer_->Change(Category::Draft);
+    view_changer_->Update(Category::Draft);
 }
 
 void MainWindow::on_btnNotes_clicked()
@@ -127,15 +132,18 @@ void MainWindow::on_btnWorlds_clicked()
 void MainWindow::on_btnAddDraft_clicked()
 {
     draft_tree_->AddFile(draft_tree_->currentItem());
+    view_changer_->Update(Category::Draft);
 }
 
 void MainWindow::on_btnDelDraft_clicked()
 {
     draft_tree_->RemoveItem(draft_tree_->currentItem());
+    view_changer_->Update(Category::Draft);
 }
 
 void MainWindow::on_btnFolderDraft_clicked()
 {
     draft_tree_->AddFolder(draft_tree_->currentItem());
+    view_changer_->Update(Category::Draft);
 }
 

@@ -8,8 +8,10 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class QTabWidget;
-
 class QTextEdit;
+
+class DraftTree;
+class CorkboardView;
 
 enum class Category;
 
@@ -20,6 +22,7 @@ public:
     ~ViewChanger();
 
     void Change(Category category);
+    void Update(Category category);
 
 private:
     enum class ViewDisp {
@@ -60,6 +63,8 @@ private:
     void ChangeRubi_();
     void ChangeTrash_();
 
+    void UpdateDraft_();
+
     void ChangeOutlineTree_(OutlineCat cat);
     void ChangeMainTab_(MainTabCat cat);
     void ChangeSideTab_(SideTabCat cat);
@@ -70,6 +75,9 @@ private:
     QTabWidget *main_tab_;
     QTextEdit *main_editor_;
     QTabWidget *side_tab_;
+
+    DraftTree *draft_tree_;
+    CorkboardView *corkboard_;
 };
 
 #endif // VIEWCHANGER_H

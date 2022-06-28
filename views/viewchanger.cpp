@@ -3,6 +3,10 @@
 #include "ui_mainwindow.h"
 
 #include "enums/generaltypes.h"
+#include "items/treeitem.h"
+#include "utils/itemutility.h"
+
+#include <QTreeWidgetItem>
 
 #include <QDebug>
 
@@ -13,10 +17,16 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     main_tab_ = ui->mainViewTab;
     main_editor_ = ui->mainEditor;
     side_tab_ = ui->sideTab;
+
+    draft_tree_ = ui->draftTreeView;
+    corkboard_ = ui->corkboardView;
 }
 
 ViewChanger::~ViewChanger()
 {
+    delete draft_tree_;
+    delete corkboard_;
+
     delete outline_tab_;
     delete main_tab_;
     delete main_editor_;
@@ -53,6 +63,42 @@ void ViewChanger::Change(Category category)
         break;
       case Category::Trash:
         ChangeTrash_();
+        break;
+      default:
+        qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
+        break;
+    }
+}
+
+void ViewChanger::Update(Category category)
+{
+    switch (category) {
+      case Category::BookInfo:
+        qDebug() << "(unimp) update book info";
+        break;
+      case Category::Draft:
+        UpdateDraft_();
+        break;
+      case Category::Plot:
+        qDebug() << "(unimp) update plot";
+        break;
+      case Category::Persons:
+        qDebug() << "(unimp) update persons";
+        break;
+      case Category::Worlds:
+        qDebug() << "(unimp) update worlds";
+        break;
+      case Category::Research:
+        qDebug() << "(unimp) update research";
+        break;
+      case Category::Notes:
+        qDebug() << "(unimp) update notes";
+        break;
+      case Category::Rubi:
+        qDebug() << "(unimp) update rubi";
+        break;
+      case Category::Trash:
+        qDebug() << "(unimp) update trash";
         break;
       default:
         qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
@@ -140,6 +186,23 @@ void ViewChanger::ChangeMainTab_(MainTabCat cat)
 void ViewChanger::ChangeSideTab_(SideTabCat cat)
 {
     side_tab_->setCurrentIndex(static_cast<int>(cat));
+}
+
+void ViewChanger::UpdateDraft_()
+{
+    QTreeWidgetItem *cur = draft_tree_->currentItem();
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(cur))
+        return;
+    if (util.IsFolder(cur)) {
+        corkboard_->UpdateView(cur);
+        main_tab_->show();
+        main_editor_->hide();
+    } else if (util.IsFile(cur)) {
+        qDebug() << "(unimp) update editor text";
+        main_tab_->hide();
+        main_editor_->show();
+    }
 }
 
 void ViewChanger::ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp editor, ViewDisp side)

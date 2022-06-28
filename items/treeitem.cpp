@@ -23,6 +23,11 @@ Category TreeItem::CategoryOf() const
     return category_;
 }
 
+int TreeItem::ColumnCount() const
+{
+    return values_.size();
+}
+
 QVariant TreeItem::DataOf(int column) const
 {
     if (!IsValidColumn_(column))
