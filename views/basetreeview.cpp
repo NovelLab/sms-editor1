@@ -31,6 +31,25 @@ BaseTreeView::~BaseTreeView()
 
 }
 
+// slots
+void BaseTreeView::UpdateItemData(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return;
+
+    QTreeWidgetItem *par = this->currentItem();
+    if (!par)
+        return;
+
+    TreeItem *data = static_cast<TreeItem*>(index.internalPointer());
+    if (!data
+            || index.column() < 0 || index.column() >= data->ColumnCount()
+            || index.row() < 0 || index.row() >= par->childCount())
+        return;
+
+    par->child(index.row())->setText(index.column(), data->DataOf(index.column()).toString());
+}
+
 // methods
 void BaseTreeView::AddFile(const QTreeWidgetItem *item)
 {

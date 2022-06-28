@@ -21,6 +21,9 @@ public:
     virtual void AddFile(const QTreeWidgetItem *item);
     virtual void RemoveItem(QTreeWidgetItem *item);
 
+public slots:
+    virtual void UpdateItemData(const QModelIndex &index);
+
 protected:
     virtual QTreeWidgetItem* CreateChild_(const QTreeWidgetItem *item);
     virtual TreeItem* CreateFolderItem_();

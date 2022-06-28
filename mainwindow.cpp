@@ -36,6 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // start view setting
     view_changer_->Change(Category::BookInfo);
+
+    // connects
+    connect(card_model, &CardModel::UpdatedItemData, ui->draftTreeView, &DraftTree::UpdateItemData);
 }
 
 MainWindow::~MainWindow()
