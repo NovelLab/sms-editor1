@@ -192,3 +192,56 @@ void MainWindow::on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, Q
     view_changer_->Update(Category::Draft);
 }
 
+
+void MainWindow::on_lineBookTitle_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}
+
+
+void MainWindow::on_lineBookSubtitle_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}
+
+
+void MainWindow::on_lineBookSeries_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}
+
+
+void MainWindow::on_lineBookVolume_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}
+
+
+void MainWindow::on_lineBookGenre_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}
+
+
+void MainWindow::on_lineBookLicense_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}
+
+
+void MainWindow::on_lineOutline1line_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}
+
+
+void MainWindow::on_lineAuthorName_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}
+
+
+void MainWindow::on_lineAuthorEmail_editingFinished()
+{
+    view_changer_->Update(Category::BookInfo, true);
+}

@@ -67,6 +67,44 @@ void BookInfoView::Reset()
 
 void BookInfoView::UpdateView()
 {
+    SetDataToView_();
+}
+
+void BookInfoView::CheckModifiedAndUpdateView()
+{
+    CheckModifiedAndUpdate_();
+    SetDataToView_();
+}
+
+// methods (private)
+void BookInfoView::CheckModifiedAndUpdate_()
+{
+    if (book_title_->isModified())
+        root_item_->SetData(0, book_title_->text());
+    if (book_subtitle_->isModified())
+        root_item_->SetData(1, book_subtitle_->text());
+    if (book_series_->isModified())
+        root_item_->SetData(2, book_series_->text());
+    if (book_volume_->isModified())
+        root_item_->SetData(3, book_volume_->text());
+    if (book_genre_->isModified())
+        root_item_->SetData(4, book_genre_->text());
+    if (book_license_->isModified())
+        root_item_->SetData(5, book_license_->text());
+    if (author_name_->isModified())
+        root_item_->SetData(6, author_name_->text());
+    if (author_email_->isModified())
+        root_item_->SetData(7, author_email_->text());
+    if (outline_1line_->isModified())
+        root_item_->SetData(8, outline_1line_->text());
+    if (outline_3lines_->document()->isModified())
+        root_item_->SetData(9, outline_3lines_->toPlainText());
+    if (outline_abstract_->document()->isModified())
+        root_item_->SetData(10, outline_abstract_->toPlainText());
+}
+
+void BookInfoView::SetDataToView_()
+{
     book_title_->setText(root_item_->DataOf(0).toString());
     book_subtitle_->setText(root_item_->DataOf(1).toString());
     book_series_->setText(root_item_->DataOf(2).toString());

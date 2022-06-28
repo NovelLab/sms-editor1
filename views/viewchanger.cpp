@@ -73,11 +73,11 @@ void ViewChanger::Change(Category category)
     }
 }
 
-void ViewChanger::Update(Category category)
+void ViewChanger::Update(Category category, bool isCheck)
 {
     switch (category) {
       case Category::BookInfo:
-        UpdateBookInfo_();
+        UpdateBookInfo_(isCheck);
         break;
       case Category::Draft:
         UpdateDraft_();
@@ -191,9 +191,13 @@ void ViewChanger::ChangeSideTab_(SideTabCat cat)
     side_tab_->setCurrentIndex(static_cast<int>(cat));
 }
 
-void ViewChanger::UpdateBookInfo_()
+void ViewChanger::UpdateBookInfo_(bool isCheck)
 {
-    bookinfo_view_->UpdateView();
+    if (isCheck) {
+        bookinfo_view_->CheckModifiedAndUpdateView();
+    } else {
+        bookinfo_view_->UpdateView();
+    }
 }
 
 void ViewChanger::UpdateDraft_()

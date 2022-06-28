@@ -23,7 +23,7 @@ public:
     ~ViewChanger();
 
     void Change(Category category);
-    void Update(Category category);
+    void Update(Category category, bool isCheck = false);
 
 private:
     enum class ViewDisp {
@@ -64,7 +64,7 @@ private:
     void ChangeRubi_();
     void ChangeTrash_();
 
-    void UpdateBookInfo_();
+    void UpdateBookInfo_(bool isCheck);
     void UpdateDraft_();
 
     void ChangeOutlineTree_(OutlineCat cat);

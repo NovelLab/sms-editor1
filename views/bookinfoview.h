@@ -18,10 +18,14 @@ public:
     explicit BookInfoView(Ui::MainWindow *ui);
     ~BookInfoView();
 
+    void CheckModifiedAndUpdateView();
     void UpdateView();
     void Reset();
 
 private:
+    void CheckModifiedAndUpdate_();
+    void SetDataToView_();
+
     QLineEdit *book_title_;
     QLineEdit *book_subtitle_;
     QLineEdit *book_series_;

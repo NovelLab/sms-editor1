@@ -2,6 +2,8 @@
 
 #include "enums/bookinfotypes.h"
 
+#include <QDebug>
+
 BookInfoItem::BookInfoItem()
     : values_{QVector<QVariant>(kBookInfoTypeCount)}
 {
