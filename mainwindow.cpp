@@ -147,3 +147,9 @@ void MainWindow::on_btnFolderDraft_clicked()
     view_changer_->Update(Category::Draft);
 }
 
+
+void MainWindow::on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+    view_changer_->Update(Category::Draft);
+}
+

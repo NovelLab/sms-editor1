@@ -7,6 +7,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class QTreeWidgetItem;
+
 class ViewChanger;
 class DraftTree;
 
@@ -38,6 +40,8 @@ private slots:
     void on_btnFolderDraft_clicked();
     void on_btnAddDraft_clicked();
     void on_btnDelDraft_clicked();
+
+    void on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
 private:
     Ui::MainWindow *ui;
