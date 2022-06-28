@@ -20,7 +20,8 @@ SOURCES += \
     views/drafttree.cpp \
     views/viewchanger.cpp \
     views/basetreeview.cpp \
-    xmls/xmlreader.cpp
+    xmls/xmlreader.cpp \
+    xmls/xmlwriter.cpp
 
 HEADERS += \
     editor/markdownhighlighter.h \
@@ -34,7 +35,8 @@ HEADERS += \
     views/drafttree.h \
     views/viewchanger.h \
     views/basetreeview.h \
-    xmls/xmlreader.h
+    xmls/xmlreader.h \
+    xmls/xmlwriter.h
 
 FORMS += \
     mainwindow.ui
