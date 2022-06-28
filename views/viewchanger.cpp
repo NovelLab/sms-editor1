@@ -4,6 +4,7 @@
 
 #include "enums/generaltypes.h"
 #include "items/treeitem.h"
+#include "views/bookinfoview.h"
 #include "utils/itemutility.h"
 
 #include <QTreeWidgetItem>
@@ -18,12 +19,14 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     main_editor_ = ui->mainEditor;
     side_tab_ = ui->sideTab;
 
+    bookinfo_view_ = new BookInfoView(ui);
     draft_tree_ = ui->draftTreeView;
     corkboard_ = ui->corkboardView;
 }
 
 ViewChanger::~ViewChanger()
 {
+    delete bookinfo_view_;
     delete draft_tree_;
     delete corkboard_;
 
@@ -74,7 +77,7 @@ void ViewChanger::Update(Category category)
 {
     switch (category) {
       case Category::BookInfo:
-        qDebug() << "(unimp) update book info";
+        UpdateBookInfo_();
         break;
       case Category::Draft:
         UpdateDraft_();
@@ -186,6 +189,11 @@ void ViewChanger::ChangeMainTab_(MainTabCat cat)
 void ViewChanger::ChangeSideTab_(SideTabCat cat)
 {
     side_tab_->setCurrentIndex(static_cast<int>(cat));
+}
+
+void ViewChanger::UpdateBookInfo_()
+{
+    bookinfo_view_->UpdateView();
 }
 
 void ViewChanger::UpdateDraft_()

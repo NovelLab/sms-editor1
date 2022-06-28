@@ -9,6 +9,7 @@ QT_END_NAMESPACE
 
 class QTabWidget;
 
+class BookInfoView;
 class DraftTree;
 class CorkboardView;
 class TextEdit;
@@ -63,6 +64,7 @@ private:
     void ChangeRubi_();
     void ChangeTrash_();
 
+    void UpdateBookInfo_();
     void UpdateDraft_();
 
     void ChangeOutlineTree_(OutlineCat cat);
@@ -76,6 +78,7 @@ private:
     TextEdit *main_editor_;
     QTabWidget *side_tab_;
 
+    BookInfoView *bookinfo_view_;
     DraftTree *draft_tree_;
     CorkboardView *corkboard_;
 };

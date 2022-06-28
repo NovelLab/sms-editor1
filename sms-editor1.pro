@@ -11,12 +11,14 @@ CONFIG += c++11
 SOURCES += \
     editor/markdownhighlighter.cpp \
     editor/textedit.cpp \
+    items/bookinfoitem.cpp \
     items/treeitem.cpp \
     main.cpp \
     mainwindow.cpp \
     models/cardmodel.cpp \
     saveload/savedatafiler.cpp \
     utils/itemutility.cpp \
+    views/bookinfoview.cpp \
     views/corkboardview.cpp \
     views/drafttree.cpp \
     views/viewchanger.cpp \
@@ -28,12 +30,15 @@ HEADERS += \
     common/appsettings.h \
     editor/markdownhighlighter.h \
     editor/textedit.h \
+    enums/bookinfotypes.h \
     enums/generaltypes.h \
+    items/bookinfoitem.h \
     items/treeitem.h \
     mainwindow.h \
     models/cardmodel.h \
     saveload/savedatafiler.h \
     utils/itemutility.h \
+    views/bookinfoview.h \
     views/corkboardview.h \
     views/drafttree.h \
     views/viewchanger.h \
