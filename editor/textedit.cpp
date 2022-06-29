@@ -18,10 +18,15 @@ TextEdit::~TextEdit()
 }
 
 // methods
-void TextEdit::UpdateView(const QTreeWidgetItem *item)
+void TextEdit::SaveCurrentItem()
 {
     if (current_item_ && this->document()->isModified())
         SaveToCurrentItem_();
+}
+
+void TextEdit::UpdateView(const QTreeWidgetItem *item)
+{
+    SaveCurrentItem();
 
     ItemUtility util;
     if (!util.IsValidTreeWidgetItem(item))

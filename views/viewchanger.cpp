@@ -241,8 +241,10 @@ void ViewChanger::SavePreviousPageData_(Category category)
             bookinfo_view_->SaveData();
             break;
           case Category::Draft:
+            main_editor_->SaveCurrentItem();
             break;
           case Category::Plot:
+            main_editor_->SaveCurrentItem();
             break;
           case Category::Persons:
             break;

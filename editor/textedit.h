@@ -14,6 +14,7 @@ public:
     explicit TextEdit(QWidget *parent = nullptr);
     ~TextEdit();
 
+    void SaveCurrentItem();
     void UpdateView(const QTreeWidgetItem *item);
 
 private:
