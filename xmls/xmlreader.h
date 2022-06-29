@@ -7,10 +7,12 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class QTreeWidgetItem;
+
 class DraftTree;
 class PersonTree;
 class PlotTree;
-class QTreeWidgetItem;
+class WorldTree;
 
 enum class Category;
 
@@ -37,12 +39,17 @@ private:
     void ReadPersonsFolder_(QTreeWidgetItem *item);
     void ReadPersonsFile_(QTreeWidgetItem *item);
 
+    void ReadWorlds_();
+    void ReadWorldsFolder_(QTreeWidgetItem *item);
+    void ReadWorldsFile_(QTreeWidgetItem *item);
+
     void ClearWidgets_();
 
     QXmlStreamReader xml_;
     DraftTree *draft_view_;
     PlotTree *plot_view_;
     PersonTree *persons_view_;
+    WorldTree *worlds_view_;
 };
 
 
