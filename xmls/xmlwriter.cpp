@@ -7,6 +7,7 @@
 #include "utils/itemutility.h"
 #include "views/drafttree.h"
 #include "views/plottree.h"
+#include "views/worldtree.h"
 
 #include <QDebug>
 
@@ -15,6 +16,7 @@ XmlWriter::XmlWriter(const Ui::MainWindow *ui)
     draft_view_ = ui->draftTreeView;
     plot_view_ = ui->plotTreeView;
     persons_view_ = ui->personTreeView;
+    worlds_view_ = ui->worldTreeView;
     xml_.setAutoFormatting(true);
 }
 
@@ -40,6 +42,7 @@ bool XmlWriter::WriteFile(QIODevice *device)
     WritePersons_();
 
     // worlds
+    WriteWorlds_();
 
     // research
 
@@ -100,8 +103,6 @@ void XmlWriter::WriteDraftFolder_(const QTreeWidgetItem *item)
 
 void XmlWriter::WriteDraft_()
 {
-    //xml_.writeStartElement("category");
-    //xml_.writeTextElement("title", "draft");
     xml_.writeStartElement("category-draft");
 
     ItemUtility util;
@@ -131,10 +132,10 @@ void XmlWriter::WritePersonsFile_(const QTreeWidgetItem *item)
     xml_.writeTextElement("info", data->DataOf(1).toString());
     xml_.writeTextElement("text", data->DataOf(2).toString());
     xml_.writeTextElement("note", data->DataOf(3).toString());
-    xml_.writeTextElement("age", data->DataOf(3).toString());
-    xml_.writeTextElement("gender", data->DataOf(3).toString());
-    xml_.writeTextElement("job", data->DataOf(3).toString());
-    xml_.writeTextElement("appearance", data->DataOf(3).toString());
+    xml_.writeTextElement("age", data->DataOf(4).toString());
+    xml_.writeTextElement("gender", data->DataOf(5).toString());
+    xml_.writeTextElement("job", data->DataOf(6).toString());
+    xml_.writeTextElement("appearance", data->DataOf(7).toString());
 
     xml_.writeEndElement();
 }
@@ -164,8 +165,6 @@ void XmlWriter::WritePersonsFolder_(const QTreeWidgetItem *item)
 
 void XmlWriter::WritePersons_()
 {
-    //xml_.writeStartElement("category");
-    //xml_.writeTextElement("title", "persons");
     xml_.writeStartElement("category-persons");
 
     ItemUtility util;
@@ -224,8 +223,6 @@ void XmlWriter::WritePlotFolder_(const QTreeWidgetItem *item)
 
 void XmlWriter::WritePlot_()
 {
-    //xml_.writeStartElement("category");
-    //xml_.writeTextElement("title", "plot");
     xml_.writeStartElement("category-plot");
 
     ItemUtility util;
@@ -241,3 +238,63 @@ void XmlWriter::WritePlot_()
 
     xml_.writeEndElement();
 }
+
+void XmlWriter::WriteWorldsFile_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("file");
+
+    xml_.writeTextElement("name", data->DataOf(0).toString());
+    xml_.writeTextElement("info", data->DataOf(1).toString());
+    xml_.writeTextElement("text", data->DataOf(2).toString());
+    xml_.writeTextElement("note", data->DataOf(3).toString());
+    xml_.writeTextElement("category", data->DataOf(4).toString());
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteWorldsFolder_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("folder");
+
+    xml_.writeTextElement("title", data->DataOf(0).toString());
+
+    for (int i = 0; i < item->childCount(); ++i) {
+        QTreeWidgetItem *child = item->child(i);
+        if (util.IsFolder(child)) {
+            WriteWorldsFolder_(child);
+        } else if (util.IsFile(child)) {
+            WriteWorldsFile_(child);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteWorlds_()
+{
+    xml_.writeStartElement("category-worlds");
+
+    ItemUtility util;
+
+    for (int i = 0; i < worlds_view_->topLevelItemCount(); ++i) {
+        QTreeWidgetItem *item = worlds_view_->topLevelItem(i);
+        if (util.IsFolder(item)) {
+            WriteWorldsFolder_(item);
+        } else if (util.IsFile(item)) {
+            WriteWorldsFile_(item);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
