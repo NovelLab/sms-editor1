@@ -28,6 +28,7 @@ SOURCES += \
     views/plottree.cpp \
     views/viewchanger.cpp \
     views/basetreeview.cpp \
+    views/worldtree.cpp \
     xmls/xmlreader.cpp \
     xmls/xmlwriter.cpp
 
@@ -53,6 +54,7 @@ HEADERS += \
     views/plottree.h \
     views/viewchanger.h \
     views/basetreeview.h \
+    views/worldtree.h \
     xmls/xmlreader.h \
     xmls/xmlwriter.h
 

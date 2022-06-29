@@ -1,4 +1,4 @@
-#include "persontree.h"
+#include "worldtree.h"
 
 #include "enums/generaltypes.h"
 #include "items/treeitem.h"
@@ -6,14 +6,13 @@
 
 #include <QDebug>
 
-PersonTree::PersonTree(QWidget *parent)
+WorldTree::WorldTree(QWidget *parent)
     : BaseTreeView{Category::Persons, parent}
 {
-
 }
 
 // slots
-void PersonTree::UpdateItemData(const QModelIndex &index)
+void WorldTree::UpdateItemData(const QModelIndex &index)
 {
     if (!index.isValid())
         return;
@@ -36,21 +35,18 @@ void PersonTree::UpdateItemData(const QModelIndex &index)
 }
 
 // overrides
-TreeItem* PersonTree::CreateFileItem_()
+TreeItem* WorldTree::CreateFileItem_()
 {
     TreeItem *data = new TreeItem(ItemType::File, BaseCategoryOf());
     data->SetData(0, CreateNewFileTitle());
-    data->SetData(1, "person info");
+    data->SetData(1, "world info");
     data->SetData(2, "new text");
     data->SetData(3, "note");
-    data->SetData(4, "age");
-    data->SetData(5, "gender");
-    data->SetData(6, "job");
-    data->SetData(7, "appearance");
+    data->SetData(4, "other");// category
     return data;
 }
 
-QString PersonTree::CreateNewFileTitle() const
+QString WorldTree::CreateNewFileTitle() const
 {
-    return "new person";
+    return "new element";
 }

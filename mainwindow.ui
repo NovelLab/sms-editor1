@@ -261,6 +261,50 @@
         <attribute name="title">
          <string>Worlds</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_11">
+         <item>
+          <widget class="WorldTree" name="worldTreeView">
+           <column>
+            <property name="text">
+             <string>Worlds</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_6">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QPushButton" name="btnFolderWorld">
+              <property name="text">
+               <string>Folder</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAddWorld">
+              <property name="text">
+               <string>Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDelWorld">
+              <property name="text">
+               <string>Del</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tabResearchTree">
         <attribute name="title">
@@ -634,6 +678,11 @@
    <class>PersonsTableView</class>
    <extends>QTableView</extends>
    <header>views/personstableview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>WorldTree</class>
+   <extends>QTreeWidget</extends>
+   <header>views/worldtree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

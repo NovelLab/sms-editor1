@@ -14,6 +14,7 @@ class DraftTree;
 class PersonTree;
 class PlotTree;
 class ViewChanger;
+class WorldTree;
 
 class MainWindow : public QMainWindow
 {
@@ -55,7 +56,11 @@ private slots:
     void on_btnAddPerson_clicked();
     void on_btnDelPerson_clicked();
     void on_personTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
-
+    // world tree
+    void on_btnFolderWorld_clicked();
+    void on_btnAddWorld_clicked();
+    void on_btnDelWorld_clicked();
+    void on_worldTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
 private:
     Ui::MainWindow *ui;
@@ -65,5 +70,6 @@ private:
     DraftTree *draft_tree_;
     PlotTree *plot_tree_;
     PersonTree *person_tree_;
+    WorldTree *world_tree_;
 };
 #endif // MAINWINDOW_H

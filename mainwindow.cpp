@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     draft_tree_ = ui->draftTreeView;
     plot_tree_ = ui->plotTreeView;
     person_tree_ = ui->personTreeView;
+    world_tree_ = ui->worldTreeView;
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
@@ -78,6 +79,7 @@ MainWindow::~MainWindow()
     delete draft_tree_;
     delete plot_tree_;
     delete person_tree_;
+    delete world_tree_;
     delete settings_;
     delete ui;
 }
@@ -260,5 +262,34 @@ void MainWindow::on_personTreeView_currentItemChanged(QTreeWidgetItem *current, 
     Q_UNUSED(current);
     Q_UNUSED(previous);
     view_changer_->Update(Category::Persons);
+}
+
+// slots (world tree)
+void MainWindow::on_worldTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+    Q_UNUSED(current);
+    Q_UNUSED(previous);
+    view_changer_->Update(Category::Worlds);
+}
+
+
+void MainWindow::on_btnFolderWorld_clicked()
+{
+    world_tree_->AddFolder(world_tree_->currentItem());
+    view_changer_->Update(Category::Worlds);
+}
+
+
+void MainWindow::on_btnAddWorld_clicked()
+{
+    world_tree_->AddFile(world_tree_->currentItem());
+    view_changer_->Update(Category::Worlds);
+}
+
+
+void MainWindow::on_btnDelWorld_clicked()
+{
+    world_tree_->RemoveItem(world_tree_->currentItem());
+    view_changer_->Update(Category::Worlds);
 }
 
