@@ -11,6 +11,7 @@ enum class Category {
     Notes,
     Rubi,
     Trash,
+    None = 99,
 };
 
 enum class ItemType {

@@ -44,25 +44,6 @@ private slots:
 
     void on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
-    void on_lineBookTitle_editingFinished();
-
-    void on_lineBookSubtitle_editingFinished();
-
-    void on_lineBookSeries_editingFinished();
-
-    void on_lineBookVolume_editingFinished();
-
-    void on_lineBookGenre_editingFinished();
-
-    void on_lineBookLicense_editingFinished();
-
-    void on_lineOutline1line_editingFinished();
-
-    void on_lineAuthorName_editingFinished();
-
-    void on_lineAuthorEmail_editingFinished();
-
-
 private:
     Ui::MainWindow *ui;
     QSettings *settings_;

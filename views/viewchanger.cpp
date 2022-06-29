@@ -12,6 +12,7 @@
 #include <QDebug>
 
 ViewChanger::ViewChanger(Ui::MainWindow *ui)
+    :previous_cat_{Category::None}
 {
     // set ui widgets
     outline_tab_ = ui->outlineTab;
@@ -39,6 +40,8 @@ ViewChanger::~ViewChanger()
 // methods
 void ViewChanger::Change(Category category)
 {
+    SavePreviousPageData_(category);
+
     switch (category) {
       case Category::BookInfo:
         ChangeBookInfo_();
@@ -73,11 +76,14 @@ void ViewChanger::Change(Category category)
     }
 }
 
-void ViewChanger::Update(Category category, bool isCheck)
+/*
+ * NOTE: ここではdata→viewという反映のみ行うこと
+ * */
+void ViewChanger::Update(Category category)
 {
     switch (category) {
       case Category::BookInfo:
-        UpdateBookInfo_(isCheck);
+        UpdateBookInfo_();
         break;
       case Category::Draft:
         UpdateDraft_();
@@ -114,6 +120,7 @@ void ViewChanger::ChangeBookInfo_()
 {
     ShowHideViews_(ViewDisp::OFF, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeMainTab_(MainTabCat::BookInfo);
+    UpdatePreviousPage_(Category::BookInfo);
 }
 
 void ViewChanger::ChangeDraft_()
@@ -122,6 +129,7 @@ void ViewChanger::ChangeDraft_()
     ChangeOutlineTree_(OutlineCat::Draft);
     ChangeMainTab_(MainTabCat::Corkboard);
     ChangeSideTab_(SideTabCat::Draft);
+    UpdatePreviousPage_(Category::Draft);
 }
 
 void ViewChanger::ChangePlot_()
@@ -130,6 +138,7 @@ void ViewChanger::ChangePlot_()
     ChangeOutlineTree_(OutlineCat::Plot);
     ChangeMainTab_(MainTabCat::Corkboard);
     ChangeSideTab_(SideTabCat::Plot);
+    UpdatePreviousPage_(Category::Plot);
 }
 
 void ViewChanger::ChangePersons_()
@@ -138,6 +147,7 @@ void ViewChanger::ChangePersons_()
     ChangeOutlineTree_(OutlineCat::Persons);
     ChangeMainTab_(MainTabCat::PersonsTable);
     ChangeSideTab_(SideTabCat::Persons);
+    UpdatePreviousPage_(Category::Persons);
 }
 
 void ViewChanger::ChangeWorlds_()
@@ -146,6 +156,7 @@ void ViewChanger::ChangeWorlds_()
     ChangeOutlineTree_(OutlineCat::Worlds);
     ChangeMainTab_(MainTabCat::WorldsTable);
     ChangeSideTab_(SideTabCat::Worlds);
+    UpdatePreviousPage_(Category::Worlds);
 }
 
 void ViewChanger::ChangeResearch_()
@@ -153,6 +164,7 @@ void ViewChanger::ChangeResearch_()
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Research);
     ChangeMainTab_(MainTabCat::Corkboard);
+    UpdatePreviousPage_(Category::Research);
 }
 
 void ViewChanger::ChangeNotes_()
@@ -160,6 +172,7 @@ void ViewChanger::ChangeNotes_()
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Notes);
     ChangeMainTab_(MainTabCat::Corkboard);
+    UpdatePreviousPage_(Category::Notes);
 }
 
 void ViewChanger::ChangeRubi_()
@@ -167,6 +180,7 @@ void ViewChanger::ChangeRubi_()
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Rubi);
     ChangeMainTab_(MainTabCat::RubiTable);
+    UpdatePreviousPage_(Category::Rubi);
 }
 
 void ViewChanger::ChangeTrash_()
@@ -174,6 +188,7 @@ void ViewChanger::ChangeTrash_()
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Trash);
     ChangeMainTab_(MainTabCat::Corkboard);
+    UpdatePreviousPage_(Category::Trash);
 }
 
 void ViewChanger::ChangeOutlineTree_(OutlineCat cat)
@@ -191,13 +206,9 @@ void ViewChanger::ChangeSideTab_(SideTabCat cat)
     side_tab_->setCurrentIndex(static_cast<int>(cat));
 }
 
-void ViewChanger::UpdateBookInfo_(bool isCheck)
+void ViewChanger::UpdateBookInfo_()
 {
-    if (isCheck) {
-        bookinfo_view_->CheckModifiedAndUpdateView();
-    } else {
-        bookinfo_view_->UpdateView();
-    }
+    bookinfo_view_->UpdateView();
 }
 
 void ViewChanger::UpdateDraft_()
@@ -214,6 +225,41 @@ void ViewChanger::UpdateDraft_()
         main_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
+    }
+}
+
+void ViewChanger::UpdatePreviousPage_(Category category)
+{
+    previous_cat_ = category;
+}
+
+void ViewChanger::SavePreviousPageData_(Category category)
+{
+    if (previous_cat_ != category) {
+        switch (previous_cat_) {
+          case Category::BookInfo:
+            bookinfo_view_->SaveData();
+            break;
+          case Category::Draft:
+            break;
+          case Category::Plot:
+            break;
+          case Category::Persons:
+            break;
+          case Category::Worlds:
+            break;
+          case Category::Research:
+            break;
+          case Category::Notes:
+            break;
+          case Category::Rubi:
+            break;
+          case Category::Trash:
+            break;
+          default:
+            qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
+            break;
+        }
     }
 }
 

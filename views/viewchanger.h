@@ -23,7 +23,7 @@ public:
     ~ViewChanger();
 
     void Change(Category category);
-    void Update(Category category, bool isCheck = false);
+    void Update(Category category);
 
 private:
     enum class ViewDisp {
@@ -64,7 +64,7 @@ private:
     void ChangeRubi_();
     void ChangeTrash_();
 
-    void UpdateBookInfo_(bool isCheck);
+    void UpdateBookInfo_();
     void UpdateDraft_();
 
     void ChangeOutlineTree_(OutlineCat cat);
@@ -72,6 +72,9 @@ private:
     void ChangeSideTab_(SideTabCat cat);
 
     void ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp editor, ViewDisp side);
+
+    void UpdatePreviousPage_(Category category);
+    void SavePreviousPageData_(Category category);
 
     QTabWidget *outline_tab_;
     QTabWidget *main_tab_;
@@ -81,6 +84,8 @@ private:
     BookInfoView *bookinfo_view_;
     DraftTree *draft_tree_;
     CorkboardView *corkboard_;
+
+    Category previous_cat_;
 };
 
 #endif // VIEWCHANGER_H

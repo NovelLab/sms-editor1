@@ -65,19 +65,7 @@ void BookInfoView::Reset()
     UpdateView();
 }
 
-void BookInfoView::UpdateView()
-{
-    SetDataToView_();
-}
-
-void BookInfoView::CheckModifiedAndUpdateView()
-{
-    CheckModifiedAndUpdate_();
-    SetDataToView_();
-}
-
-// methods (private)
-void BookInfoView::CheckModifiedAndUpdate_()
+void BookInfoView::SaveData()
 {
     if (book_title_->isModified())
         root_item_->SetData(0, book_title_->text());
@@ -103,7 +91,7 @@ void BookInfoView::CheckModifiedAndUpdate_()
         root_item_->SetData(10, outline_abstract_->toPlainText());
 }
 
-void BookInfoView::SetDataToView_()
+void BookInfoView::UpdateView()
 {
     book_title_->setText(root_item_->DataOf(0).toString());
     book_subtitle_->setText(root_item_->DataOf(1).toString());
