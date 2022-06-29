@@ -7,7 +7,8 @@ static const int kColumnSize = 10;
 TreeItem::TreeItem(ItemType type, Category category)
     : values_{QVector<QVariant>(kColumnSize, "")},
       type_{type},
-      category_{category}
+      category_{category},
+      uuid_{QUuid::createUuid()}
 {
 
 }
@@ -46,6 +47,11 @@ bool TreeItem::SetData(int column, const QVariant &value)
 ItemType TreeItem::TypeOf() const
 {
     return type_;
+}
+
+QUuid TreeItem::UuidOf() const
+{
+    return uuid_;
 }
 
 // methods (private)

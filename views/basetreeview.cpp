@@ -51,7 +51,11 @@ void BaseTreeView::UpdateItemData(const QModelIndex &index)
             || index.row() < 0 || index.row() >= par->childCount())
         return;
 
-    par->child(index.row())->setText(index.column(), data->DataOf(index.column()).toString());
+    ItemUtility util;
+    TreeItem *dst = util.ItemFromTreeWidgetItem(par->child(index.row()));
+    if (data->UuidOf() == dst->UuidOf()) {
+        par->child(index.row())->setText(index.column(), data->DataOf(index.column()).toString());
+    }
 }
 
 // methods

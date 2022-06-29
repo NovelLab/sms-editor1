@@ -3,6 +3,7 @@
 
 #include <QVariant>
 #include <QVector>
+#include <QUuid>
 
 enum class Category;
 enum class ItemType;
@@ -21,12 +22,15 @@ public:
 
     int ColumnCount() const;
 
+    QUuid UuidOf() const;
+
 private:
     bool IsValidColumn_(int column) const;
 
     QVector<QVariant> values_;
     ItemType type_;
     Category category_;
+    QUuid uuid_;
 };
 
 Q_DECLARE_METATYPE(TreeItem*);
