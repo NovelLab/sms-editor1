@@ -71,7 +71,7 @@ void XmlReader::ReadCategory_()
             } else if (title == "draft") {
                 ReadDraft_();
             } else if (title == "plot") {
-                qDebug() << "(unimp) read xml: plot";
+                ReadPlot_();
             } else if (title == "persons") {
                 qDebug() << "(unimp) read xml: person";
             } else if (title == "worlds") {
@@ -85,23 +85,6 @@ void XmlReader::ReadCategory_()
             } else {
                 // TODO: warning message.
             }
-        } else {
-            xml_.skipCurrentElement();
-        }
-    }
-}
-
-void XmlReader::ReadDraft_()
-{
-    draft_view_->clear();
-
-    QTreeWidgetItem *root = draft_view_->invisibleRootItem();
-
-    while (xml_.readNextStartElement()) {
-        if (xml_.name() == "folder") {
-            ReadDraftFolder_(root);
-        } else if (xml_.name() == "file") {
-            ReadDraftFile_(root);
         } else {
             xml_.skipCurrentElement();
         }
@@ -163,3 +146,86 @@ void XmlReader::ReadDraftFolder_(QTreeWidgetItem *item)
         }
     }
 }
+
+void XmlReader::ReadDraft_()
+{
+    draft_view_->clear();
+
+    QTreeWidgetItem *root = draft_view_->invisibleRootItem();
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "folder") {
+            ReadDraftFolder_(root);
+        } else if (xml_.name() == "file") {
+            ReadDraftFile_(root);
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+void XmlReader::ReadPlotFile_(QTreeWidgetItem *item)
+{
+    Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
+
+    QTreeWidgetItem *child = plot_view_->CreateChild_(item);
+    TreeItem *data = plot_view_->CreateFileItem_();
+    child->setData(0, Qt::UserRole, QVariant::fromValue(data));
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "title") {
+            QString title = xml_.readElementText();
+            child->setText(0, title);
+            data->SetData(0, title);
+        } else if (xml_.name() == "synopsys") {
+            data->SetData(1, xml_.readElementText());
+        } else if (xml_.name() == "text") {
+            data->SetData(2, xml_.readElementText());
+        } else if (xml_.name() == "note") {
+            data->SetData(3, xml_.readElementText());
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+void XmlReader::ReadPlotFolder_(QTreeWidgetItem *item)
+{
+    Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
+
+    QTreeWidgetItem *child = plot_view_->CreateChild_(item);
+    TreeItem *data = plot_view_->CreateFolderItem_();
+    child->setData(0, Qt::UserRole, QVariant::fromValue(data));
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "title") {
+            QString title = xml_.readElementText();
+            child->setText(0, title);
+            data->SetData(0, title);
+        } else if (xml_.name() == "folder") {
+            ReadPlotFolder_(child);
+        } else if (xml_.name() == "file") {
+            ReadPlotFile_(child);
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+void XmlReader::ReadPlot_()
+{
+    draft_view_->clear();
+
+    QTreeWidgetItem *root = plot_view_->invisibleRootItem();
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "folder") {
+            ReadPlotFolder_(root);
+        } else if (xml_.name() == "file") {
+            ReadPlotFile_(root);
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+

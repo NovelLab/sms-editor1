@@ -36,6 +36,8 @@ protected:
     virtual QStringList mimeTypes() const override;
     virtual void dropEvent(QDropEvent *event) override;
 
+    virtual Category BaseCategoryOf() const;
+
 private slots:
     void OnTitleChanged(QTreeWidgetItem *item, int column);
 

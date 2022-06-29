@@ -22,6 +22,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
 
     bookinfo_view_ = new BookInfoView(ui);
     draft_tree_ = ui->draftTreeView;
+    plot_tree_ = ui->plotTreeView;
     corkboard_ = ui->corkboardView;
 }
 
@@ -89,7 +90,7 @@ void ViewChanger::Update(Category category)
         UpdateDraft_();
         break;
       case Category::Plot:
-        qDebug() << "(unimp) update plot";
+        UpdatePlot_();
         break;
       case Category::Persons:
         qDebug() << "(unimp) update persons";
@@ -206,33 +207,6 @@ void ViewChanger::ChangeSideTab_(SideTabCat cat)
     side_tab_->setCurrentIndex(static_cast<int>(cat));
 }
 
-void ViewChanger::UpdateBookInfo_()
-{
-    bookinfo_view_->UpdateView();
-}
-
-void ViewChanger::UpdateDraft_()
-{
-    QTreeWidgetItem *cur = draft_tree_->currentItem();
-    ItemUtility util;
-    if (!util.IsValidTreeWidgetItem(cur))
-        return;
-    if (util.IsFolder(cur)) {
-        corkboard_->UpdateView(cur);
-        main_tab_->show();
-        main_editor_->hide();
-    } else if (util.IsFile(cur)) {
-        main_editor_->UpdateView(cur);
-        main_tab_->hide();
-        main_editor_->show();
-    }
-}
-
-void ViewChanger::UpdatePreviousPage_(Category category)
-{
-    previous_cat_ = category;
-}
-
 void ViewChanger::SavePreviousPageData_(Category category)
 {
     if (previous_cat_ != category) {
@@ -271,4 +245,48 @@ void ViewChanger::ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp edito
     main_tab_->setVisible(static_cast<bool>(mtab));
     main_editor_->setVisible(static_cast<bool>(editor));
     side_tab_->setVisible(static_cast<bool>(side));
+}
+
+void ViewChanger::UpdateBookInfo_()
+{
+    bookinfo_view_->UpdateView();
+}
+
+void ViewChanger::UpdateDraft_()
+{
+    QTreeWidgetItem *cur = draft_tree_->currentItem();
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(cur))
+        return;
+    if (util.IsFolder(cur)) {
+        corkboard_->UpdateView(cur);
+        main_tab_->show();
+        main_editor_->hide();
+    } else if (util.IsFile(cur)) {
+        main_editor_->UpdateView(cur);
+        main_tab_->hide();
+        main_editor_->show();
+    }
+}
+
+void ViewChanger::UpdatePlot_()
+{
+    QTreeWidgetItem *cur = plot_tree_->currentItem();
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(cur))
+        return;
+    if (util.IsFolder(cur)) {
+        corkboard_->UpdateView(cur);
+        main_tab_->show();
+        main_editor_->hide();
+    } else if (util.IsFile(cur)) {
+        main_editor_->UpdateView(cur);
+        main_tab_->hide();
+        main_editor_->show();
+    }
+}
+
+void ViewChanger::UpdatePreviousPage_(Category category)
+{
+    previous_cat_ = category;
 }

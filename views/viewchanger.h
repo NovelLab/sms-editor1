@@ -10,8 +10,9 @@ QT_END_NAMESPACE
 class QTabWidget;
 
 class BookInfoView;
-class DraftTree;
 class CorkboardView;
+class DraftTree;
+class PlotTree;
 class TextEdit;
 
 enum class Category;
@@ -66,6 +67,7 @@ private:
 
     void UpdateBookInfo_();
     void UpdateDraft_();
+    void UpdatePlot_();
 
     void ChangeOutlineTree_(OutlineCat cat);
     void ChangeMainTab_(MainTabCat cat);
@@ -83,6 +85,7 @@ private:
 
     BookInfoView *bookinfo_view_;
     DraftTree *draft_tree_;
+    PlotTree *plot_tree_;
     CorkboardView *corkboard_;
 
     Category previous_cat_;

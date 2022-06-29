@@ -92,6 +92,11 @@ void BaseTreeView::RemoveItem(QTreeWidgetItem *item)
 }
 
 // methods (protected)
+Category BaseTreeView::BaseCategoryOf() const
+{
+    return base_category_;
+}
+
 QTreeWidgetItem* BaseTreeView::CreateChild_(const QTreeWidgetItem *item)
 {
     QTreeWidgetItem *child = new QTreeWidgetItem(const_cast<QTreeWidgetItem*>(item));

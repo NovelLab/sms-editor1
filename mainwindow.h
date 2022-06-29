@@ -11,6 +11,7 @@ class QSettings;
 class QTreeWidgetItem;
 
 class DraftTree;
+class PlotTree;
 class ViewChanger;
 
 class MainWindow : public QMainWindow
@@ -38,11 +39,16 @@ private slots:
     void on_btnNotes_clicked();
     void on_btnRubi_clicked();
     void on_btnTrash_clicked();
+    // draft tree
     void on_btnFolderDraft_clicked();
     void on_btnAddDraft_clicked();
     void on_btnDelDraft_clicked();
-
     void on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+    // plot tree
+    void on_btnFolderPlot_clicked();
+    void on_btnAddPlot_clicked();
+    void on_btnDelPlot_clicked();
+    void on_plotTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
 private:
     Ui::MainWindow *ui;
@@ -50,5 +56,6 @@ private:
 
     ViewChanger *view_changer_;
     DraftTree *draft_tree_;
+    PlotTree *plot_tree_;
 };
 #endif // MAINWINDOW_H

@@ -163,6 +163,50 @@
         <attribute name="title">
          <string>Plot</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="PlotTree" name="plotTreeView">
+           <column>
+            <property name="text">
+             <string>Plot</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_4">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="btnFolderPlot">
+              <property name="text">
+               <string>Folder</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAddPlot">
+              <property name="text">
+               <string>Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDelPlot">
+              <property name="text">
+               <string>Del</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tabPersonsTree">
         <attribute name="title">
@@ -526,6 +570,11 @@
    <class>TextEdit</class>
    <extends>QTextEdit</extends>
    <header>editor/textedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PlotTree</class>
+   <extends>QTreeWidget</extends>
+   <header>views/plottree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
