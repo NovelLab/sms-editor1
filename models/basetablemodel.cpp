@@ -11,12 +11,13 @@ BaseTableModel::BaseTableModel(int display_columns, QObject *parent)
     : QAbstractItemModel{parent},
       kDisplayColumnSize_{display_columns}
 {
-
+    header_item_ = new TreeItem(ItemType::Folder, Category::None);
 }
 
 BaseTableModel::~BaseTableModel()
 {
     qDeleteAll(items_);
+    delete header_item_;
 }
 
 // overrides
@@ -55,6 +56,14 @@ Qt::ItemFlags BaseTableModel::flags(const QModelIndex &index) const
         return Qt::NoItemFlags;
 
     return kItemFlags;
+}
+
+QVariant BaseTableModel::headerData(int section, Qt::Orientation orientation, int role /* Qt::DisplayRole */) const
+{
+    if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
+        return header_item_->DataOf(section);
+
+    return QVariant();
 }
 
 QModelIndex BaseTableModel::index(int row, int column, const QModelIndex &parent /* QModelIndex() */) const
@@ -99,6 +108,19 @@ bool BaseTableModel::setData(const QModelIndex &index, const QVariant &value, in
     }
 
     emit UpdatedItemData(index);
+
+    return result;
+}
+
+bool BaseTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role /* Qt::EditRole */)
+{
+    if (role != Qt::EditRole || orientation != Qt::Horizontal)
+        return false;
+
+    const bool result = header_item_->SetData(section, value);
+
+    if (result)
+        emit headerDataChanged(orientation, section, section);
 
     return result;
 }

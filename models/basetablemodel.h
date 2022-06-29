@@ -23,6 +23,9 @@ public:
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
+    virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    virtual bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role = Qt::EditRole) override;
+
     void Clear();
     void AppendChild(TreeItem *data);
 
@@ -38,6 +41,7 @@ protected:
 
 private:
     QVector<TreeItem*> items_;
+    TreeItem *header_item_;
     const int kDisplayColumnSize_;
 };
 

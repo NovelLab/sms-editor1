@@ -4,14 +4,16 @@
 #include "items/treeitem.h"
 
 static const QStringList kDisplayElements = {
-    "name", "age", "gender", "job", "info",
+    "Name", "Age", "Gender", "Job", "Info",
 };
 static const int kColumnSize = kDisplayElements.count();
 
 PersonsModel::PersonsModel(QObject *parent)
     : BaseTableModel{kColumnSize, parent}
 {
-
+    // set header
+    for (int i = 0; i < kDisplayElements.count(); ++i)
+        setHeaderData(i, Qt::Horizontal, kDisplayElements.at(i));
 }
 
 // overrides (protected)

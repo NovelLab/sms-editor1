@@ -4,12 +4,13 @@
 #include "models/personsmodel.h"
 #include "utils/itemutility.h"
 
+#include <QHeaderView>
 #include <QTreeWidgetItem>
 
 PersonsTableView::PersonsTableView(QWidget *parent)
     : QTableView{parent}
 {
-
+    this->verticalHeader()->hide();
 }
 
 // methods
