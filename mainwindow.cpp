@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     view_changer_ = new ViewChanger(ui);
     draft_tree_ = ui->draftTreeView;
     plot_tree_ = ui->plotTreeView;
+    person_tree_ = ui->personTreeView;
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
@@ -72,6 +73,7 @@ MainWindow::~MainWindow()
     delete view_changer_;
     delete draft_tree_;
     delete plot_tree_;
+    delete person_tree_;
     delete settings_;
     delete ui;
 }
@@ -224,3 +226,29 @@ void MainWindow::on_btnDelPlot_clicked()
     plot_tree_->RemoveItem(plot_tree_->currentItem());
     view_changer_->Update(Category::Plot);
 }
+
+// slots (person tree)
+
+void MainWindow::on_btnFolderPerson_clicked()
+{
+    qDebug() << "(unimp) Folder clicked in person tree";
+}
+
+
+void MainWindow::on_btnAddPerson_clicked()
+{
+    qDebug() << "(unimp) Add clicked in person tree";
+}
+
+
+void MainWindow::on_btnDelPerson_clicked()
+{
+    qDebug() << "(unimp) Del clicked in person tree";
+}
+
+
+void MainWindow::on_personTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+    qDebug() << "(unimp) current item changed in person tree";
+}
+
