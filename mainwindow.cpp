@@ -69,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
     // connects
     connect(card_model, &CardModel::UpdatedItemData, ui->draftTreeView, &DraftTree::UpdateItemData);
     connect(card_model, &CardModel::UpdatedItemData, ui->plotTreeView, &PlotTree::UpdateItemData);
+    connect(persons_model, &PersonsModel::UpdatedItemData, ui->personTreeView, &PersonTree::UpdateItemData);
 }
 
 MainWindow::~MainWindow()
