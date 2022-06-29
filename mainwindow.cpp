@@ -147,6 +147,7 @@ void MainWindow::on_btnPersons_clicked()
 void MainWindow::on_btnPlot_clicked()
 {
     view_changer_->Change(Category::Plot);
+    view_changer_->Update(Category::Plot);
 }
 
 void MainWindow::on_btnResearch_clicked()
