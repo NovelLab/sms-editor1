@@ -23,19 +23,14 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     bookinfo_view_ = new BookInfoView(ui);
     draft_tree_ = ui->draftTreeView;
     plot_tree_ = ui->plotTreeView;
+    person_tree_ = ui->personTreeView;
     corkboard_ = ui->corkboardView;
 }
 
 ViewChanger::~ViewChanger()
 {
+    // TODO: 自身でnewしたものはここで解放
     delete bookinfo_view_;
-    delete draft_tree_;
-    delete corkboard_;
-
-    delete outline_tab_;
-    delete main_tab_;
-    delete main_editor_;
-    delete side_tab_;
 }
 
 // methods
@@ -93,7 +88,7 @@ void ViewChanger::Update(Category category)
         UpdatePlot_();
         break;
       case Category::Persons:
-        qDebug() << "(unimp) update persons";
+        UpdatePersons_();
         break;
       case Category::Worlds:
         qDebug() << "(unimp) update worlds";
@@ -266,6 +261,24 @@ void ViewChanger::UpdateDraft_()
         main_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
+    }
+}
+
+void ViewChanger::UpdatePersons_()
+{
+    QTreeWidgetItem *cur = person_tree_->currentItem();
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(cur))
+        return;
+    if (util.IsFolder(cur)) {
+        // TODO: ここがpersontable｜corkboard_->UpdateView(cur);
+        // NOTE: どちらでもmain_tabはshowのまま｜main_tab_->show();
+        // person table updateView
+        side_tab_->hide();
+    } else if (util.IsFile(cur)) {
+        //main_editor_->UpdateView(cur);
+        //main_tab_->hide();
+        side_tab_->show();
     }
 }
 

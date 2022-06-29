@@ -144,6 +144,7 @@ void MainWindow::on_btnNotes_clicked()
 void MainWindow::on_btnPersons_clicked()
 {
     view_changer_->Change(Category::Persons);
+    view_changer_->Update(Category::Persons);
 }
 
 void MainWindow::on_btnPlot_clicked()
@@ -231,24 +232,29 @@ void MainWindow::on_btnDelPlot_clicked()
 
 void MainWindow::on_btnFolderPerson_clicked()
 {
-    qDebug() << "(unimp) Folder clicked in person tree";
+    person_tree_->AddFolder(person_tree_->currentItem());
+    view_changer_->Update(Category::Persons);
 }
 
 
 void MainWindow::on_btnAddPerson_clicked()
 {
-    qDebug() << "(unimp) Add clicked in person tree";
+    person_tree_->AddFile(person_tree_->currentItem());
+    view_changer_->Update(Category::Persons);
 }
 
 
 void MainWindow::on_btnDelPerson_clicked()
 {
-    qDebug() << "(unimp) Del clicked in person tree";
+    person_tree_->RemoveItem(person_tree_->currentItem());
+    view_changer_->Update(Category::Persons);
 }
 
 
 void MainWindow::on_personTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
-    qDebug() << "(unimp) current item changed in person tree";
+    Q_UNUSED(current);
+    Q_UNUSED(previous);
+    view_changer_->Update(Category::Persons);
 }
 
