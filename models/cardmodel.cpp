@@ -121,15 +121,6 @@ void CardModel::Clear()
 
 
 // methods (protected)
-QVariant CardModel::DataFromFile(const TreeItem *data, int column) const
-{
-    Q_ASSERT(data->TypeOf() == ItemType::File);
-
-    if (column < 0 || column >= data->ColumnCount())
-        return QVariant();
-    return data->DataOf(column);
-}
-
 QVariant CardModel::DataFromFolder(const TreeItem *data, int column) const
 {
     Q_ASSERT(data->TypeOf() == ItemType::Folder);
@@ -139,6 +130,15 @@ QVariant CardModel::DataFromFolder(const TreeItem *data, int column) const
         return data->DataOf(0);
     }
     return QVariant();
+}
+
+QVariant CardModel::DataFromFile(const TreeItem *data, int column) const
+{
+    Q_ASSERT(data->TypeOf() == ItemType::File);
+
+    if (column < 0 || column >= data->ColumnCount())
+        return QVariant();
+    return data->DataOf(column);
 }
 
 TreeItem* CardModel::ItemFromIndex_(const QModelIndex &index) const
