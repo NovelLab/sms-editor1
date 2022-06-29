@@ -8,6 +8,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class DraftTree;
+class PersonTree;
 class PlotTree;
 class QTreeWidgetItem;
 
@@ -23,7 +24,6 @@ public:
 
 private:
     void ReadXmlData_();
-    void ReadCategory_();
 
     void ReadDraft_();
     void ReadDraftFolder_(QTreeWidgetItem *item);
@@ -33,11 +33,16 @@ private:
     void ReadPlotFolder_(QTreeWidgetItem *item);
     void ReadPlotFile_(QTreeWidgetItem *item);
 
+    void ReadPersons_();
+    void ReadPersonsFolder_(QTreeWidgetItem *item);
+    void ReadPersonsFile_(QTreeWidgetItem *item);
+
     void ClearWidgets_();
 
     QXmlStreamReader xml_;
     DraftTree *draft_view_;
     PlotTree *plot_view_;
+    PersonTree *persons_view_;
 };
 
 

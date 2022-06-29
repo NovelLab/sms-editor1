@@ -11,6 +11,7 @@ class QTreeWidgetItem;
 
 class DraftTree;
 class PlotTree;
+class PersonTree;
 class TreeItem;
 
 class XmlWriter
@@ -27,10 +28,14 @@ private:
     void WritePlot_();
     void WritePlotFolder_(const QTreeWidgetItem *item);
     void WritePlotFile_(const QTreeWidgetItem *item);
+    void WritePersons_();
+    void WritePersonsFolder_(const QTreeWidgetItem *item);
+    void WritePersonsFile_(const QTreeWidgetItem *item);
 
     QXmlStreamWriter xml_;
     const DraftTree *draft_view_;
     const PlotTree *plot_view_;
+    const PersonTree *persons_view_;
 };
 
 

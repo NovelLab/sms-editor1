@@ -12,6 +12,8 @@
 XmlReader::XmlReader(Ui::MainWindow *ui)
 {
     draft_view_ = ui->draftTreeView;
+    plot_view_ = ui->plotTreeView;
+    persons_view_ = ui->personTreeView;
 }
 
 // methods
@@ -42,6 +44,8 @@ bool XmlReader::Read(QIODevice *device)
 void XmlReader::ClearWidgets_()
 {
     draft_view_->clear();
+    plot_view_->clear();
+    persons_view_->clear();
 }
 
 void XmlReader::ReadXmlData_()
@@ -51,40 +55,24 @@ void XmlReader::ReadXmlData_()
     while (!xml_.atEnd()) {
         xml_.readNextStartElement();
 
-        if (xml_.name() == "category") {
-            ReadCategory_();
-        } else {
-            xml_.skipCurrentElement();
-        }
-    }
-}
-
-void XmlReader::ReadCategory_()
-{
-    Q_ASSERT(xml_.isStartElement() && xml_.name() == "category");
-
-    while (xml_.readNextStartElement()) {
-        if (xml_.name() == "title") {
-            QString title = xml_.readElementText();
-            if (title == "bookinfo") {
-                qDebug() << "(unimp) read xml: project info";
-            } else if (title == "draft") {
-                ReadDraft_();
-            } else if (title == "plot") {
-                ReadPlot_();
-            } else if (title == "persons") {
-                qDebug() << "(unimp) read xml: person";
-            } else if (title == "worlds") {
-                qDebug() << "(unimp) read xml: world";
-            } else if (title == "research") {
-                qDebug() << "(unimp) read xml: research";
-            } else if (title == "notes") {
-                qDebug() << "(unimp) read xml: note";
-            } else if (title == "rubi") {
-                qDebug() << "(unimp) read xml: rubi";
-            } else {
-                // TODO: warning message.
-            }
+        if (xml_.name() == "category-bookinfo") {
+            qDebug() << "(unimp) book info xml";
+        } else if (xml_.name() == "category-draft") {
+            ReadDraft_();
+        } else if (xml_.name() == "category-plot") {
+            ReadPlot_();
+        } else if (xml_.name() == "category-persons") {
+            ReadPersons_();
+        } else if (xml_.name() == "category-worlds") {
+            qDebug() << "(unimp) worlds xml";
+        } else if (xml_.name() == "category-research") {
+            qDebug() << "(unimp) research xml";
+        } else if (xml_.name() == "category-notes") {
+            qDebug() << "(unimp) notes xml";
+        } else if (xml_.name() == "category-rubi") {
+            qDebug() << "(unimp) rubi xml";
+        } else if (xml_.name() == "category-trash") {
+            qDebug() << "(unimp) trash xml";
         } else {
             xml_.skipCurrentElement();
         }
@@ -164,6 +152,80 @@ void XmlReader::ReadDraft_()
     }
 }
 
+void XmlReader::ReadPersonsFile_(QTreeWidgetItem *item)
+{
+    Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
+
+    QTreeWidgetItem *child = persons_view_->CreateChild_(item);
+    TreeItem *data = persons_view_->CreateFileItem_();
+    child->setData(0, Qt::UserRole, QVariant::fromValue(data));
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "name") {
+            QString title = xml_.readElementText();
+            child->setText(0, title);
+            data->SetData(0, title);
+        } else if (xml_.name() == "info") {
+            data->SetData(1, xml_.readElementText());
+        } else if (xml_.name() == "text") {
+            data->SetData(2, xml_.readElementText());
+        } else if (xml_.name() == "note") {
+            data->SetData(3, xml_.readElementText());
+        } else if (xml_.name() == "age") {
+            data->SetData(4, xml_.readElementText());
+        } else if (xml_.name() == "gender") {
+            data->SetData(5, xml_.readElementText());
+        } else if (xml_.name() == "job") {
+            data->SetData(6, xml_.readElementText());
+        } else if (xml_.name() == "appearance") {
+            data->SetData(7, xml_.readElementText());
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+void XmlReader::ReadPersonsFolder_(QTreeWidgetItem *item)
+{
+    Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
+
+    QTreeWidgetItem *child = persons_view_->CreateChild_(item);
+    TreeItem *data = persons_view_->CreateFolderItem_();
+    child->setData(0, Qt::UserRole, QVariant::fromValue(data));
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "title") {
+            QString title = xml_.readElementText();
+            child->setText(0, title);
+            data->SetData(0, title);
+        } else if (xml_.name() == "folder") {
+            ReadPersonsFolder_(child);
+        } else if (xml_.name() == "file") {
+            ReadPersonsFile_(child);
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+void XmlReader::ReadPersons_()
+{
+    persons_view_->clear();
+
+    QTreeWidgetItem *root = persons_view_->invisibleRootItem();
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "folder") {
+            ReadPersonsFolder_(root);
+        } else if (xml_.name() == "file") {
+            ReadPersonsFile_(root);
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+
 void XmlReader::ReadPlotFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
@@ -214,7 +276,7 @@ void XmlReader::ReadPlotFolder_(QTreeWidgetItem *item)
 
 void XmlReader::ReadPlot_()
 {
-    draft_view_->clear();
+    qDebug() << "read xml: plot -->";
 
     QTreeWidgetItem *root = plot_view_->invisibleRootItem();
 

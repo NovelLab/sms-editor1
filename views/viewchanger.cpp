@@ -258,10 +258,12 @@ void ViewChanger::UpdateDraft_()
         corkboard_->UpdateView(cur);
         main_tab_->show();
         main_editor_->hide();
+        side_tab_->hide();
     } else if (util.IsFile(cur)) {
         main_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
+        side_tab_->show();
     }
 }
 
@@ -274,8 +276,12 @@ void ViewChanger::UpdatePersons_()
 
     persons_table_->UpdateView(cur);
     if (util.IsFolder(cur)) {
+        main_tab_->show();
+        main_editor_->hide();
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
+        main_tab_->hide();
+        main_editor_->show();
         side_tab_->show();
     }
 }
@@ -290,10 +296,12 @@ void ViewChanger::UpdatePlot_()
         corkboard_->UpdateView(cur);
         main_tab_->show();
         main_editor_->hide();
+        side_tab_->hide();
     } else if (util.IsFile(cur)) {
         main_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
+        side_tab_->show();
     }
 }
 
