@@ -6,6 +6,7 @@
 #include "enums/generaltypes.h"
 #include "models/cardmodel.h"
 #include "models/personsmodel.h"
+#include "models/worldsmodel.h"
 #include "saveload/savedatafiler.h"
 #include "views/viewchanger.h"
 
@@ -53,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->corkboardView->setModel(card_model);
     PersonsModel *persons_model = new PersonsModel();
     ui->personsTableView->setModel(persons_model);
+    WorldsModel *worlds_model = new WorldsModel();
+    ui->worldsTableView->setModel(worlds_model);
 
     // start view setting
     view_changer_->Change(Category::BookInfo);
@@ -71,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(card_model, &CardModel::UpdatedItemData, ui->draftTreeView, &DraftTree::UpdateItemData);
     connect(card_model, &CardModel::UpdatedItemData, ui->plotTreeView, &PlotTree::UpdateItemData);
     connect(persons_model, &PersonsModel::UpdatedItemData, ui->personTreeView, &PersonTree::UpdateItemData);
+    connect(worlds_model, &WorldsModel::UpdatedItemData, ui->worldTreeView, &WorldTree::UpdateItemData);
 }
 
 MainWindow::~MainWindow()

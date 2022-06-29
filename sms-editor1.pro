@@ -18,6 +18,7 @@ SOURCES += \
     models/basetablemodel.cpp \
     models/cardmodel.cpp \
     models/personsmodel.cpp \
+    models/worldsmodel.cpp \
     saveload/savedatafiler.cpp \
     utils/itemutility.cpp \
     views/bookinfoview.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
     views/plottree.cpp \
     views/viewchanger.cpp \
     views/basetreeview.cpp \
+    views/worldstableview.cpp \
     views/worldtree.cpp \
     xmls/xmlreader.cpp \
     xmls/xmlwriter.cpp
@@ -44,6 +46,7 @@ HEADERS += \
     models/basetablemodel.h \
     models/cardmodel.h \
     models/personsmodel.h \
+    models/worldsmodel.h \
     saveload/savedatafiler.h \
     utils/itemutility.h \
     views/bookinfoview.h \
@@ -54,6 +57,7 @@ HEADERS += \
     views/plottree.h \
     views/viewchanger.h \
     views/basetreeview.h \
+    views/worldstableview.h \
     views/worldtree.h \
     xmls/xmlreader.h \
     xmls/xmlwriter.h

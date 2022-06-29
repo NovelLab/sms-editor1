@@ -27,6 +27,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     world_tree_ = ui->worldTreeView;
     corkboard_ = ui->corkboardView;
     persons_table_ = ui->personsTableView;
+    worlds_table_ = ui->worldsTableView;
 }
 
 ViewChanger::~ViewChanger()
@@ -218,8 +219,10 @@ void ViewChanger::SavePreviousPageData_(Category category)
             main_editor_->SaveCurrentItem();
             break;
           case Category::Persons:
+            main_editor_->SaveCurrentItem();
             break;
           case Category::Worlds:
+            main_editor_->SaveCurrentItem();
             break;
           case Category::Research:
             break;
@@ -275,12 +278,13 @@ void ViewChanger::UpdatePersons_()
     if (!util.IsValidTreeWidgetItem(cur))
         return;
 
-    persons_table_->UpdateView(cur);
     if (util.IsFolder(cur)) {
+        persons_table_->UpdateView(cur);
         main_tab_->show();
         main_editor_->hide();
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
+        main_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
         side_tab_->show();
@@ -313,12 +317,13 @@ void ViewChanger::UpdateWorlds_()
     if (!util.IsValidTreeWidgetItem(cur))
         return;
 
-    //worlds_table_->UpdateView(cur);
     if (util.IsFolder(cur)) {
+        worlds_table_->UpdateView(cur);
         main_tab_->show();
         main_editor_->hide();
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
+        main_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
         side_tab_->show();

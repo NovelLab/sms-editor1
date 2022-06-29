@@ -536,6 +536,11 @@
         <attribute name="title">
          <string>WorldTable</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_12">
+         <item>
+          <widget class="WorldsTableView" name="worldsTableView"/>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tabRubiTable">
         <attribute name="title">
@@ -683,6 +688,11 @@
    <class>WorldTree</class>
    <extends>QTreeWidget</extends>
    <header>views/worldtree.h</header>
+  </customwidget>
+  <customwidget>
+   <class>WorldsTableView</class>
+   <extends>QTableView</extends>
+   <header>views/worldstableview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

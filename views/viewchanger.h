@@ -17,6 +17,7 @@ class PersonsTableView;
 class PlotTree;
 class TextEdit;
 class WorldTree;
+class WorldsTableView;
 
 enum class Category;
 
@@ -96,6 +97,7 @@ private:
 
     CorkboardView *corkboard_;
     PersonsTableView *persons_table_;
+    WorldsTableView *worlds_table_;
 
     Category previous_cat_;
 };
