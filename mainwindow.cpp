@@ -5,6 +5,7 @@
 #include "editor/markdownhighlighter.h"
 #include "enums/generaltypes.h"
 #include "models/cardmodel.h"
+#include "models/personsmodel.h"
 #include "saveload/savedatafiler.h"
 #include "views/viewchanger.h"
 
@@ -49,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent)
     // set model
     CardModel *card_model = new CardModel();
     ui->corkboardView->setModel(card_model);
+    PersonsModel *persons_model = new PersonsModel();
+    ui->personsTableView->setModel(persons_model);
 
     // start view setting
     view_changer_->Change(Category::BookInfo);

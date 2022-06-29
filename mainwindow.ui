@@ -482,6 +482,11 @@
         <attribute name="title">
          <string>PersonTable</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <widget class="PersonsTableView" name="personsTableView"/>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tabWorldTable">
         <attribute name="title">
@@ -624,6 +629,11 @@
    <class>PersonTree</class>
    <extends>QTreeWidget</extends>
    <header>views/persontree.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PersonsTableView</class>
+   <extends>QTableView</extends>
+   <header>views/personstableview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

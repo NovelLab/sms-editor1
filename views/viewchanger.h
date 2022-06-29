@@ -13,6 +13,7 @@ class BookInfoView;
 class CorkboardView;
 class DraftTree;
 class PersonTree;
+class PersonsTableView;
 class PlotTree;
 class TextEdit;
 
@@ -89,7 +90,9 @@ private:
     DraftTree *draft_tree_;
     PlotTree *plot_tree_;
     PersonTree *person_tree_;
+
     CorkboardView *corkboard_;
+    PersonsTableView *persons_table_;
 
     Category previous_cat_;
 };

@@ -17,11 +17,13 @@ SOURCES += \
     mainwindow.cpp \
     models/basetablemodel.cpp \
     models/cardmodel.cpp \
+    models/personsmodel.cpp \
     saveload/savedatafiler.cpp \
     utils/itemutility.cpp \
     views/bookinfoview.cpp \
     views/corkboardview.cpp \
     views/drafttree.cpp \
+    views/personstableview.cpp \
     views/persontree.cpp \
     views/plottree.cpp \
     views/viewchanger.cpp \
@@ -40,11 +42,13 @@ HEADERS += \
     mainwindow.h \
     models/basetablemodel.h \
     models/cardmodel.h \
+    models/personsmodel.h \
     saveload/savedatafiler.h \
     utils/itemutility.h \
     views/bookinfoview.h \
     views/corkboardview.h \
     views/drafttree.h \
+    views/personstableview.h \
     views/persontree.h \
     views/plottree.h \
     views/viewchanger.h \

@@ -25,6 +25,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     plot_tree_ = ui->plotTreeView;
     person_tree_ = ui->personTreeView;
     corkboard_ = ui->corkboardView;
+    persons_table_ = ui->personsTableView;
 }
 
 ViewChanger::~ViewChanger()
@@ -270,14 +271,11 @@ void ViewChanger::UpdatePersons_()
     ItemUtility util;
     if (!util.IsValidTreeWidgetItem(cur))
         return;
+
+    persons_table_->UpdateView(cur);
     if (util.IsFolder(cur)) {
-        // TODO: ここがpersontable｜corkboard_->UpdateView(cur);
-        // NOTE: どちらでもmain_tabはshowのまま｜main_tab_->show();
-        // person table updateView
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
-        //main_editor_->UpdateView(cur);
-        //main_tab_->hide();
         side_tab_->show();
     }
 }
