@@ -2,7 +2,7 @@
 
 #include "enums/generaltypes.h"
 
-static const int kColumnSize = 10;
+static const int kColumnSize = 16;
 
 TreeItem::TreeItem(ItemType type, Category category)
     : values_{QVector<QVariant>(kColumnSize, "")},

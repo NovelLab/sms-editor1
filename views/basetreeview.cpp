@@ -63,7 +63,7 @@ void BaseTreeView::AddFile(const QTreeWidgetItem *item)
 {
     const QTreeWidgetItem *par = GetParentOrRoot_(item);
     QTreeWidgetItem *child = CreateChild_(par);
-    child->setText(0, "new file");
+    child->setText(0, CreateNewFileTitle());
 
     TreeItem *data = CreateFileItem_();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
@@ -112,7 +112,7 @@ QTreeWidgetItem* BaseTreeView::CreateChild_(const QTreeWidgetItem *item)
 TreeItem* BaseTreeView::CreateFileItem_()
 {
     TreeItem *data = new TreeItem(ItemType::File, base_category_);
-    data->SetData(0, "new file");
+    data->SetData(0, CreateNewFileTitle());
     data->SetData(1, "synopsys");
     data->SetData(2, "new text");
     data->SetData(3, "note");
@@ -124,6 +124,11 @@ TreeItem* BaseTreeView::CreateFolderItem_()
     TreeItem *data = new TreeItem(ItemType::Folder, base_category_);
     data->SetData(0, "NEW");
     return data;
+}
+
+QString BaseTreeView::CreateNewFileTitle() const
+{
+    return "new file";
 }
 
 const QTreeWidgetItem* BaseTreeView::GetParentOrRoot_(const QTreeWidgetItem *item) const

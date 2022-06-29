@@ -37,6 +37,7 @@ protected:
     virtual void dropEvent(QDropEvent *event) override;
 
     virtual Category BaseCategoryOf() const;
+    virtual QString CreateNewFileTitle() const;
 
 private slots:
     void OnTitleChanged(QTreeWidgetItem *item, int column);

@@ -10,7 +10,6 @@ class DraftTree : public BaseTreeView
     Q_OBJECT
 public:
     explicit DraftTree(QWidget *parent = nullptr);
-    ~DraftTree() override;
 
 protected:
     friend XmlReader;

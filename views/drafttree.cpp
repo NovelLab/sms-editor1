@@ -9,11 +9,6 @@ DraftTree::DraftTree(QWidget *parent)
 
 }
 
-DraftTree::~DraftTree()
-{
-
-}
-
 // overrides
 TreeItem* DraftTree::CreateFileItem_()
 {
