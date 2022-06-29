@@ -15,6 +15,7 @@ SOURCES += \
     items/treeitem.cpp \
     main.cpp \
     mainwindow.cpp \
+    models/basetablemodel.cpp \
     models/cardmodel.cpp \
     saveload/savedatafiler.cpp \
     utils/itemutility.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     items/bookinfoitem.h \
     items/treeitem.h \
     mainwindow.h \
+    models/basetablemodel.h \
     models/cardmodel.h \
     saveload/savedatafiler.h \
     utils/itemutility.h \
