@@ -158,7 +158,7 @@ void XmlWriter::WritePlotFolder_(const QTreeWidgetItem *item)
 void XmlWriter::WritePlot_()
 {
     xml_.writeStartElement("category");
-    xml_.writeTextElement("title", "draft");
+    xml_.writeTextElement("title", "plot");
 
     ItemUtility util;
 
