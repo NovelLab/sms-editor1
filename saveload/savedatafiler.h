@@ -14,6 +14,7 @@ class SaveDataFiler: public QObject
 {
 public:
     explicit SaveDataFiler();
+    ~SaveDataFiler();
 
     bool OpenFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
     bool SaveFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);

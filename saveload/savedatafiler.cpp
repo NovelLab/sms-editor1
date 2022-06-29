@@ -21,7 +21,12 @@ SaveDataFiler::SaveDataFiler()
 
 }
 
-// methods*ui,
+SaveDataFiler::~SaveDataFiler()
+{
+
+}
+
+// methods
 bool SaveDataFiler::OpenFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings)
 {
     QString fileName = QFileDialog::getOpenFileName(mwin,

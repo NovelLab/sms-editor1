@@ -17,12 +17,6 @@ XmlWriter::XmlWriter(const Ui::MainWindow *ui)
     xml_.setAutoFormatting(true);
 }
 
-XmlWriter::~XmlWriter()
-{
-    delete draft_view_;
-    delete plot_view_;
-}
-
 // methods
 bool XmlWriter::WriteFile(QIODevice *device)
 {

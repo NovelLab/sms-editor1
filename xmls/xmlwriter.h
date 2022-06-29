@@ -17,7 +17,6 @@ class XmlWriter
 {
 public:
     explicit XmlWriter(const Ui::MainWindow *ui);
-    ~XmlWriter();
 
     bool WriteFile(QIODevice *device);
 
