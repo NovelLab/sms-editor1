@@ -3,6 +3,8 @@
 #include "enums/generaltypes.h"
 #include "items/treeitem.h"
 
+#include <QDebug>
+
 static const QStringList kDisplayElements = {
     "Name", "Age", "Gender", "Job", "Info",
 };
@@ -47,7 +49,6 @@ bool PersonsModel::SetDataOfFile(TreeItem *data, int column, const QVariant &val
         return false;
 
     bool result;
-    data->SetData(column, value);
     switch (column) {
       case 0:// name
         data->SetData(0, value);

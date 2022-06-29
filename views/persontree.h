@@ -11,6 +11,9 @@ class PersonTree : public BaseTreeView
 public:
     explicit PersonTree(QWidget *parent = nullptr);
 
+public slots:
+    virtual void UpdateItemData(const QModelIndex &index) override;
+
 protected:
     friend XmlReader;
     virtual TreeItem* CreateFileItem_() override;
