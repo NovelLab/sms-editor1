@@ -212,8 +212,6 @@ void XmlReader::ReadPersonsFolder_(QTreeWidgetItem *item)
 
 void XmlReader::ReadPersons_()
 {
-    persons_view_->clear();
-
     QTreeWidgetItem *root = persons_view_->invisibleRootItem();
 
     while (xml_.readNextStartElement()) {
@@ -278,8 +276,6 @@ void XmlReader::ReadPlotFolder_(QTreeWidgetItem *item)
 
 void XmlReader::ReadPlot_()
 {
-    qDebug() << "read xml: plot -->";
-
     QTreeWidgetItem *root = plot_view_->invisibleRootItem();
 
     while (xml_.readNextStartElement()) {
