@@ -26,6 +26,8 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     person_tree_ = ui->personTreeView;
     world_tree_ = ui->worldTreeView;
     research_tree_ = ui->researchTreeView;
+    notes_tree_ = ui->notesTreeView;
+
     corkboard_ = ui->corkboardView;
     persons_table_ = ui->personsTableView;
     worlds_table_ = ui->worldsTableView;
@@ -101,7 +103,7 @@ void ViewChanger::Update(Category category)
         UpdateResearch_();
         break;
       case Category::Notes:
-        qDebug() << "(unimp) update notes";
+        UpdateNotes_();
         break;
       case Category::Rubi:
         qDebug() << "(unimp) update rubi";
@@ -269,6 +271,23 @@ void ViewChanger::UpdateDraft_()
         main_tab_->hide();
         main_editor_->show();
         side_tab_->show();
+    }
+}
+
+void ViewChanger::UpdateNotes_()
+{
+    QTreeWidgetItem *cur = notes_tree_->currentItem();
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(cur))
+        return;
+    if (util.IsFolder(cur)) {
+        corkboard_->UpdateView(cur);
+        main_tab_->show();
+        main_editor_->hide();
+    } else if (util.IsFile(cur)) {
+        main_editor_->UpdateView(cur);
+        main_tab_->hide();
+        main_editor_->show();
     }
 }
 

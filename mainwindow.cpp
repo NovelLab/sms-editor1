@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     person_tree_ = ui->personTreeView;
     world_tree_ = ui->worldTreeView;
     research_tree_ = ui->researchTreeView;
+    notes_tree_ = ui->notesTreeView;
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
@@ -77,6 +78,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(persons_model, &PersonsModel::UpdatedItemData, ui->personTreeView, &PersonTree::UpdateItemData);
     connect(worlds_model, &WorldsModel::UpdatedItemData, ui->worldTreeView, &WorldTree::UpdateItemData);
     connect(card_model, &CardModel::UpdatedItemData, ui->researchTreeView, &ResearchTree::UpdateItemData);
+    connect(card_model, &CardModel::UpdatedItemData, ui->notesTreeView, &NotesTree::UpdateItemData);
 }
 
 MainWindow::~MainWindow()
@@ -87,6 +89,7 @@ MainWindow::~MainWindow()
     delete person_tree_;
     delete world_tree_;
     delete research_tree_;
+    delete notes_tree_;
     delete settings_;
     delete ui;
 }
@@ -329,3 +332,31 @@ void MainWindow::on_btnDelResearch_clicked()
     view_changer_->Update(Category::Research);
 }
 
+// slots (notes tree)
+void MainWindow::on_notesTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+    Q_UNUSED(current);
+    Q_UNUSED(previous);
+    view_changer_->Update(Category::Notes);
+}
+
+
+void MainWindow::on_btnFolderNotes_clicked()
+{
+    notes_tree_->AddFolder(notes_tree_->currentItem());
+    view_changer_->Update(Category::Notes);
+}
+
+
+void MainWindow::on_btnAddNotes_clicked()
+{
+    notes_tree_->AddFile(notes_tree_->currentItem());
+    view_changer_->Update(Category::Notes);
+}
+
+
+void MainWindow::on_btnDelNotes_clicked()
+{
+    notes_tree_->RemoveItem(notes_tree_->currentItem());
+    view_changer_->Update(Category::Notes);
+}

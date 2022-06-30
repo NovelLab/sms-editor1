@@ -24,6 +24,7 @@ SOURCES += \
     views/bookinfoview.cpp \
     views/corkboardview.cpp \
     views/drafttree.cpp \
+    views/notestree.cpp \
     views/personstableview.cpp \
     views/persontree.cpp \
     views/plottree.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     views/bookinfoview.h \
     views/corkboardview.h \
     views/drafttree.h \
+    views/notestree.h \
     views/personstableview.h \
     views/persontree.h \
     views/plottree.h \

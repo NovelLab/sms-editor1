@@ -359,6 +359,50 @@
         <attribute name="title">
          <string>Notes</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_14">
+         <item>
+          <widget class="NotesTree" name="notesTreeView">
+           <column>
+            <property name="text">
+             <string>Notes</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_8">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QPushButton" name="btnFolderNotes">
+              <property name="text">
+               <string>Folder</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAddNotes">
+              <property name="text">
+               <string>Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDelNotes">
+              <property name="text">
+               <string>Del</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tabRubiTree">
         <attribute name="title">
@@ -742,6 +786,11 @@
    <class>ResearchTree</class>
    <extends>QTreeWidget</extends>
    <header>views/researchtree.h</header>
+  </customwidget>
+  <customwidget>
+   <class>NotesTree</class>
+   <extends>QTreeWidget</extends>
+   <header>views/notestree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

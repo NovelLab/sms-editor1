@@ -12,6 +12,7 @@ class QTabWidget;
 class BookInfoView;
 class CorkboardView;
 class DraftTree;
+class NotesTree;
 class PersonTree;
 class PersonsTableView;
 class PlotTree;
@@ -76,6 +77,7 @@ private:
     void UpdatePersons_();
     void UpdateWorlds_();
     void UpdateResearch_();
+    void UpdateNotes_();
 
     void ChangeOutlineTree_(OutlineCat cat);
     void ChangeMainTab_(MainTabCat cat);
@@ -97,6 +99,7 @@ private:
     PersonTree *person_tree_;
     WorldTree *world_tree_;
     ResearchTree *research_tree_;
+    NotesTree *notes_tree_;
 
     CorkboardView *corkboard_;
     PersonsTableView *persons_table_;

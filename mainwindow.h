@@ -11,6 +11,7 @@ class QSettings;
 class QTreeWidgetItem;
 
 class DraftTree;
+class NotesTree;
 class PersonTree;
 class PlotTree;
 class ResearchTree;
@@ -67,6 +68,12 @@ private slots:
     void on_btnFolderResearch_clicked();
     void on_btnAddResearch_clicked();
     void on_btnDelResearch_clicked();
+    // notes tree
+    void on_notesTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+    void on_btnFolderNotes_clicked();
+    void on_btnAddNotes_clicked();
+    void on_btnDelNotes_clicked();
+
 
 private:
     Ui::MainWindow *ui;
@@ -78,5 +85,6 @@ private:
     PersonTree *person_tree_;
     WorldTree *world_tree_;
     ResearchTree *research_tree_;
+    NotesTree *notes_tree_;
 };
 #endif // MAINWINDOW_H
