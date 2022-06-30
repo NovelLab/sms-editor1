@@ -7,6 +7,7 @@
 #include "utils/itemutility.h"
 #include "views/drafttree.h"
 #include "views/plottree.h"
+#include "views/rubitree.h"
 #include "views/worldtree.h"
 #include "views/researchtree.h"
 
@@ -20,6 +21,7 @@ XmlWriter::XmlWriter(const Ui::MainWindow *ui)
     worlds_view_ = ui->worldTreeView;
     research_view_ = ui->researchTreeView;
     notes_view_ = ui->notesTreeView;
+    rubi_view_ = ui->rubiTreeView;
     xml_.setAutoFormatting(true);
 }
 
@@ -54,6 +56,7 @@ bool XmlWriter::WriteFile(QIODevice *device)
     WriteNotes_();
 
     // rubi
+    WriteRubis_();
 
     // trash
 
@@ -360,6 +363,65 @@ void XmlWriter::WriteResearch_()
     xml_.writeEndElement();
 }
 
+void XmlWriter::WriteRubisFile_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("file");
+
+    xml_.writeTextElement("name", data->DataOf(0).toString());
+    xml_.writeTextElement("key", data->DataOf(1).toString());
+    xml_.writeTextElement("converted", data->DataOf(2).toString());
+    xml_.writeTextElement("always", data->DataOf(3).toString());
+    xml_.writeTextElement("exclusions", data->DataOf(4).toString());
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteRubisFolder_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("folder");
+
+    xml_.writeTextElement("title", data->DataOf(0).toString());
+
+    for (int i = 0; i < item->childCount(); ++i) {
+        QTreeWidgetItem *child = item->child(i);
+        if (util.IsFolder(child)) {
+            WriteRubisFolder_(child);
+        } else if (util.IsFile(child)) {
+            WriteRubisFile_(child);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteRubis_()
+{
+    xml_.writeStartElement("category-rubis");
+
+    ItemUtility util;
+
+    for (int i = 0; i < worlds_view_->topLevelItemCount(); ++i) {
+        QTreeWidgetItem *item = worlds_view_->topLevelItem(i);
+        if (util.IsFolder(item)) {
+            WriteRubisFolder_(item);
+        } else if (util.IsFile(item)) {
+            WriteRubisFile_(item);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
 void XmlWriter::WriteWorldsFile_(const QTreeWidgetItem *item)
 {
     ItemUtility util;
@@ -418,4 +480,5 @@ void XmlWriter::WriteWorlds_()
 
     xml_.writeEndElement();
 }
+
 

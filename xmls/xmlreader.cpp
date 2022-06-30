@@ -17,6 +17,7 @@ XmlReader::XmlReader(Ui::MainWindow *ui)
     worlds_view_ = ui->worldTreeView;
     research_view_ = ui->researchTreeView;
     notes_view_ = ui->notesTreeView;
+    rubi_view_ = ui->rubiTreeView;
 }
 
 // methods
@@ -52,6 +53,7 @@ void XmlReader::ClearWidgets_()
     worlds_view_->clear();
     research_view_->clear();
     notes_view_->clear();
+    rubi_view_->clear();
 }
 
 void XmlReader::ReadXmlData_()
@@ -76,7 +78,7 @@ void XmlReader::ReadXmlData_()
         } else if (xml_.name() == "category-notes") {
             ReadNotes_();
         } else if (xml_.name() == "category-rubi") {
-            qDebug() << "(unimp) rubi xml";
+            ReadRubis_();
         } else if (xml_.name() == "category-trash") {
             qDebug() << "(unimp) trash xml";
         } else {
@@ -413,6 +415,71 @@ void XmlReader::ReadResearch_()
             ReadResearchFolder_(root);
         } else if (xml_.name() == "file") {
             ReadResearchFile_(root);
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+void XmlReader::ReadRubisFile_(QTreeWidgetItem *item)
+{
+    Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
+
+    QTreeWidgetItem *child = rubi_view_->CreateChild_(item);
+    TreeItem *data = rubi_view_->CreateFileItem_();
+    child->setData(0, Qt::UserRole, QVariant::fromValue(data));
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "name") {
+            QString title = xml_.readElementText();
+            child->setText(0, title);
+            data->SetData(0, title);
+        } else if (xml_.name() == "key") {
+            data->SetData(1, xml_.readElementText());
+        } else if (xml_.name() == "converted") {
+            data->SetData(2, xml_.readElementText());
+        } else if (xml_.name() == "always") {
+            data->SetData(3, xml_.readElementText());
+        } else if (xml_.name() == "exclusions") {
+            data->SetData(4, xml_.readElementText());
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+void XmlReader::ReadRubisFolder_(QTreeWidgetItem *item)
+{
+    Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
+
+    QTreeWidgetItem *child = rubi_view_->CreateChild_(item);
+    TreeItem *data = rubi_view_->CreateFolderItem_();
+    child->setData(0, Qt::UserRole, QVariant::fromValue(data));
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "title") {
+            QString title = xml_.readElementText();
+            child->setText(0, title);
+            data->SetData(0, title);
+        } else if (xml_.name() == "folder") {
+            ReadRubisFolder_(child);
+        } else if (xml_.name() == "file") {
+            ReadRubisFile_(child);
+        } else {
+            xml_.skipCurrentElement();
+        }
+    }
+}
+
+void XmlReader::ReadRubis_()
+{
+    QTreeWidgetItem *root = rubi_view_->invisibleRootItem();
+
+    while (xml_.readNextStartElement()) {
+        if (xml_.name() == "folder") {
+            ReadRubisFolder_(root);
+        } else if (xml_.name() == "file") {
+            ReadRubisFile_(root);
         } else {
             xml_.skipCurrentElement();
         }

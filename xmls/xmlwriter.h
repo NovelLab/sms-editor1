@@ -14,6 +14,7 @@ class NotesTree;
 class PlotTree;
 class PersonTree;
 class ResearchTree;
+class RubiTree;
 class TreeItem;
 class WorldTree;
 
@@ -43,6 +44,9 @@ private:
     void WriteNotes_();
     void WriteNotesFolder_(const QTreeWidgetItem *item);
     void WriteNotesFile_(const QTreeWidgetItem *item);
+    void WriteRubis_();
+    void WriteRubisFolder_(const QTreeWidgetItem *item);
+    void WriteRubisFile_(const QTreeWidgetItem *item);
 
     QXmlStreamWriter xml_;
     const DraftTree *draft_view_;
@@ -51,6 +55,7 @@ private:
     const WorldTree *worlds_view_;
     const ResearchTree *research_view_;
     const NotesTree *notes_view_;
+    const RubiTree *rubi_view_;
 };
 
 
