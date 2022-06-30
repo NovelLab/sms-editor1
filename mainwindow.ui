@@ -408,6 +408,50 @@
         <attribute name="title">
          <string>Rubi</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_15">
+         <item>
+          <widget class="RubiTree" name="rubiTreeView">
+           <column>
+            <property name="text">
+             <string>Rubi</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_9">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QPushButton" name="btnFolderRubi">
+              <property name="text">
+               <string>Folder</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAddRubi">
+              <property name="text">
+               <string>Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDelRubi">
+              <property name="text">
+               <string>Del</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tabTrashTree">
         <attribute name="title">
@@ -661,6 +705,11 @@
          <string>Worlds</string>
         </attribute>
        </widget>
+       <widget class="QWidget" name="tabRubiSide">
+        <attribute name="title">
+         <string>Rubi</string>
+        </attribute>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -791,6 +840,11 @@
    <class>NotesTree</class>
    <extends>QTreeWidget</extends>
    <header>views/notestree.h</header>
+  </customwidget>
+  <customwidget>
+   <class>RubiTree</class>
+   <extends>QTreeWidget</extends>
+   <header>views/rubitree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -17,6 +17,7 @@ class PersonTree;
 class PersonsTableView;
 class PlotTree;
 class ResearchTree;
+class RubiTree;
 class TextEdit;
 class WorldTree;
 class WorldsTableView;
@@ -59,6 +60,7 @@ private:
         Plot,
         Persons,
         Worlds,
+        Rubi,
     };
 
     void ChangeBookInfo_();
@@ -78,6 +80,7 @@ private:
     void UpdateWorlds_();
     void UpdateResearch_();
     void UpdateNotes_();
+    void UpdateRubi_();
 
     void ChangeOutlineTree_(OutlineCat cat);
     void ChangeMainTab_(MainTabCat cat);
@@ -100,6 +103,7 @@ private:
     WorldTree *world_tree_;
     ResearchTree *research_tree_;
     NotesTree *notes_tree_;
+    RubiTree *rubi_tree_;
 
     CorkboardView *corkboard_;
     PersonsTableView *persons_table_;

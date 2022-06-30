@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     world_tree_ = ui->worldTreeView;
     research_tree_ = ui->researchTreeView;
     notes_tree_ = ui->notesTreeView;
+    rubi_tree_ = ui->rubiTreeView;
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
@@ -90,6 +91,7 @@ MainWindow::~MainWindow()
     delete world_tree_;
     delete research_tree_;
     delete notes_tree_;
+    delete rubi_tree_;
     delete settings_;
     delete ui;
 }
@@ -360,3 +362,32 @@ void MainWindow::on_btnDelNotes_clicked()
     notes_tree_->RemoveItem(notes_tree_->currentItem());
     view_changer_->Update(Category::Notes);
 }
+
+void MainWindow::on_rubiTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+    Q_UNUSED(current);
+    Q_UNUSED(previous);
+    view_changer_->Update(Category::Rubi);
+}
+
+
+void MainWindow::on_btnFolderRubi_clicked()
+{
+    rubi_tree_->AddFolder(rubi_tree_->currentItem());
+    view_changer_->Update(Category::Rubi);
+}
+
+
+void MainWindow::on_btnAddRubi_clicked()
+{
+    rubi_tree_->AddFile(rubi_tree_->currentItem());
+    view_changer_->Update(Category::Rubi);
+}
+
+
+void MainWindow::on_btnDelRubi_clicked()
+{
+    rubi_tree_->RemoveItem(rubi_tree_->currentItem());
+    view_changer_->Update(Category::Rubi);
+}
+

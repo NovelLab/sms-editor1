@@ -27,6 +27,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     world_tree_ = ui->worldTreeView;
     research_tree_ = ui->researchTreeView;
     notes_tree_ = ui->notesTreeView;
+    rubi_tree_ = ui->rubiTreeView;
 
     corkboard_ = ui->corkboardView;
     persons_table_ = ui->personsTableView;
@@ -106,7 +107,7 @@ void ViewChanger::Update(Category category)
         UpdateNotes_();
         break;
       case Category::Rubi:
-        qDebug() << "(unimp) update rubi";
+        UpdateRubi_();
         break;
       case Category::Trash:
         qDebug() << "(unimp) update trash";
@@ -182,6 +183,7 @@ void ViewChanger::ChangeRubi_()
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Rubi);
     ChangeMainTab_(MainTabCat::RubiTable);
+    ChangeSideTab_(SideTabCat::Rubi);
     UpdatePreviousPage_(Category::Rubi);
 }
 
@@ -228,8 +230,10 @@ void ViewChanger::SavePreviousPageData_(Category category)
             main_editor_->SaveCurrentItem();
             break;
           case Category::Research:
+            main_editor_->SaveCurrentItem();
             break;
           case Category::Notes:
+            main_editor_->SaveCurrentItem();
             break;
           case Category::Rubi:
             break;
@@ -344,6 +348,26 @@ void ViewChanger::UpdateResearch_()
         main_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
+    }
+}
+
+void ViewChanger::UpdateRubi_()
+{
+    QTreeWidgetItem *cur = rubi_tree_->currentItem();
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(cur))
+        return;
+
+    if (util.IsFolder(cur)) {
+        //rubi_table_->UpdateView(cur);
+        main_tab_->show();
+        //main_editor_->hide();
+        side_tab_->hide();
+    } else if (util.IsFile(cur)) {
+    //    main_editor_->UpdateView(cur);
+        main_tab_->show();
+    //    main_editor_->show();
+        side_tab_->show();
     }
 }
 

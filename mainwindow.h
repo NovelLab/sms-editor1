@@ -15,6 +15,7 @@ class NotesTree;
 class PersonTree;
 class PlotTree;
 class ResearchTree;
+class RubiTree;
 class ViewChanger;
 class WorldTree;
 
@@ -73,7 +74,11 @@ private slots:
     void on_btnFolderNotes_clicked();
     void on_btnAddNotes_clicked();
     void on_btnDelNotes_clicked();
-
+    // rubi tree
+    void on_rubiTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+    void on_btnFolderRubi_clicked();
+    void on_btnAddRubi_clicked();
+    void on_btnDelRubi_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -86,5 +91,6 @@ private:
     WorldTree *world_tree_;
     ResearchTree *research_tree_;
     NotesTree *notes_tree_;
+    RubiTree *rubi_tree_;
 };
 #endif // MAINWINDOW_H
