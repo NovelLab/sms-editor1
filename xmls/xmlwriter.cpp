@@ -19,6 +19,7 @@ XmlWriter::XmlWriter(const Ui::MainWindow *ui)
     persons_view_ = ui->personTreeView;
     worlds_view_ = ui->worldTreeView;
     research_view_ = ui->researchTreeView;
+    notes_view_ = ui->notesTreeView;
     xml_.setAutoFormatting(true);
 }
 
@@ -50,6 +51,7 @@ bool XmlWriter::WriteFile(QIODevice *device)
     WriteResearch_();
 
     // notes
+    WriteNotes_();
 
     // rubi
 
@@ -116,6 +118,64 @@ void XmlWriter::WriteDraft_()
             WriteDraftFolder_(item);
         } else if (util.IsFile(item)) {
             WriteDraftFile_(item);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteNotesFile_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("file");
+
+    xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("synopsys", data->DataOf(1).toString());
+    xml_.writeTextElement("text", data->DataOf(2).toString());
+    xml_.writeTextElement("note", data->DataOf(3).toString());
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteNotesFolder_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("folder");
+
+    xml_.writeTextElement("title", data->DataOf(0).toString());
+
+    for (int i = 0; i < item->childCount(); ++i) {
+        QTreeWidgetItem *child = item->child(i);
+        if (util.IsFolder(child)) {
+            WriteNotesFolder_(child);
+        } else if (util.IsFile(child)) {
+            WriteNotesFile_(child);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteNotes_()
+{
+    xml_.writeStartElement("category-notes");
+
+    ItemUtility util;
+
+    for (int i = 0; i < notes_view_->topLevelItemCount(); ++i) {
+        QTreeWidgetItem *item = notes_view_->topLevelItem(i);
+        if (util.IsFolder(item)) {
+            WriteNotesFolder_(item);
+        } else if (util.IsFile(item)) {
+            WriteNotesFile_(item);
         }
     }
 

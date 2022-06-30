@@ -10,6 +10,7 @@ QT_END_NAMESPACE
 class QTreeWidgetItem;
 
 class DraftTree;
+class NotesTree;
 class PlotTree;
 class PersonTree;
 class ResearchTree;
@@ -39,6 +40,9 @@ private:
     void WriteResearch_();
     void WriteResearchFolder_(const QTreeWidgetItem *item);
     void WriteResearchFile_(const QTreeWidgetItem *item);
+    void WriteNotes_();
+    void WriteNotesFolder_(const QTreeWidgetItem *item);
+    void WriteNotesFile_(const QTreeWidgetItem *item);
 
     QXmlStreamWriter xml_;
     const DraftTree *draft_view_;
@@ -46,6 +50,7 @@ private:
     const PersonTree *persons_view_;
     const WorldTree *worlds_view_;
     const ResearchTree *research_view_;
+    const NotesTree *notes_view_;
 };
 
 
