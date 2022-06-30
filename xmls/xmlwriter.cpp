@@ -410,8 +410,8 @@ void XmlWriter::WriteRubis_()
 
     ItemUtility util;
 
-    for (int i = 0; i < worlds_view_->topLevelItemCount(); ++i) {
-        QTreeWidgetItem *item = worlds_view_->topLevelItem(i);
+    for (int i = 0; i < rubi_view_->topLevelItemCount(); ++i) {
+        QTreeWidgetItem *item = rubi_view_->topLevelItem(i);
         if (util.IsFolder(item)) {
             WriteRubisFolder_(item);
         } else if (util.IsFile(item)) {

@@ -77,7 +77,7 @@ void XmlReader::ReadXmlData_()
             ReadResearch_();
         } else if (xml_.name() == "category-notes") {
             ReadNotes_();
-        } else if (xml_.name() == "category-rubi") {
+        } else if (xml_.name() == "category-rubis") {
             ReadRubis_();
         } else if (xml_.name() == "category-trash") {
             qDebug() << "(unimp) trash xml";
