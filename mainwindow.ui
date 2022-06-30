@@ -678,6 +678,11 @@
         <attribute name="title">
          <string>RubiTable</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_16">
+         <item>
+          <widget class="RubiTableView" name="rubiTableView"/>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="TextEdit" name="mainEditor"/>
@@ -845,6 +850,11 @@
    <class>RubiTree</class>
    <extends>QTreeWidget</extends>
    <header>views/rubitree.h</header>
+  </customwidget>
+  <customwidget>
+   <class>RubiTableView</class>
+   <extends>QTableView</extends>
+   <header>views/rubitableview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

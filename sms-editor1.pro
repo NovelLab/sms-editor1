@@ -18,6 +18,7 @@ SOURCES += \
     models/basetablemodel.cpp \
     models/cardmodel.cpp \
     models/personsmodel.cpp \
+    models/rubismodel.cpp \
     models/worldsmodel.cpp \
     saveload/savedatafiler.cpp \
     utils/itemutility.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
     views/persontree.cpp \
     views/plottree.cpp \
     views/researchtree.cpp \
+    views/rubitableview.cpp \
     views/rubitree.cpp \
     views/viewchanger.cpp \
     views/basetreeview.cpp \
@@ -49,6 +51,7 @@ HEADERS += \
     models/basetablemodel.h \
     models/cardmodel.h \
     models/personsmodel.h \
+    models/rubismodel.h \
     models/worldsmodel.h \
     saveload/savedatafiler.h \
     utils/itemutility.h \
@@ -60,6 +63,7 @@ HEADERS += \
     views/persontree.h \
     views/plottree.h \
     views/researchtree.h \
+    views/rubitableview.h \
     views/rubitree.h \
     views/viewchanger.h \
     views/basetreeview.h \

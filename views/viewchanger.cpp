@@ -32,6 +32,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     corkboard_ = ui->corkboardView;
     persons_table_ = ui->personsTableView;
     worlds_table_ = ui->worldsTableView;
+    rubi_table_ = ui->rubiTableView;
 }
 
 ViewChanger::~ViewChanger()
@@ -359,13 +360,13 @@ void ViewChanger::UpdateRubi_()
         return;
 
     if (util.IsFolder(cur)) {
-        //rubi_table_->UpdateView(cur);
+        rubi_table_->UpdateView(cur);
         main_tab_->show();
         //main_editor_->hide();
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
     //    main_editor_->UpdateView(cur);
-        main_tab_->show();
+        main_tab_->hide();
     //    main_editor_->show();
         side_tab_->show();
     }

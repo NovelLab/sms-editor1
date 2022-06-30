@@ -6,6 +6,7 @@
 #include "enums/generaltypes.h"
 #include "models/cardmodel.h"
 #include "models/personsmodel.h"
+#include "models/rubismodel.h"
 #include "models/worldsmodel.h"
 #include "saveload/savedatafiler.h"
 #include "views/viewchanger.h"
@@ -59,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->personsTableView->setModel(persons_model);
     WorldsModel *worlds_model = new WorldsModel();
     ui->worldsTableView->setModel(worlds_model);
+    RubisModel *rubi_model = new RubisModel();
+    ui->rubiTableView->setModel(rubi_model);
 
     // start view setting
     view_changer_->Change(Category::BookInfo);
@@ -80,6 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(worlds_model, &WorldsModel::UpdatedItemData, ui->worldTreeView, &WorldTree::UpdateItemData);
     connect(card_model, &CardModel::UpdatedItemData, ui->researchTreeView, &ResearchTree::UpdateItemData);
     connect(card_model, &CardModel::UpdatedItemData, ui->notesTreeView, &NotesTree::UpdateItemData);
+    connect(rubi_model, &RubisModel::UpdatedItemData, ui->rubiTreeView, &RubiTree::UpdateItemData);
 }
 
 MainWindow::~MainWindow()
@@ -157,6 +161,7 @@ void MainWindow::on_btnDraft_clicked()
 void MainWindow::on_btnNotes_clicked()
 {
     view_changer_->Change(Category::Notes);
+    view_changer_->Update(Category::Notes);
 }
 
 void MainWindow::on_btnPersons_clicked()
@@ -174,11 +179,13 @@ void MainWindow::on_btnPlot_clicked()
 void MainWindow::on_btnResearch_clicked()
 {
     view_changer_->Change(Category::Research);
+    view_changer_->Update(Category::Research);
 }
 
 void MainWindow::on_btnRubi_clicked()
 {
     view_changer_->Change(Category::Rubi);
+    view_changer_->Update(Category::Rubi);
 }
 
 void MainWindow::on_btnTrash_clicked()
@@ -189,6 +196,7 @@ void MainWindow::on_btnTrash_clicked()
 void MainWindow::on_btnWorlds_clicked()
 {
     view_changer_->Change(Category::Worlds);
+    view_changer_->Update(Category::Worlds);
 }
 
 // slots (draft tree)

@@ -18,6 +18,7 @@ class PersonsTableView;
 class PlotTree;
 class ResearchTree;
 class RubiTree;
+class RubiTableView;
 class TextEdit;
 class WorldTree;
 class WorldsTableView;
@@ -108,6 +109,7 @@ private:
     CorkboardView *corkboard_;
     PersonsTableView *persons_table_;
     WorldsTableView *worlds_table_;
+    RubiTableView *rubi_table_;
 
     Category previous_cat_;
 };
