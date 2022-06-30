@@ -27,6 +27,7 @@ SOURCES += \
     views/personstableview.cpp \
     views/persontree.cpp \
     views/plottree.cpp \
+    views/researchtree.cpp \
     views/viewchanger.cpp \
     views/basetreeview.cpp \
     views/worldstableview.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     views/personstableview.h \
     views/persontree.h \
     views/plottree.h \
+    views/researchtree.h \
     views/viewchanger.h \
     views/basetreeview.h \
     views/worldstableview.h \

@@ -310,6 +310,50 @@
         <attribute name="title">
          <string>Research</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_13">
+         <item>
+          <widget class="ResearchTree" name="researchTreeView">
+           <column>
+            <property name="text">
+             <string>Research</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_7">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QPushButton" name="btnFolderResearch">
+              <property name="text">
+               <string>Folder</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAddResearch">
+              <property name="text">
+               <string>Add</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnDelResearch">
+              <property name="text">
+               <string>Del</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tabNotesTree">
         <attribute name="title">
@@ -693,6 +737,11 @@
    <class>WorldsTableView</class>
    <extends>QTableView</extends>
    <header>views/worldstableview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ResearchTree</class>
+   <extends>QTreeWidget</extends>
+   <header>views/researchtree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

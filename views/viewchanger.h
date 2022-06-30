@@ -15,6 +15,7 @@ class DraftTree;
 class PersonTree;
 class PersonsTableView;
 class PlotTree;
+class ResearchTree;
 class TextEdit;
 class WorldTree;
 class WorldsTableView;
@@ -74,6 +75,7 @@ private:
     void UpdatePlot_();
     void UpdatePersons_();
     void UpdateWorlds_();
+    void UpdateResearch_();
 
     void ChangeOutlineTree_(OutlineCat cat);
     void ChangeMainTab_(MainTabCat cat);
@@ -94,6 +96,7 @@ private:
     PlotTree *plot_tree_;
     PersonTree *person_tree_;
     WorldTree *world_tree_;
+    ResearchTree *research_tree_;
 
     CorkboardView *corkboard_;
     PersonsTableView *persons_table_;

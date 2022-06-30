@@ -13,6 +13,7 @@ class QTreeWidgetItem;
 class DraftTree;
 class PersonTree;
 class PlotTree;
+class ResearchTree;
 class ViewChanger;
 class WorldTree;
 
@@ -61,6 +62,11 @@ private slots:
     void on_btnAddWorld_clicked();
     void on_btnDelWorld_clicked();
     void on_worldTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+    // research tree
+    void on_researchTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+    void on_btnFolderResearch_clicked();
+    void on_btnAddResearch_clicked();
+    void on_btnDelResearch_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -71,5 +77,6 @@ private:
     PlotTree *plot_tree_;
     PersonTree *person_tree_;
     WorldTree *world_tree_;
+    ResearchTree *research_tree_;
 };
 #endif // MAINWINDOW_H

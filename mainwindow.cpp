@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     plot_tree_ = ui->plotTreeView;
     person_tree_ = ui->personTreeView;
     world_tree_ = ui->worldTreeView;
+    research_tree_ = ui->researchTreeView;
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
@@ -75,6 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(card_model, &CardModel::UpdatedItemData, ui->plotTreeView, &PlotTree::UpdateItemData);
     connect(persons_model, &PersonsModel::UpdatedItemData, ui->personTreeView, &PersonTree::UpdateItemData);
     connect(worlds_model, &WorldsModel::UpdatedItemData, ui->worldTreeView, &WorldTree::UpdateItemData);
+    connect(card_model, &CardModel::UpdatedItemData, ui->researchTreeView, &ResearchTree::UpdateItemData);
 }
 
 MainWindow::~MainWindow()
@@ -84,6 +86,7 @@ MainWindow::~MainWindow()
     delete plot_tree_;
     delete person_tree_;
     delete world_tree_;
+    delete research_tree_;
     delete settings_;
     delete ui;
 }
@@ -295,5 +298,34 @@ void MainWindow::on_btnDelWorld_clicked()
 {
     world_tree_->RemoveItem(world_tree_->currentItem());
     view_changer_->Update(Category::Worlds);
+}
+
+// slots (research tree)
+void MainWindow::on_researchTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+    Q_UNUSED(current);
+    Q_UNUSED(previous);
+    view_changer_->Update(Category::Research);
+}
+
+
+void MainWindow::on_btnFolderResearch_clicked()
+{
+    research_tree_->AddFolder(research_tree_->currentItem());
+    view_changer_->Update(Category::Research);
+}
+
+
+void MainWindow::on_btnAddResearch_clicked()
+{
+    research_tree_->AddFile(research_tree_->currentItem());
+    view_changer_->Update(Category::Research);
+}
+
+
+void MainWindow::on_btnDelResearch_clicked()
+{
+    research_tree_->RemoveItem(research_tree_->currentItem());
+    view_changer_->Update(Category::Research);
 }
 
