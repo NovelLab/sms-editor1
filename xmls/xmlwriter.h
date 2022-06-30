@@ -12,6 +12,7 @@ class QTreeWidgetItem;
 class DraftTree;
 class PlotTree;
 class PersonTree;
+class ResearchTree;
 class TreeItem;
 class WorldTree;
 
@@ -35,12 +36,16 @@ private:
     void WriteWorlds_();
     void WriteWorldsFolder_(const QTreeWidgetItem *item);
     void WriteWorldsFile_(const QTreeWidgetItem *item);
+    void WriteResearch_();
+    void WriteResearchFolder_(const QTreeWidgetItem *item);
+    void WriteResearchFile_(const QTreeWidgetItem *item);
 
     QXmlStreamWriter xml_;
     const DraftTree *draft_view_;
     const PlotTree *plot_view_;
     const PersonTree *persons_view_;
     const WorldTree *worlds_view_;
+    const ResearchTree *research_view_;
 };
 
 

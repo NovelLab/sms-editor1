@@ -12,6 +12,7 @@ class QTreeWidgetItem;
 class DraftTree;
 class PersonTree;
 class PlotTree;
+class ResearchTree;
 class WorldTree;
 
 enum class Category;
@@ -43,12 +44,17 @@ private:
     void ReadWorldsFolder_(QTreeWidgetItem *item);
     void ReadWorldsFile_(QTreeWidgetItem *item);
 
+    void ReadResearch_();
+    void ReadResearchFolder_(QTreeWidgetItem *item);
+    void ReadResearchFile_(QTreeWidgetItem *item);
+
     void ClearWidgets_();
 
     QXmlStreamReader xml_;
     DraftTree *draft_view_;
     PlotTree *plot_view_;
     PersonTree *persons_view_;
+    ResearchTree *research_view_;
     WorldTree *worlds_view_;
 };
 

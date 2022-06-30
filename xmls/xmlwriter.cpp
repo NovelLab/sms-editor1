@@ -8,6 +8,7 @@
 #include "views/drafttree.h"
 #include "views/plottree.h"
 #include "views/worldtree.h"
+#include "views/researchtree.h"
 
 #include <QDebug>
 
@@ -17,6 +18,7 @@ XmlWriter::XmlWriter(const Ui::MainWindow *ui)
     plot_view_ = ui->plotTreeView;
     persons_view_ = ui->personTreeView;
     worlds_view_ = ui->worldTreeView;
+    research_view_ = ui->researchTreeView;
     xml_.setAutoFormatting(true);
 }
 
@@ -45,6 +47,7 @@ bool XmlWriter::WriteFile(QIODevice *device)
     WriteWorlds_();
 
     // research
+    WriteResearch_();
 
     // notes
 
@@ -233,6 +236,64 @@ void XmlWriter::WritePlot_()
             WritePlotFolder_(item);
         } else if (util.IsFile(item)) {
             WritePlotFile_(item);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteResearchFile_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("file");
+
+    xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("synopsys", data->DataOf(1).toString());
+    xml_.writeTextElement("text", data->DataOf(2).toString());
+    xml_.writeTextElement("note", data->DataOf(3).toString());
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteResearchFolder_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("folder");
+
+    xml_.writeTextElement("title", data->DataOf(0).toString());
+
+    for (int i = 0; i < item->childCount(); ++i) {
+        QTreeWidgetItem *child = item->child(i);
+        if (util.IsFolder(child)) {
+            WriteResearchFolder_(child);
+        } else if (util.IsFile(child)) {
+            WriteResearchFile_(child);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteResearch_()
+{
+    xml_.writeStartElement("category-research");
+
+    ItemUtility util;
+
+    for (int i = 0; i < research_view_->topLevelItemCount(); ++i) {
+        QTreeWidgetItem *item = research_view_->topLevelItem(i);
+        if (util.IsFolder(item)) {
+            WriteResearchFolder_(item);
+        } else if (util.IsFile(item)) {
+            WriteResearchFile_(item);
         }
     }
 
