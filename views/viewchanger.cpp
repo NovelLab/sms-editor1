@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 
 #include "editor/drafteditor.h"
+#include "editor/ploteditor.h"
 #include "enums/generaltypes.h"
 #include "items/treeitem.h"
 #include "views/bookinfoview.h"
@@ -37,6 +38,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     rubi_table_ = ui->rubiTableView;
 
     draft_editor_ = new DraftEditor(ui);
+    plot_editor_ = new PlotEditor(ui);
 }
 
 ViewChanger::~ViewChanger()
@@ -44,6 +46,7 @@ ViewChanger::~ViewChanger()
     // TODO: 自身でnewしたものはここで解放
     delete bookinfo_view_;
     delete draft_editor_;
+    delete plot_editor_;
 }
 
 // methods
@@ -219,39 +222,6 @@ void ViewChanger::ChangeSideTab_(SideTabCat cat)
 
 void ViewChanger::SavePreviousPageData_(Category category)
 {
-    /*if (previous_cat_ != category) {
-        switch (previous_cat_) {
-          case Category::BookInfo:
-            bookinfo_view_->SaveData();
-            break;
-          case Category::Draft:
-            main_editor_->SaveCurrentItem();
-            draft_sub_->SaveCurrentItem();
-            break;
-          case Category::Plot:
-            main_editor_->SaveCurrentItem();
-            break;
-          case Category::Persons:
-            main_editor_->SaveCurrentItem();
-            break;
-          case Category::Worlds:
-            main_editor_->SaveCurrentItem();
-            break;
-          case Category::Research:
-            main_editor_->SaveCurrentItem();
-            break;
-          case Category::Notes:
-            main_editor_->SaveCurrentItem();
-            break;
-          case Category::Rubi:
-            break;
-          case Category::Trash:
-            break;
-          default:
-            qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
-            break;
-        }
-    }*/
     switch (previous_cat_) {
       case Category::BookInfo:
         bookinfo_view_->SaveData();
@@ -262,6 +232,7 @@ void ViewChanger::SavePreviousPageData_(Category category)
         break;
       case Category::Plot:
         main_editor_->SaveCurrentItem();
+        plot_editor_->SaveCurrentItem();
         break;
       case Category::Persons:
         main_editor_->SaveCurrentItem();
@@ -368,6 +339,7 @@ void ViewChanger::UpdatePlot_()
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
         main_editor_->UpdateView(cur);
+        plot_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
         side_tab_->show();

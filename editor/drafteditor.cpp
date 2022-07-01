@@ -19,7 +19,6 @@ DraftEditor::DraftEditor(Ui::MainWindow *ui)
 }
 
 // methods
-// TODO: なぜかcurrentitemがsaveされない問題
 void DraftEditor::SaveCurrentItem()
 {
     if (current_item_)

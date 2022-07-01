@@ -11,11 +11,12 @@ class QTabWidget;
 
 class BookInfoView;
 class CorkboardView;
-class DraftTree;
 class DraftEditor;
+class DraftTree;
 class NotesTree;
 class PersonTree;
 class PersonsTableView;
+class PlotEditor;
 class PlotTree;
 class ResearchTree;
 class RubiTree;
@@ -116,6 +117,7 @@ private:
     RubiTableView *rubi_table_;
 
     DraftEditor *draft_editor_;
+    PlotEditor *plot_editor_;
 
     Category previous_cat_;
 };
