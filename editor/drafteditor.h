@@ -1,5 +1,5 @@
-#ifndef DRAFTSUBVIEW_H
-#define DRAFTSUBVIEW_H
+#ifndef DRAFTEDITOR_H
+#define DRAFTEDITOR_H
 
 #include <QMainWindow>
 
@@ -12,14 +12,20 @@ class QLineEdit;
 class QTextEdit;
 class QTreeWidgetItem;
 
-class DraftSubView
+class TreeItem;
+
+class DraftEditor
 {
 public:
-    explicit DraftSubView(Ui::MainWindow *ui);
+    explicit DraftEditor(Ui::MainWindow *ui);
 
     void UpdateView(const QTreeWidgetItem *item);
+    void SaveCurrentItem();
 
 private:
+    void SaveCurrentItemInternal_();
+    void SetCurrentItem_(TreeItem *item);
+
     QLabel *file_title_;
     QLineEdit *pov_;
     QLineEdit *stage_;
@@ -27,6 +33,8 @@ private:
     QLineEdit *time_;
     QTextEdit *synop_;
     QTextEdit *note_;
+
+    TreeItem *current_item_;
 };
 
-#endif // DRAFTSUBVIEW_H
+#endif // DRAFTEDITOR_H

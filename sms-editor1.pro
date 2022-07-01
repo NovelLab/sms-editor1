@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     builder/novelbuilder.cpp \
+    editor/drafteditor.cpp \
     editor/markdownhighlighter.cpp \
     editor/textedit.cpp \
     items/bookinfoitem.cpp \
@@ -33,7 +34,6 @@ SOURCES += \
     views/researchtree.cpp \
     views/rubitableview.cpp \
     views/rubitree.cpp \
-    views/subs/draftsubview.cpp \
     views/trashtree.cpp \
     views/viewchanger.cpp \
     views/basetreeview.cpp \
@@ -45,6 +45,7 @@ SOURCES += \
 HEADERS += \
     builder/novelbuilder.h \
     common/appsettings.h \
+    editor/drafteditor.h \
     editor/markdownhighlighter.h \
     editor/textedit.h \
     enums/bookinfotypes.h \
@@ -69,7 +70,6 @@ HEADERS += \
     views/researchtree.h \
     views/rubitableview.h \
     views/rubitree.h \
-    views/subs/draftsubview.h \
     views/trashtree.h \
     views/viewchanger.h \
     views/basetreeview.h \

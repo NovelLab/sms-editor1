@@ -150,7 +150,6 @@ void MainWindow::on_actionSave_As_triggered()
 }
 
 // slots (changer buttons)
-// TODO: update and saved each view data?
 void MainWindow::on_btnBookInfo_clicked()
 {
     view_changer_->Change(Category::BookInfo);

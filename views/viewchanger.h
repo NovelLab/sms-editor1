@@ -12,7 +12,7 @@ class QTabWidget;
 class BookInfoView;
 class CorkboardView;
 class DraftTree;
-class DraftSubView;
+class DraftEditor;
 class NotesTree;
 class PersonTree;
 class PersonsTableView;
@@ -115,7 +115,7 @@ private:
     WorldsTableView *worlds_table_;
     RubiTableView *rubi_table_;
 
-    DraftSubView *draft_sub_;
+    DraftEditor *draft_editor_;
 
     Category previous_cat_;
 };

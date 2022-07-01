@@ -2,10 +2,10 @@
 
 #include "ui_mainwindow.h"
 
+#include "editor/drafteditor.h"
 #include "enums/generaltypes.h"
 #include "items/treeitem.h"
 #include "views/bookinfoview.h"
-#include "views/subs/draftsubview.h"
 #include "utils/itemutility.h"
 
 #include <QTreeWidgetItem>
@@ -36,14 +36,14 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     worlds_table_ = ui->worldsTableView;
     rubi_table_ = ui->rubiTableView;
 
-    draft_sub_ = new DraftSubView(ui);
+    draft_editor_ = new DraftEditor(ui);
 }
 
 ViewChanger::~ViewChanger()
 {
     // TODO: 自身でnewしたものはここで解放
     delete bookinfo_view_;
-    delete draft_sub_;
+    delete draft_editor_;
 }
 
 // methods
@@ -90,6 +90,7 @@ void ViewChanger::Change(Category category)
  * */
 void ViewChanger::Update(Category category)
 {
+    SavePreviousPageData_(category);
     switch (category) {
       case Category::BookInfo:
         UpdateBookInfo_();
@@ -218,14 +219,14 @@ void ViewChanger::ChangeSideTab_(SideTabCat cat)
 
 void ViewChanger::SavePreviousPageData_(Category category)
 {
-    if (previous_cat_ != category) {
+    /*if (previous_cat_ != category) {
         switch (previous_cat_) {
           case Category::BookInfo:
             bookinfo_view_->SaveData();
             break;
           case Category::Draft:
             main_editor_->SaveCurrentItem();
-            // draft sub -> savecurrent
+            draft_sub_->SaveCurrentItem();
             break;
           case Category::Plot:
             main_editor_->SaveCurrentItem();
@@ -250,6 +251,37 @@ void ViewChanger::SavePreviousPageData_(Category category)
             qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
             break;
         }
+    }*/
+    switch (previous_cat_) {
+      case Category::BookInfo:
+        bookinfo_view_->SaveData();
+        break;
+      case Category::Draft:
+        main_editor_->SaveCurrentItem();
+        draft_editor_->SaveCurrentItem();
+        break;
+      case Category::Plot:
+        main_editor_->SaveCurrentItem();
+        break;
+      case Category::Persons:
+        main_editor_->SaveCurrentItem();
+        break;
+      case Category::Worlds:
+        main_editor_->SaveCurrentItem();
+        break;
+      case Category::Research:
+        main_editor_->SaveCurrentItem();
+        break;
+      case Category::Notes:
+        main_editor_->SaveCurrentItem();
+        break;
+      case Category::Rubi:
+        break;
+      case Category::Trash:
+        break;
+      default:
+        qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
+        break;
     }
 }
 
@@ -279,7 +311,7 @@ void ViewChanger::UpdateDraft_()
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
         main_editor_->UpdateView(cur);
-        draft_sub_->UpdateView(cur);
+        draft_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
         side_tab_->show();
