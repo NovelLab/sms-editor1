@@ -16,6 +16,7 @@ class PersonTree;
 class ResearchTree;
 class RubiTree;
 class TreeItem;
+class TrashTree;
 class WorldTree;
 
 class XmlWriter
@@ -47,6 +48,9 @@ private:
     void WriteRubis_();
     void WriteRubisFolder_(const QTreeWidgetItem *item);
     void WriteRubisFile_(const QTreeWidgetItem *item);
+    void WriteTrash_();
+    void WriteTrashFolder_(const QTreeWidgetItem *item);
+    void WriteTrashFile_(const QTreeWidgetItem *item);
 
     QXmlStreamWriter xml_;
     const DraftTree *draft_view_;
@@ -56,6 +60,7 @@ private:
     const ResearchTree *research_view_;
     const NotesTree *notes_view_;
     const RubiTree *rubi_view_;
+    const TrashTree *trash_view_;
 };
 
 

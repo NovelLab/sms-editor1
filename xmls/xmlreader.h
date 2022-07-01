@@ -15,6 +15,7 @@ class PersonTree;
 class PlotTree;
 class ResearchTree;
 class RubiTree;
+class TrashTree;
 class WorldTree;
 
 enum class Category;
@@ -58,6 +59,10 @@ private:
     void ReadRubisFolder_(QTreeWidgetItem *item);
     void ReadRubisFile_(QTreeWidgetItem *item);
 
+    void ReadTrash_();
+    void ReadTrashFolder_(QTreeWidgetItem *item);
+    void ReadTrashFile_(QTreeWidgetItem *item);
+
     void ClearWidgets_();
 
     QXmlStreamReader xml_;
@@ -68,6 +73,7 @@ private:
     ResearchTree *research_view_;
     NotesTree *notes_view_;
     RubiTree *rubi_view_;
+    TrashTree *trash_view_;
 };
 
 

@@ -10,6 +10,7 @@
 #include "views/rubitree.h"
 #include "views/worldtree.h"
 #include "views/researchtree.h"
+#include "views/trashtree.h"
 
 #include <QDebug>
 
@@ -22,6 +23,7 @@ XmlWriter::XmlWriter(const Ui::MainWindow *ui)
     research_view_ = ui->researchTreeView;
     notes_view_ = ui->notesTreeView;
     rubi_view_ = ui->rubiTreeView;
+    trash_view_ = ui->trashTreeView;
     xml_.setAutoFormatting(true);
 }
 
@@ -59,6 +61,7 @@ bool XmlWriter::WriteFile(QIODevice *device)
     WriteRubis_();
 
     // trash
+    WriteTrash_();
 
     xml_.writeEndDocument();
     return true;
@@ -422,6 +425,63 @@ void XmlWriter::WriteRubis_()
     xml_.writeEndElement();
 }
 
+void XmlWriter::WriteTrashFile_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("file");
+
+    for (int i = 0; i < data->ColumnCount(); ++i) {
+        xml_.writeTextElement(QString("data-%1").arg(i), data->DataOf(i).toString());
+    }
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteTrashFolder_(const QTreeWidgetItem *item)
+{
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(item);
+    if (!data)
+        return;
+
+    xml_.writeStartElement("folder");
+
+    xml_.writeTextElement("title", data->DataOf(0).toString());
+
+    for (int i = 0; i < item->childCount(); ++i) {
+        QTreeWidgetItem *child = item->child(i);
+        if (util.IsFolder(child)) {
+            WriteTrashFolder_(child);
+        } else if (util.IsFile(child)) {
+            WriteTrashFile_(child);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
+void XmlWriter::WriteTrash_()
+{
+    xml_.writeStartElement("category-trashbox");
+
+    ItemUtility util;
+
+    for (int i = 0; i < trash_view_->topLevelItemCount(); ++i) {
+        QTreeWidgetItem *item = trash_view_->topLevelItem(i);
+        if (util.IsFolder(item)) {
+            WriteTrashFolder_(item);
+        } else if (util.IsFile(item)) {
+            WriteTrashFile_(item);
+        }
+    }
+
+    xml_.writeEndElement();
+}
+
 void XmlWriter::WriteWorldsFile_(const QTreeWidgetItem *item)
 {
     ItemUtility util;
@@ -480,5 +540,4 @@ void XmlWriter::WriteWorlds_()
 
     xml_.writeEndElement();
 }
-
 
