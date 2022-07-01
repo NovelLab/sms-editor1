@@ -210,7 +210,6 @@ void MainWindow::on_btnAddDraft_clicked()
 
 void MainWindow::on_btnDelDraft_clicked()
 {
-    //draft_tree_->RemoveItem(draft_tree_->currentItem());
     trash_tree_->RemoveItemToTrash(draft_tree_->currentItem());
     view_changer_->Update(Category::Draft);
 }
@@ -253,7 +252,7 @@ void MainWindow::on_btnAddPlot_clicked()
 
 void MainWindow::on_btnDelPlot_clicked()
 {
-    plot_tree_->RemoveItem(plot_tree_->currentItem());
+    trash_tree_->RemoveItemToTrash(plot_tree_->currentItem());
     view_changer_->Update(Category::Plot);
 }
 
@@ -275,7 +274,7 @@ void MainWindow::on_btnAddPerson_clicked()
 
 void MainWindow::on_btnDelPerson_clicked()
 {
-    person_tree_->RemoveItem(person_tree_->currentItem());
+    trash_tree_->RemoveItemToTrash(person_tree_->currentItem());
     view_changer_->Update(Category::Persons);
 }
 
@@ -312,7 +311,7 @@ void MainWindow::on_btnAddWorld_clicked()
 
 void MainWindow::on_btnDelWorld_clicked()
 {
-    world_tree_->RemoveItem(world_tree_->currentItem());
+    trash_tree_->RemoveItemToTrash(world_tree_->currentItem());
     view_changer_->Update(Category::Worlds);
 }
 
@@ -341,7 +340,7 @@ void MainWindow::on_btnAddResearch_clicked()
 
 void MainWindow::on_btnDelResearch_clicked()
 {
-    research_tree_->RemoveItem(research_tree_->currentItem());
+    trash_tree_->RemoveItemToTrash(research_tree_->currentItem());
     view_changer_->Update(Category::Research);
 }
 
@@ -370,7 +369,7 @@ void MainWindow::on_btnAddNotes_clicked()
 
 void MainWindow::on_btnDelNotes_clicked()
 {
-    notes_tree_->RemoveItem(notes_tree_->currentItem());
+    trash_tree_->RemoveItemToTrash(notes_tree_->currentItem());
     view_changer_->Update(Category::Notes);
 }
 
@@ -398,7 +397,7 @@ void MainWindow::on_btnAddRubi_clicked()
 
 void MainWindow::on_btnDelRubi_clicked()
 {
-    rubi_tree_->RemoveItem(rubi_tree_->currentItem());
+    trash_tree_->RemoveItemToTrash(rubi_tree_->currentItem());
     view_changer_->Update(Category::Rubi);
 }
 
