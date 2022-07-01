@@ -83,6 +83,20 @@ Qt::ItemFlags BaseTreeView::Flags() const
     return kItemFlags;
 }
 
+void BaseTreeView::MoveItem(QTreeWidgetItem *item, BaseTreeView *view)
+{
+    if (!item)
+        return;
+
+    QTreeWidgetItem *par = item->parent();
+    if (par)
+        par->removeChild(item);
+
+    QTreeWidgetItem *new_item = item->clone();
+    view->addTopLevelItem(new_item);
+    delete item;
+}
+
 void BaseTreeView::RemoveItem(QTreeWidgetItem *item)
 {
     if (!item)

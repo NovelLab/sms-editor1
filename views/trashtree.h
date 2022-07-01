@@ -8,6 +8,8 @@ class TrashTree : public BaseTreeView
     Q_OBJECT
 public:
     explicit TrashTree(QWidget *parent = nullptr);
+
+    void RemoveItemToTrash(QTreeWidgetItem *item);
 };
 
 #endif // TRASHTREE_H

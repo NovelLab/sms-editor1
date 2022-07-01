@@ -210,7 +210,8 @@ void MainWindow::on_btnAddDraft_clicked()
 
 void MainWindow::on_btnDelDraft_clicked()
 {
-    draft_tree_->RemoveItem(draft_tree_->currentItem());
+    //draft_tree_->RemoveItem(draft_tree_->currentItem());
+    trash_tree_->RemoveItemToTrash(draft_tree_->currentItem());
     view_changer_->Update(Category::Draft);
 }
 

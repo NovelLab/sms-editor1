@@ -21,6 +21,7 @@ public:
     virtual void AddFolder(const QTreeWidgetItem *item);
     virtual void AddFile(const QTreeWidgetItem *item);
     virtual void RemoveItem(QTreeWidgetItem *item);
+    virtual void MoveItem(QTreeWidgetItem *item, BaseTreeView *view);
 
 public slots:
     virtual void UpdateItemData(const QModelIndex &index);
