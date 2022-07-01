@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     research_tree_ = ui->researchTreeView;
     notes_tree_ = ui->notesTreeView;
     rubi_tree_ = ui->rubiTreeView;
+    trash_tree_ = ui->trashTreeView;
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
@@ -191,6 +192,7 @@ void MainWindow::on_btnRubi_clicked()
 void MainWindow::on_btnTrash_clicked()
 {
     view_changer_->Change(Category::Trash);
+    view_changer_->Update(Category::Trash);
 }
 
 void MainWindow::on_btnWorlds_clicked()
@@ -399,3 +401,10 @@ void MainWindow::on_btnDelRubi_clicked()
     view_changer_->Update(Category::Rubi);
 }
 
+// slots (trash)
+void MainWindow::on_trashTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+    Q_UNUSED(current);
+    Q_UNUSED(previous);
+    view_changer_->Update(Category::Trash);
+}

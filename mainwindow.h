@@ -16,6 +16,7 @@ class PersonTree;
 class PlotTree;
 class ResearchTree;
 class RubiTree;
+class TrashTree;
 class ViewChanger;
 class WorldTree;
 
@@ -79,6 +80,8 @@ private slots:
     void on_btnFolderRubi_clicked();
     void on_btnAddRubi_clicked();
     void on_btnDelRubi_clicked();
+    // trash tree
+    void on_trashTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
 private:
     Ui::MainWindow *ui;
@@ -92,5 +95,6 @@ private:
     ResearchTree *research_tree_;
     NotesTree *notes_tree_;
     RubiTree *rubi_tree_;
+    TrashTree *trash_tree_;
 };
 #endif // MAINWINDOW_H

@@ -28,6 +28,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     research_tree_ = ui->researchTreeView;
     notes_tree_ = ui->notesTreeView;
     rubi_tree_ = ui->rubiTreeView;
+    trash_tree_ = ui->trashTreeView;
 
     corkboard_ = ui->corkboardView;
     persons_table_ = ui->personsTableView;
@@ -111,7 +112,7 @@ void ViewChanger::Update(Category category)
         UpdateRubi_();
         break;
       case Category::Trash:
-        qDebug() << "(unimp) update trash";
+        UpdateTrash_();
         break;
       default:
         qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
@@ -369,6 +370,24 @@ void ViewChanger::UpdateRubi_()
         main_tab_->hide();
     //    main_editor_->show();
         side_tab_->show();
+    }
+}
+
+void ViewChanger::UpdateTrash_()
+{
+    QTreeWidgetItem *cur = trash_tree_->currentItem();
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(cur))
+        return;
+
+    if (util.IsFolder(cur)) {
+        corkboard_->UpdateView(cur);
+        main_tab_->show();
+        main_editor_->hide();
+    } else if (util.IsFile(cur)) {
+        main_editor_->UpdateView(cur, true);
+        main_tab_->hide();
+        main_editor_->show();
     }
 }
 

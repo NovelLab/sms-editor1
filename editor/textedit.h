@@ -15,7 +15,7 @@ public:
     ~TextEdit();
 
     void SaveCurrentItem();
-    void UpdateView(const QTreeWidgetItem *item);
+    void UpdateView(const QTreeWidgetItem *item, bool isReadonly = false);
 
 private:
     void SaveToCurrentItem_();

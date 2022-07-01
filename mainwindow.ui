@@ -457,6 +457,17 @@
         <attribute name="title">
          <string>Trash</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_17">
+         <item>
+          <widget class="TrashTree" name="trashTreeView">
+           <column>
+            <property name="text">
+             <string>Trash</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QTabWidget" name="mainViewTab">
@@ -855,6 +866,11 @@
    <class>RubiTableView</class>
    <extends>QTableView</extends>
    <header>views/rubitableview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TrashTree</class>
+   <extends>QTreeWidget</extends>
+   <header>views/trashtree.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

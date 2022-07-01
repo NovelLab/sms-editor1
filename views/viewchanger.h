@@ -20,6 +20,7 @@ class ResearchTree;
 class RubiTree;
 class RubiTableView;
 class TextEdit;
+class TrashTree;
 class WorldTree;
 class WorldsTableView;
 
@@ -82,6 +83,7 @@ private:
     void UpdateResearch_();
     void UpdateNotes_();
     void UpdateRubi_();
+    void UpdateTrash_();
 
     void ChangeOutlineTree_(OutlineCat cat);
     void ChangeMainTab_(MainTabCat cat);
@@ -105,6 +107,7 @@ private:
     ResearchTree *research_tree_;
     NotesTree *notes_tree_;
     RubiTree *rubi_tree_;
+    TrashTree *trash_tree_;
 
     CorkboardView *corkboard_;
     PersonsTableView *persons_table_;

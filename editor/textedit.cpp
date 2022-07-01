@@ -24,7 +24,7 @@ void TextEdit::SaveCurrentItem()
         SaveToCurrentItem_();
 }
 
-void TextEdit::UpdateView(const QTreeWidgetItem *item)
+void TextEdit::UpdateView(const QTreeWidgetItem *item, bool isReadOnly)
 {
     SaveCurrentItem();
 
@@ -35,6 +35,7 @@ void TextEdit::UpdateView(const QTreeWidgetItem *item)
     if (data) {
         this->setPlainText(data->DataOf(2).toString());
         current_item_ = data;
+        this->setReadOnly(isReadOnly);
     }
 }
 
