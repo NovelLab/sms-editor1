@@ -83,6 +83,8 @@ private slots:
     // trash tree
     void on_trashTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
+    void on_btnClearTrash_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSettings *settings_;

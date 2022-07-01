@@ -10,6 +10,7 @@ public:
     explicit TrashTree(QWidget *parent = nullptr);
 
     void RemoveItemToTrash(QTreeWidgetItem *item);
+    void ClearAllItems();
 };
 
 #endif // TRASHTREE_H

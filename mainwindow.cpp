@@ -408,3 +408,10 @@ void MainWindow::on_trashTreeView_currentItemChanged(QTreeWidgetItem *current, Q
     Q_UNUSED(previous);
     view_changer_->Update(Category::Trash);
 }
+
+void MainWindow::on_btnClearTrash_clicked()
+{
+    trash_tree_->ClearAllItems();
+    view_changer_->Update(Category::Trash);
+}
+
