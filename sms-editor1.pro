@@ -33,6 +33,7 @@ SOURCES += \
     views/researchtree.cpp \
     views/rubitableview.cpp \
     views/rubitree.cpp \
+    views/subs/draftsubview.cpp \
     views/trashtree.cpp \
     views/viewchanger.cpp \
     views/basetreeview.cpp \
@@ -68,6 +69,7 @@ HEADERS += \
     views/researchtree.h \
     views/rubitableview.h \
     views/rubitree.h \
+    views/subs/draftsubview.h \
     views/trashtree.h \
     views/viewchanger.h \
     views/basetreeview.h \

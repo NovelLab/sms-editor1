@@ -5,6 +5,7 @@
 #include "enums/generaltypes.h"
 #include "items/treeitem.h"
 #include "views/bookinfoview.h"
+#include "views/subs/draftsubview.h"
 #include "utils/itemutility.h"
 
 #include <QTreeWidgetItem>
@@ -34,12 +35,15 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     persons_table_ = ui->personsTableView;
     worlds_table_ = ui->worldsTableView;
     rubi_table_ = ui->rubiTableView;
+
+    draft_sub_ = new DraftSubView(ui);
 }
 
 ViewChanger::~ViewChanger()
 {
     // TODO: 自身でnewしたものはここで解放
     delete bookinfo_view_;
+    delete draft_sub_;
 }
 
 // methods
@@ -182,7 +186,7 @@ void ViewChanger::ChangeNotes_()
 
 void ViewChanger::ChangeRubi_()
 {
-    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
     ChangeOutlineTree_(OutlineCat::Rubi);
     ChangeMainTab_(MainTabCat::RubiTable);
     ChangeSideTab_(SideTabCat::Rubi);
@@ -221,6 +225,7 @@ void ViewChanger::SavePreviousPageData_(Category category)
             break;
           case Category::Draft:
             main_editor_->SaveCurrentItem();
+            // draft sub -> savecurrent
             break;
           case Category::Plot:
             main_editor_->SaveCurrentItem();
@@ -274,6 +279,7 @@ void ViewChanger::UpdateDraft_()
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
         main_editor_->UpdateView(cur);
+        draft_sub_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
         side_tab_->show();

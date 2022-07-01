@@ -39,20 +39,6 @@ BookInfoView::BookInfoView(Ui::MainWindow *ui)
 
 BookInfoView::~BookInfoView()
 {
-    delete book_title_;
-    delete book_subtitle_;
-    delete book_series_;
-    delete book_volume_;
-    delete book_genre_;
-    delete book_license_;
-
-    delete author_name_;
-    delete author_email_;
-
-    delete outline_1line_;
-    delete outline_3lines_;
-    delete outline_abstract_;
-
     delete root_item_;
 }
 
