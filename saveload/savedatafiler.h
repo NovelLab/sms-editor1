@@ -20,9 +20,11 @@ public:
     bool SaveFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
     bool SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
 
+    bool BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
+
 private:
     bool SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, const QString &filename);
-    QString ValidatedFilename_(const QString &fname);
+    QString ValidatedFilename_(const QString &fname, const QString &ext);
 };
 
 #endif // SAVEDATAFILER_H

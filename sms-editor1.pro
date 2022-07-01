@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    builder/novelbuilder.cpp \
     editor/markdownhighlighter.cpp \
     editor/textedit.cpp \
     items/bookinfoitem.cpp \
@@ -41,6 +42,7 @@ SOURCES += \
     xmls/xmlwriter.cpp
 
 HEADERS += \
+    builder/novelbuilder.h \
     common/appsettings.h \
     editor/markdownhighlighter.h \
     editor/textedit.h \

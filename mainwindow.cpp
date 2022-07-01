@@ -109,7 +109,10 @@ void MainWindow::on_actionClose_triggered()
 
 void MainWindow::on_actionCompile_triggered()
 {
-    qDebug() << "(unimp) menu - Compile";
+    SaveDataFiler filer;
+    if (filer.BuildToFile(this, ui, settings_)) {
+        this->statusBar()->showMessage("build successfull!", 2000);
+    }
 }
 
 void MainWindow::on_actionNew_triggered()
