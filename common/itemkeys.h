@@ -5,6 +5,13 @@ namespace ItemKeys {
 
 // TODO: 全部をkeyで取得、設定できるようにする
 
+enum class CommonKey {
+    Title = 0,
+    Info,
+    Text,
+    Note,
+};
+
 enum class BookInfo {
     Title = 0,
     Subtitle,

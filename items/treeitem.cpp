@@ -1,10 +1,10 @@
 #include "treeitem.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
 
 static const int kColumnSize = 16;
 
-TreeItem::TreeItem(ItemType type, Category category)
+TreeItem::TreeItem(GeneralType::ItemType type, GeneralType::Category category)
     : values_{QVector<QVariant>(kColumnSize, "")},
       type_{type},
       category_{category},
@@ -19,7 +19,7 @@ TreeItem::~TreeItem()
 }
 
 // methods
-Category TreeItem::CategoryOf() const
+GeneralType::Category TreeItem::CategoryOf() const
 {
     return category_;
 }
@@ -35,6 +35,8 @@ QVariant TreeItem::DataOf(int column) const
         return QVariant();
     return values_.value(column);
 }
+
+QVariant TreeItem::DataOf(ItemKeys::CommonKey key) const {return DataOf(static_cast<int>(key));}
 
 QVariant TreeItem::DataOf(ItemKeys::BookInfo key) const {return DataOf(static_cast<int>(key));}
 
@@ -60,6 +62,8 @@ bool TreeItem::SetData(int column, const QVariant &value)
     return true;
 }
 
+bool TreeItem::SetData(ItemKeys::CommonKey key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
+
 bool TreeItem::SetData(ItemKeys::BookInfo key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
 
 bool TreeItem::SetData(ItemKeys::Draft key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
@@ -76,7 +80,7 @@ bool TreeItem::SetData(ItemKeys::Note key, const QVariant &value) {return SetDat
 
 bool TreeItem::SetData(ItemKeys::Rubi key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
 
-ItemType TreeItem::TypeOf() const
+GeneralType::ItemType TreeItem::TypeOf() const
 {
     return type_;
 }

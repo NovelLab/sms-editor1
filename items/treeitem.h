@@ -6,6 +6,7 @@
 #include <QUuid>
 
 namespace ItemKeys {
+enum class CommonKey;
 enum class BookInfo;
 enum class Draft;
 enum class Plot;
@@ -16,16 +17,19 @@ enum class Note;
 enum class Rubi;
 }
 
+namespace GeneralType {
 enum class Category;
 enum class ItemType;
+}
 
 class TreeItem
 {
 public:
-    explicit TreeItem(ItemType type, Category category);
+    explicit TreeItem(GeneralType::ItemType type, GeneralType::Category category);
     ~TreeItem();
 
     QVariant DataOf(int column) const;
+    QVariant DataOf(ItemKeys::CommonKey key) const;
     QVariant DataOf(ItemKeys::BookInfo key) const;
     QVariant DataOf(ItemKeys::Draft key) const;
     QVariant DataOf(ItemKeys::Plot key) const;
@@ -36,6 +40,7 @@ public:
     QVariant DataOf(ItemKeys::Rubi key) const;
 
     bool SetData(int column, const QVariant &value);
+    bool SetData(ItemKeys::CommonKey key, const QVariant &value);
     bool SetData(ItemKeys::BookInfo key, const QVariant &value);
     bool SetData(ItemKeys::Draft key, const QVariant &value);
     bool SetData(ItemKeys::Plot key, const QVariant &value);
@@ -45,8 +50,8 @@ public:
     bool SetData(ItemKeys::Note key, const QVariant &value);
     bool SetData(ItemKeys::Rubi key, const QVariant &value);
 
-    ItemType TypeOf() const;
-    Category CategoryOf() const;
+    GeneralType::ItemType TypeOf() const;
+    GeneralType::Category CategoryOf() const;
 
     int ColumnCount() const;
 
@@ -56,8 +61,8 @@ private:
     bool IsValidColumn_(int column) const;
 
     QVector<QVariant> values_;
-    ItemType type_;
-    Category category_;
+    GeneralType::ItemType type_;
+    GeneralType::Category category_;
     QUuid uuid_;
 };
 
