@@ -1,11 +1,12 @@
 #include "bookinfoitem.h"
 
-#include "enums/bookinfotypes.h"
+#include "common/generalenums.h"
+#include "common/itemkeys.h"
 
 #include <QDebug>
 
 BookInfoItem::BookInfoItem()
-    : values_{QVector<QVariant>(kBookInfoTypeCount)}
+    : values_{QVector<QVariant>(ItemKeys::kBookInfoTypeCount)}
 {
 
 }

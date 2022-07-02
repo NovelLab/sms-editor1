@@ -1,8 +1,9 @@
 #include "treeitem.h"
 
 #include "common/generalenums.h"
+#include "common/itemkeys.h"
 
-static const int kColumnSize = 16;
+static const int kColumnSize = ItemKeys::kBookInfoTypeCount;
 
 TreeItem::TreeItem(GeneralType::ItemType type, GeneralType::Category category)
     : values_{QVector<QVariant>(kColumnSize, "")},
