@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 
 #include "common/appsettings.h"
+#include "common/generalenums.h"
 #include "editor/markdownhighlighter.h"
-#include "enums/generaltypes.h"
 #include "models/cardmodel.h"
 #include "models/personsmodel.h"
 #include "models/rubismodel.h"
@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->rubiTableView->setModel(rubi_model);
 
     // start view setting
-    view_changer_->Change(Category::BookInfo);
+    view_changer_->Change(GeneralType::Category::BookInfo);
 
     // setup editor
     MarkdownHighlighter *highlighter = new MarkdownHighlighter(ui->mainEditor->document());
@@ -152,74 +152,74 @@ void MainWindow::on_actionSave_As_triggered()
 // slots (changer buttons)
 void MainWindow::on_btnBookInfo_clicked()
 {
-    view_changer_->Change(Category::BookInfo);
+    view_changer_->Change(GeneralType::Category::BookInfo);
 }
 
 void MainWindow::on_btnDraft_clicked()
 {
-    view_changer_->Change(Category::Draft);
-    view_changer_->Update(Category::Draft);
+    view_changer_->Change(GeneralType::Category::Draft);
+    view_changer_->Update(GeneralType::Category::Draft);
 }
 
 void MainWindow::on_btnNotes_clicked()
 {
-    view_changer_->Change(Category::Notes);
-    view_changer_->Update(Category::Notes);
+    view_changer_->Change(GeneralType::Category::Notes);
+    view_changer_->Update(GeneralType::Category::Notes);
 }
 
 void MainWindow::on_btnPersons_clicked()
 {
-    view_changer_->Change(Category::Persons);
-    view_changer_->Update(Category::Persons);
+    view_changer_->Change(GeneralType::Category::Persons);
+    view_changer_->Update(GeneralType::Category::Persons);
 }
 
 void MainWindow::on_btnPlot_clicked()
 {
-    view_changer_->Change(Category::Plot);
-    view_changer_->Update(Category::Plot);
+    view_changer_->Change(GeneralType::Category::Plot);
+    view_changer_->Update(GeneralType::Category::Plot);
 }
 
 void MainWindow::on_btnResearch_clicked()
 {
-    view_changer_->Change(Category::Research);
-    view_changer_->Update(Category::Research);
+    view_changer_->Change(GeneralType::Category::Research);
+    view_changer_->Update(GeneralType::Category::Research);
 }
 
 void MainWindow::on_btnRubi_clicked()
 {
-    view_changer_->Change(Category::Rubi);
-    view_changer_->Update(Category::Rubi);
+    view_changer_->Change(GeneralType::Category::Rubi);
+    view_changer_->Update(GeneralType::Category::Rubi);
 }
 
 void MainWindow::on_btnTrash_clicked()
 {
-    view_changer_->Change(Category::Trash);
-    view_changer_->Update(Category::Trash);
+    view_changer_->Change(GeneralType::Category::Trash);
+    view_changer_->Update(GeneralType::Category::Trash);
 }
 
 void MainWindow::on_btnWorlds_clicked()
 {
-    view_changer_->Change(Category::Worlds);
-    view_changer_->Update(Category::Worlds);
+    view_changer_->Change(GeneralType::Category::Worlds);
+    view_changer_->Update(GeneralType::Category::Worlds);
 }
 
 // slots (draft tree)
 void MainWindow::on_btnAddDraft_clicked()
 {
     draft_tree_->AddFile(draft_tree_->currentItem());
-    view_changer_->Update(Category::Draft);
+    view_changer_->Update(GeneralType::Category::Draft);
 }
 
 void MainWindow::on_btnDelDraft_clicked()
 {
     trash_tree_->RemoveItemToTrash(draft_tree_->currentItem());
-    view_changer_->Update(Category::Draft);
+    view_changer_->Update(GeneralType::Category::Draft);
 }
 
 void MainWindow::on_btnFolderDraft_clicked()
 {
     draft_tree_->AddFolder(draft_tree_->currentItem());
-    view_changer_->Update(Category::Draft);
+    view_changer_->Update(GeneralType::Category::Draft);
 }
 
 
@@ -227,7 +227,7 @@ void MainWindow::on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, Q
 {
     Q_UNUSED(current);
     Q_UNUSED(previous);
-    view_changer_->Update(Category::Draft);
+    view_changer_->Update(GeneralType::Category::Draft);
 }
 
 // slots (plot tree)
@@ -235,27 +235,27 @@ void MainWindow::on_plotTreeView_currentItemChanged(QTreeWidgetItem *current, QT
 {
     Q_UNUSED(current);
     Q_UNUSED(previous);
-    view_changer_->Update(Category::Plot);
+    view_changer_->Update(GeneralType::Category::Plot);
 }
 
 void MainWindow::on_btnFolderPlot_clicked()
 {
     plot_tree_->AddFolder(plot_tree_->currentItem());
-    view_changer_->Update(Category::Plot);
+    view_changer_->Update(GeneralType::Category::Plot);
 }
 
 
 void MainWindow::on_btnAddPlot_clicked()
 {
     plot_tree_->AddFile(plot_tree_->currentItem());
-    view_changer_->Update(Category::Plot);
+    view_changer_->Update(GeneralType::Category::Plot);
 }
 
 
 void MainWindow::on_btnDelPlot_clicked()
 {
     trash_tree_->RemoveItemToTrash(plot_tree_->currentItem());
-    view_changer_->Update(Category::Plot);
+    view_changer_->Update(GeneralType::Category::Plot);
 }
 
 // slots (person tree)
@@ -263,21 +263,21 @@ void MainWindow::on_btnDelPlot_clicked()
 void MainWindow::on_btnFolderPerson_clicked()
 {
     person_tree_->AddFolder(person_tree_->currentItem());
-    view_changer_->Update(Category::Persons);
+    view_changer_->Update(GeneralType::Category::Persons);
 }
 
 
 void MainWindow::on_btnAddPerson_clicked()
 {
     person_tree_->AddFile(person_tree_->currentItem());
-    view_changer_->Update(Category::Persons);
+    view_changer_->Update(GeneralType::Category::Persons);
 }
 
 
 void MainWindow::on_btnDelPerson_clicked()
 {
     trash_tree_->RemoveItemToTrash(person_tree_->currentItem());
-    view_changer_->Update(Category::Persons);
+    view_changer_->Update(GeneralType::Category::Persons);
 }
 
 
@@ -285,7 +285,7 @@ void MainWindow::on_personTreeView_currentItemChanged(QTreeWidgetItem *current, 
 {
     Q_UNUSED(current);
     Q_UNUSED(previous);
-    view_changer_->Update(Category::Persons);
+    view_changer_->Update(GeneralType::Category::Persons);
 }
 
 // slots (world tree)
@@ -293,28 +293,28 @@ void MainWindow::on_worldTreeView_currentItemChanged(QTreeWidgetItem *current, Q
 {
     Q_UNUSED(current);
     Q_UNUSED(previous);
-    view_changer_->Update(Category::Worlds);
+    view_changer_->Update(GeneralType::Category::Worlds);
 }
 
 
 void MainWindow::on_btnFolderWorld_clicked()
 {
     world_tree_->AddFolder(world_tree_->currentItem());
-    view_changer_->Update(Category::Worlds);
+    view_changer_->Update(GeneralType::Category::Worlds);
 }
 
 
 void MainWindow::on_btnAddWorld_clicked()
 {
     world_tree_->AddFile(world_tree_->currentItem());
-    view_changer_->Update(Category::Worlds);
+    view_changer_->Update(GeneralType::Category::Worlds);
 }
 
 
 void MainWindow::on_btnDelWorld_clicked()
 {
     trash_tree_->RemoveItemToTrash(world_tree_->currentItem());
-    view_changer_->Update(Category::Worlds);
+    view_changer_->Update(GeneralType::Category::Worlds);
 }
 
 // slots (research tree)
@@ -322,28 +322,28 @@ void MainWindow::on_researchTreeView_currentItemChanged(QTreeWidgetItem *current
 {
     Q_UNUSED(current);
     Q_UNUSED(previous);
-    view_changer_->Update(Category::Research);
+    view_changer_->Update(GeneralType::Category::Research);
 }
 
 
 void MainWindow::on_btnFolderResearch_clicked()
 {
     research_tree_->AddFolder(research_tree_->currentItem());
-    view_changer_->Update(Category::Research);
+    view_changer_->Update(GeneralType::Category::Research);
 }
 
 
 void MainWindow::on_btnAddResearch_clicked()
 {
     research_tree_->AddFile(research_tree_->currentItem());
-    view_changer_->Update(Category::Research);
+    view_changer_->Update(GeneralType::Category::Research);
 }
 
 
 void MainWindow::on_btnDelResearch_clicked()
 {
     trash_tree_->RemoveItemToTrash(research_tree_->currentItem());
-    view_changer_->Update(Category::Research);
+    view_changer_->Update(GeneralType::Category::Research);
 }
 
 // slots (notes tree)
@@ -351,56 +351,56 @@ void MainWindow::on_notesTreeView_currentItemChanged(QTreeWidgetItem *current, Q
 {
     Q_UNUSED(current);
     Q_UNUSED(previous);
-    view_changer_->Update(Category::Notes);
+    view_changer_->Update(GeneralType::Category::Notes);
 }
 
 
 void MainWindow::on_btnFolderNotes_clicked()
 {
     notes_tree_->AddFolder(notes_tree_->currentItem());
-    view_changer_->Update(Category::Notes);
+    view_changer_->Update(GeneralType::Category::Notes);
 }
 
 
 void MainWindow::on_btnAddNotes_clicked()
 {
     notes_tree_->AddFile(notes_tree_->currentItem());
-    view_changer_->Update(Category::Notes);
+    view_changer_->Update(GeneralType::Category::Notes);
 }
 
 
 void MainWindow::on_btnDelNotes_clicked()
 {
     trash_tree_->RemoveItemToTrash(notes_tree_->currentItem());
-    view_changer_->Update(Category::Notes);
+    view_changer_->Update(GeneralType::Category::Notes);
 }
 
 void MainWindow::on_rubiTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
     Q_UNUSED(current);
     Q_UNUSED(previous);
-    view_changer_->Update(Category::Rubi);
+    view_changer_->Update(GeneralType::Category::Rubi);
 }
 
 
 void MainWindow::on_btnFolderRubi_clicked()
 {
     rubi_tree_->AddFolder(rubi_tree_->currentItem());
-    view_changer_->Update(Category::Rubi);
+    view_changer_->Update(GeneralType::Category::Rubi);
 }
 
 
 void MainWindow::on_btnAddRubi_clicked()
 {
     rubi_tree_->AddFile(rubi_tree_->currentItem());
-    view_changer_->Update(Category::Rubi);
+    view_changer_->Update(GeneralType::Category::Rubi);
 }
 
 
 void MainWindow::on_btnDelRubi_clicked()
 {
     trash_tree_->RemoveItemToTrash(rubi_tree_->currentItem());
-    view_changer_->Update(Category::Rubi);
+    view_changer_->Update(GeneralType::Category::Rubi);
 }
 
 // slots (trash)
@@ -408,12 +408,12 @@ void MainWindow::on_trashTreeView_currentItemChanged(QTreeWidgetItem *current, Q
 {
     Q_UNUSED(current);
     Q_UNUSED(previous);
-    view_changer_->Update(Category::Trash);
+    view_changer_->Update(GeneralType::Category::Trash);
 }
 
 void MainWindow::on_btnClearTrash_clicked()
 {
     trash_tree_->ClearAllItems();
-    view_changer_->Update(Category::Trash);
+    view_changer_->Update(GeneralType::Category::Trash);
 }
 
