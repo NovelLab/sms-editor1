@@ -18,8 +18,6 @@ class RubiTree;
 class TrashTree;
 class WorldTree;
 
-enum class Category;
-
 class XmlReader
 {
 public:
@@ -75,7 +73,5 @@ private:
     RubiTree *rubi_view_;
     TrashTree *trash_view_;
 };
-
-
 
 #endif // XMLREADER_H
