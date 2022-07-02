@@ -51,8 +51,8 @@ TreeItem* PersonTree::CreateFileItem_()
         "job",
         "appearance",
     };
-    for (int i = 1; i < vals.count(); ++i) {
-        data->SetData(i, vals);
+    for (int i = 0; i < vals.count(); ++i) {
+        data->SetData(i + 1, vals.at(i));
     }
     return data;
 }
