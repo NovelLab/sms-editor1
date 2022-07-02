@@ -1,9 +1,9 @@
 #include "notestree.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
 
 NotesTree::NotesTree(QWidget *parent)
-    : BaseTreeView{Category::Notes, parent}
+    : BaseTreeView{GeneralType::Category::Notes, parent}
 {
 
 }
