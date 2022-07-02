@@ -4,6 +4,7 @@
 
 #include "common/generalenums.h"
 #include "editor/drafteditor.h"
+#include "editor/personeditor.h"
 #include "editor/ploteditor.h"
 #include "items/treeitem.h"
 #include "views/bookinfoview.h"
@@ -39,6 +40,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
 
     draft_editor_ = new DraftEditor(ui);
     plot_editor_ = new PlotEditor(ui);
+    person_editor_ = new PersonEditor(ui);
 }
 
 ViewChanger::~ViewChanger()
@@ -47,6 +49,7 @@ ViewChanger::~ViewChanger()
     delete bookinfo_view_;
     delete draft_editor_;
     delete plot_editor_;
+    delete person_editor_;
 }
 
 // methods
@@ -236,6 +239,7 @@ void ViewChanger::SavePreviousPageData_(GeneralType::Category category)
         break;
       case GeneralType::Category::Persons:
         main_editor_->SaveCurrentItem();
+        person_editor_->SaveCurrentItem();
         break;
       case GeneralType::Category::Worlds:
         main_editor_->SaveCurrentItem();
@@ -320,6 +324,7 @@ void ViewChanger::UpdatePersons_()
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
         main_editor_->UpdateView(cur);
+        person_editor_->UpdateView(cur);
         main_tab_->hide();
         main_editor_->show();
         side_tab_->show();

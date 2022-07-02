@@ -14,6 +14,7 @@ class CorkboardView;
 class DraftEditor;
 class DraftTree;
 class NotesTree;
+class PersonEditor;
 class PersonTree;
 class PersonsTableView;
 class PlotEditor;
@@ -120,6 +121,7 @@ private:
 
     DraftEditor *draft_editor_;
     PlotEditor *plot_editor_;
+    PersonEditor *person_editor_;
 
     GeneralType::Category previous_cat_;
 };
