@@ -1,6 +1,7 @@
 #include "basetablemodel.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
+#include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
@@ -11,7 +12,7 @@ BaseTableModel::BaseTableModel(int display_columns, QObject *parent)
     : QAbstractItemModel{parent},
       kDisplayColumnSize_{display_columns}
 {
-    header_item_ = new TreeItem(ItemType::Folder, Category::None);
+    header_item_ = new TreeItem(GeneralType::ItemType::Folder, GeneralType::Category::None);
 }
 
 BaseTableModel::~BaseTableModel()
@@ -41,9 +42,9 @@ QVariant BaseTableModel::data(const QModelIndex &index, int role /* Qt::DisplayR
     if (!data)
         return QVariant();
 
-    if (data->TypeOf() == ItemType::File) {
+    if (data->TypeOf() == GeneralType::ItemType::File) {
         return DataFromFile(data, index.column());
-    } else if (data->TypeOf() == ItemType::Folder) {
+    } else if (data->TypeOf() == GeneralType::ItemType::Folder) {
         return DataFromFolder(data, index.column());
     } else {
         return QVariant();
@@ -99,9 +100,9 @@ bool BaseTableModel::setData(const QModelIndex &index, const QVariant &value, in
         return false;
 
     bool result;
-    if (data->TypeOf() == ItemType::File) {
+    if (data->TypeOf() == GeneralType::ItemType::File) {
         result = SetDataOfFile(data, index.column(), value);
-    } else if (data->TypeOf() == ItemType::Folder) {
+    } else if (data->TypeOf() == GeneralType::ItemType::Folder) {
         result = SetDataOfFolder(data, index.column(), value);
     } else {
         result = false;
@@ -144,7 +145,7 @@ void BaseTableModel::Clear()
 // methods (protected)
 QVariant BaseTableModel::DataFromFolder(const TreeItem *data, int column) const
 {
-    Q_ASSERT(data->TypeOf() == ItemType::Folder);
+    Q_ASSERT(data->TypeOf() == GeneralType::ItemType::Folder);
 
     if (column == 0) {
         // NOTE: title only
@@ -155,7 +156,7 @@ QVariant BaseTableModel::DataFromFolder(const TreeItem *data, int column) const
 
 QVariant BaseTableModel::DataFromFile(const TreeItem *data, int column) const
 {
-    Q_ASSERT(data->TypeOf() == ItemType::File);
+    Q_ASSERT(data->TypeOf() == GeneralType::ItemType::File);
 
     if (column < 0 || column >= data->ColumnCount())
         return QVariant();
@@ -175,7 +176,7 @@ TreeItem* BaseTableModel::ItemFromIndex_(const QModelIndex &index) const
 
 bool BaseTableModel::SetDataOfFile(TreeItem *data, int column, const QVariant &value)
 {
-    Q_ASSERT(data->TypeOf() == ItemType::File);
+    Q_ASSERT(data->TypeOf() == GeneralType::ItemType::File);
     if (column < 0 || column >= data->ColumnCount())
         return false;
 
@@ -185,7 +186,7 @@ bool BaseTableModel::SetDataOfFile(TreeItem *data, int column, const QVariant &v
 
 bool BaseTableModel::SetDataOfFolder(TreeItem *data, int column, const QVariant &value)
 {
-    Q_ASSERT(data->TypeOf() == ItemType::Folder);
+    Q_ASSERT(data->TypeOf() == GeneralType::ItemType::Folder);
     if (column == 0) {
         // NOTE: title only
         data->SetData(0, value);
