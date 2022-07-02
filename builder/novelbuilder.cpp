@@ -2,7 +2,7 @@
 
 #include "ui_mainwindow.h"
 
-#include "enums/generaltypes.h"
+#include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
@@ -47,7 +47,7 @@ QStringList NovelBuilder::OutputStrsFromFile(const QTreeWidgetItem *item)
     QStringList outputs;
     if (util.IsValidTreeWidgetItem(item)) {
         TreeItem *data = util.ItemFromTreeWidgetItem(item);
-        outputs << data->DataOf(2).toString();
+        outputs << data->DataOf(ItemKeys::Draft::Text).toString();
     }
     return outputs;
 }
