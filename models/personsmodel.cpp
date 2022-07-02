@@ -1,12 +1,13 @@
 #include "personsmodel.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
+#include "common/itemkeys.h"
 #include "items/treeitem.h"
 
 #include <QDebug>
 
 static const QStringList kDisplayElements = {
-    "Name", "Age", "Gender", "Job", "Info",
+    "Name", "Fullname", "Age", "Gender", "Job", "Info",
 };
 static const int kColumnSize = kDisplayElements.count();
 
@@ -21,22 +22,24 @@ PersonsModel::PersonsModel(QObject *parent)
 // overrides (protected)
 QVariant PersonsModel::DataFromFile(const TreeItem *data, int column) const
 {
-    Q_ASSERT(data->TypeOf() == ItemType::File);
+    Q_ASSERT(data->TypeOf() == GeneralType::ItemType::File);
 
     if (column < 0 || column >= data->ColumnCount())
         return QVariant();
 
     switch (column) {
       case 0:// name
-        return data->DataOf(0);
-      case 1:// age
-        return data->DataOf(4);
-      case 2:// gender
-        return data->DataOf(5);
-      case 3:// job
-        return data->DataOf(6);
-      case 4:// info
-        return data->DataOf(1);
+        return data->DataOf(ItemKeys::Person::Name);
+      case 1:// fullname
+        return data->DataOf(ItemKeys::Person::Fullname);
+      case 2:// age
+        return data->DataOf(ItemKeys::Person::Age);
+      case 3:// gender
+        return data->DataOf(ItemKeys::Person::Gender);
+      case 4:// job
+        return data->DataOf(ItemKeys::Person::Job);
+      case 5:// info
+        return data->DataOf(ItemKeys::Person::Info);
       default:
         return QVariant();
     }
@@ -44,30 +47,34 @@ QVariant PersonsModel::DataFromFile(const TreeItem *data, int column) const
 
 bool PersonsModel::SetDataOfFile(TreeItem *data, int column, const QVariant &value)
 {
-    Q_ASSERT(data->TypeOf() == ItemType::File);
+    Q_ASSERT(data->TypeOf() == GeneralType::ItemType::File);
     if (column < 0 || column >= data->ColumnCount())
         return false;
 
     bool result;
     switch (column) {
       case 0:// name
-        data->SetData(0, value);
+        data->SetData(ItemKeys::Person::Name, value);
         result = true;
         break;
-      case 1:// age
-        data->SetData(4, value);
+      case 1:// fullname
+        data->SetData(ItemKeys::Person::Fullname, value);
+        result = true;
+      break;
+      case 2:// age
+        data->SetData(ItemKeys::Person::Age, value);
         result = true;
         break;
-      case 2:// gender
-        data->SetData(5, value);
+      case 3:// gender
+        data->SetData(ItemKeys::Person::Gender, value);
         result = true;
         break;
-      case 3:// job
-        data->SetData(6, value);
+      case 4:// job
+        data->SetData(ItemKeys::Person::Job, value);
         result = true;
         break;
-      case 4:// info
-        data->SetData(1, value);
+      case 5:// info
+        data->SetData(ItemKeys::Person::Info, value);
         result = true;
         break;
       default:
