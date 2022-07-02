@@ -10,7 +10,7 @@ QT_END_NAMESPACE
 class QLineEdit;
 class QTextEdit;
 
-class BookInfoItem;
+class TreeItem;
 
 class BookInfoView
 {
@@ -37,7 +37,7 @@ private:
     QTextEdit *outline_3lines_;
     QTextEdit *outline_abstract_;
 
-    BookInfoItem *root_item_;
+    TreeItem *root_item_;
 };
 
 #endif // BOOKINFOVIEW_H

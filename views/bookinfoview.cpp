@@ -2,9 +2,11 @@
 
 #include "ui_mainwindow.h"
 
-#include "enums/bookinfotypes.h"
-#include "items/bookinfoitem.h"
+#include "common/generalenums.h"
+#include "common/itemkeys.h"
+#include "items/treeitem.h"
 
+// TODO: あとでMap<ItemKey, String>にする
 static const QStringList kDefaultData = {
   "タイトル",
     "サブタイトル",
@@ -32,7 +34,7 @@ BookInfoView::BookInfoView(Ui::MainWindow *ui)
       outline_3lines_{ui->txtEdit3Lines},
       outline_abstract_{ui->txtEditAbstract}
 {
-    root_item_ = new BookInfoItem();
+    root_item_ = new TreeItem(GeneralType::ItemType::File, GeneralType::Category::BookInfo);
 
     Reset();
 }
@@ -54,40 +56,40 @@ void BookInfoView::Reset()
 void BookInfoView::SaveData()
 {
     if (book_title_->isModified())
-        root_item_->SetData(0, book_title_->text());
+        root_item_->SetData(ItemKeys::BookInfo::Title, book_title_->text());
     if (book_subtitle_->isModified())
-        root_item_->SetData(1, book_subtitle_->text());
+        root_item_->SetData(ItemKeys::BookInfo::Subtitle, book_subtitle_->text());
     if (book_series_->isModified())
-        root_item_->SetData(2, book_series_->text());
+        root_item_->SetData(ItemKeys::BookInfo::Series, book_series_->text());
     if (book_volume_->isModified())
-        root_item_->SetData(3, book_volume_->text());
+        root_item_->SetData(ItemKeys::BookInfo::Volume, book_volume_->text());
     if (book_genre_->isModified())
-        root_item_->SetData(4, book_genre_->text());
+        root_item_->SetData(ItemKeys::BookInfo::Genre, book_genre_->text());
     if (book_license_->isModified())
-        root_item_->SetData(5, book_license_->text());
+        root_item_->SetData(ItemKeys::BookInfo::License, book_license_->text());
     if (author_name_->isModified())
-        root_item_->SetData(6, author_name_->text());
+        root_item_->SetData(ItemKeys::BookInfo::AuthorName, author_name_->text());
     if (author_email_->isModified())
-        root_item_->SetData(7, author_email_->text());
+        root_item_->SetData(ItemKeys::BookInfo::Email, author_email_->text());
     if (outline_1line_->isModified())
-        root_item_->SetData(8, outline_1line_->text());
+        root_item_->SetData(ItemKeys::BookInfo::OneLine, outline_1line_->text());
     if (outline_3lines_->document()->isModified())
-        root_item_->SetData(9, outline_3lines_->toPlainText());
+        root_item_->SetData(ItemKeys::BookInfo::ThreeLines, outline_3lines_->toPlainText());
     if (outline_abstract_->document()->isModified())
-        root_item_->SetData(10, outline_abstract_->toPlainText());
+        root_item_->SetData(ItemKeys::BookInfo::Abstract, outline_abstract_->toPlainText());
 }
 
 void BookInfoView::UpdateView()
 {
-    book_title_->setText(root_item_->DataOf(0).toString());
-    book_subtitle_->setText(root_item_->DataOf(1).toString());
-    book_series_->setText(root_item_->DataOf(2).toString());
-    book_volume_->setText(root_item_->DataOf(3).toString());
-    book_genre_->setText(root_item_->DataOf(4).toString());
-    book_license_->setText(root_item_->DataOf(5).toString());
-    author_name_->setText(root_item_->DataOf(6).toString());
-    author_email_->setText(root_item_->DataOf(7).toString());
-    outline_1line_->setText(root_item_->DataOf(8).toString());
-    outline_3lines_->setPlainText(root_item_->DataOf(9).toString());
-    outline_abstract_->setPlainText(root_item_->DataOf(10).toString());
+    book_title_->setText(root_item_->DataOf(ItemKeys::BookInfo::Title).toString());
+    book_subtitle_->setText(root_item_->DataOf(ItemKeys::BookInfo::Subtitle).toString());
+    book_series_->setText(root_item_->DataOf(ItemKeys::BookInfo::Series).toString());
+    book_volume_->setText(root_item_->DataOf(ItemKeys::BookInfo::Volume).toString());
+    book_genre_->setText(root_item_->DataOf(ItemKeys::BookInfo::Genre).toString());
+    book_license_->setText(root_item_->DataOf(ItemKeys::BookInfo::License).toString());
+    author_name_->setText(root_item_->DataOf(ItemKeys::BookInfo::AuthorName).toString());
+    author_email_->setText(root_item_->DataOf(ItemKeys::BookInfo::Email).toString());
+    outline_1line_->setText(root_item_->DataOf(ItemKeys::BookInfo::OneLine).toString());
+    outline_3lines_->setPlainText(root_item_->DataOf(ItemKeys::BookInfo::ThreeLines).toString());
+    outline_abstract_->setPlainText(root_item_->DataOf(ItemKeys::BookInfo::Abstract).toString());
 }
