@@ -2,7 +2,6 @@
 
 #include "ui_mainwindow.h"
 
-#include "enums/generaltypes.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 #include "views/drafttree.h"
