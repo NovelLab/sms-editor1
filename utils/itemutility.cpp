@@ -1,6 +1,6 @@
 #include "itemutility.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
 #include "items/treeitem.h"
 
 #include <QTreeWidgetItem>
@@ -16,7 +16,7 @@ bool ItemUtility::IsFolder(const QTreeWidgetItem *item) const
     if (!IsValidTreeWidgetItem(item))
         return false;
     TreeItem *data = item->data(0, Qt::UserRole).value<TreeItem*>();
-    return (data->TypeOf() == ItemType::Folder);
+    return (data->TypeOf() == GeneralType::ItemType::Folder);
 }
 
 bool ItemUtility::IsFile(const QTreeWidgetItem *item) const
@@ -24,7 +24,7 @@ bool ItemUtility::IsFile(const QTreeWidgetItem *item) const
     if (!IsValidTreeWidgetItem(item))
         return false;
     TreeItem *data = item->data(0, Qt::UserRole).value<TreeItem*>();
-    return (data->TypeOf() == ItemType::File);
+    return (data->TypeOf() == GeneralType::ItemType::File);
 }
 
 bool ItemUtility::IsValidTreeWidgetItem(const QTreeWidgetItem *item) const
