@@ -1,11 +1,12 @@
 #include "rubitree.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
+#include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
 RubiTree::RubiTree(QWidget *parent)
-    : BaseTreeView{Category::Rubi, parent}
+    : BaseTreeView{GeneralType::Category::Rubi, parent}
 {
 
 }
@@ -36,12 +37,12 @@ void RubiTree::UpdateItemData(const QModelIndex &index)
 // overrides
 TreeItem* RubiTree::CreateFileItem_()
 {
-    TreeItem *data = new TreeItem(ItemType::File, BaseCategoryOf());
-    data->SetData(0, CreateNewFileTitle());
-    data->SetData(1, "key");
-    data->SetData(2, "converted");
-    data->SetData(3, "always");
-    data->SetData(4, "exclusions");
+    TreeItem *data = new TreeItem(GeneralType::ItemType::File, BaseCategoryOf());
+    data->SetData(ItemKeys::Rubi::Name, CreateNewFileTitle());
+    data->SetData(ItemKeys::Rubi::Keyword, "key");
+    data->SetData(ItemKeys::Rubi::Converted, "converted");
+    data->SetData(ItemKeys::Rubi::Always, "always");
+    data->SetData(ItemKeys::Rubi::Exclusions, "exclusions");
     return data;
 }
 

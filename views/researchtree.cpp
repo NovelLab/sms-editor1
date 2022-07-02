@@ -1,9 +1,9 @@
 #include "researchtree.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
 
 ResearchTree::ResearchTree(QWidget *parent)
-    : BaseTreeView{Category::Research, parent}
+    : BaseTreeView{GeneralType::Category::Research, parent}
 {
 
 }
