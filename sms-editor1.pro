@@ -27,7 +27,6 @@ SOURCES += \
     models/worldsmodel.cpp \
     saveload/savedatafiler.cpp \
     utils/itemutility.cpp \
-    views/bookinfoview.cpp \
     views/corkboardview.cpp \
     views/drafttree.cpp \
     views/notestree.cpp \
@@ -66,7 +65,6 @@ HEADERS += \
     models/worldsmodel.h \
     saveload/savedatafiler.h \
     utils/itemutility.h \
-    views/bookinfoview.h \
     views/corkboardview.h \
     views/drafttree.h \
     views/notestree.h \
