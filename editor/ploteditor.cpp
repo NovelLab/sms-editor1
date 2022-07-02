@@ -2,7 +2,7 @@
 
 #include "ui_mainwindow.h"
 
-#include "enums/generaltypes.h"
+#include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
@@ -29,9 +29,9 @@ void PlotEditor::UpdateView(const QTreeWidgetItem *item)
 
     TreeItem *data = util.ItemFromTreeWidgetItem(item);
     if (data && util.IsFile(item)) {
-        file_title_->setText(data->DataOf(0).toString());
-        synop_->setPlainText(data->DataOf(1).toString());
-        note_->setPlainText(data->DataOf(3).toString());
+        file_title_->setText(data->DataOf(ItemKeys::Plot::Title).toString());
+        synop_->setPlainText(data->DataOf(ItemKeys::Plot::Synopsys).toString());
+        note_->setPlainText(data->DataOf(ItemKeys::Plot::Note).toString());
         SetCurrentItem_(data);
     }
 }
@@ -43,9 +43,9 @@ void PlotEditor::SaveCurrentItemInternal_()
         return;
 
     if (synop_->document()->isModified())
-        current_item_->SetData(1, synop_->toPlainText());
+        current_item_->SetData(ItemKeys::Plot::Synopsys, synop_->toPlainText());
     if (note_->document()->isModified())
-        current_item_->SetData(3, note_->toPlainText());
+        current_item_->SetData(ItemKeys::Plot::Note, note_->toPlainText());
 }
 
 void PlotEditor::SetCurrentItem_(TreeItem *item)
