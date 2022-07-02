@@ -7,13 +7,15 @@ class QTreeWidgetItem;
 class TreeItem;
 class XmlReader;
 
+namespace GeneralType {
 enum class Category;
+}
 
 class BaseTreeView : public QTreeWidget
 {
     Q_OBJECT
 public:
-    BaseTreeView(Category category, QWidget *parent = nullptr);
+    BaseTreeView(GeneralType::Category category, QWidget *parent = nullptr);
     virtual ~BaseTreeView() override;
 
     virtual Qt::ItemFlags Flags() const;
@@ -37,7 +39,7 @@ protected:
     virtual QStringList mimeTypes() const override;
     virtual void dropEvent(QDropEvent *event) override;
 
-    virtual Category BaseCategoryOf() const;
+    virtual GeneralType::Category BaseCategoryOf() const;
     virtual QString CreateNewFileTitle() const;
 
 private slots:
@@ -46,7 +48,7 @@ private slots:
 private:
     friend XmlReader;
 
-    Category base_category_;
+    GeneralType::Category base_category_;
 };
 
 #endif // BASETREEVIEW_H

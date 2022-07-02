@@ -1,6 +1,6 @@
 #include "basetreeview.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
 #include "items/treeitem.h"
 
 #include "utils/itemutility.h"
@@ -16,7 +16,7 @@ static const Qt::ItemFlags kItemFlags = Qt::ItemIsEnabled
         | Qt::ItemIsDragEnabled
         | Qt::ItemIsDropEnabled;
 
-BaseTreeView::BaseTreeView(Category category, QWidget *parent)
+BaseTreeView::BaseTreeView(GeneralType::Category category, QWidget *parent)
     : QTreeWidget{parent},
       base_category_{category}
 {
@@ -110,7 +110,7 @@ void BaseTreeView::RemoveItem(QTreeWidgetItem *item)
 }
 
 // methods (protected)
-Category BaseTreeView::BaseCategoryOf() const
+GeneralType::Category BaseTreeView::BaseCategoryOf() const
 {
     return base_category_;
 }
@@ -125,7 +125,7 @@ QTreeWidgetItem* BaseTreeView::CreateChild_(const QTreeWidgetItem *item)
 
 TreeItem* BaseTreeView::CreateFileItem_()
 {
-    TreeItem *data = new TreeItem(ItemType::File, base_category_);
+    TreeItem *data = new TreeItem(GeneralType::ItemType::File, base_category_);
     data->SetData(0, CreateNewFileTitle());
     data->SetData(1, "synopsys");
     data->SetData(2, "new text");
@@ -135,7 +135,7 @@ TreeItem* BaseTreeView::CreateFileItem_()
 
 TreeItem* BaseTreeView::CreateFolderItem_()
 {
-    TreeItem *data = new TreeItem(ItemType::Folder, base_category_);
+    TreeItem *data = new TreeItem(GeneralType::ItemType::Folder, base_category_);
     data->SetData(0, "NEW");
     return data;
 }
@@ -188,7 +188,7 @@ void BaseTreeView::dropEvent(QDropEvent *event)
         TreeItem *data = util.ItemFromTreeWidgetItem(dst);
         if (!data)
             return;
-        if (data->TypeOf() == ItemType::File)
+        if (data->TypeOf() == GeneralType::ItemType::File)
             return;
     }
     QTreeWidget::dropEvent(event);
