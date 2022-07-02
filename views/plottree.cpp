@@ -1,16 +1,9 @@
 #include "plottree.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
 
 PlotTree::PlotTree(QWidget *parent)
-    : BaseTreeView{Category::Plot, parent}
+    : BaseTreeView{GeneralType::Category::Plot, parent}
 {
 
 }
-
-PlotTree::~PlotTree()
-{
-
-}
-
-// overrides

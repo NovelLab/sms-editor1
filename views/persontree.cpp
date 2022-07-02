@@ -1,13 +1,14 @@
 #include "persontree.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
+#include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
 #include <QDebug>
 
 PersonTree::PersonTree(QWidget *parent)
-    : BaseTreeView{Category::Persons, parent}
+    : BaseTreeView{GeneralType::Category::Persons, parent}
 {
 
 }
@@ -38,15 +39,21 @@ void PersonTree::UpdateItemData(const QModelIndex &index)
 // overrides
 TreeItem* PersonTree::CreateFileItem_()
 {
-    TreeItem *data = new TreeItem(ItemType::File, BaseCategoryOf());
+    TreeItem *data = new TreeItem(GeneralType::ItemType::File, BaseCategoryOf());
     data->SetData(0, CreateNewFileTitle());
-    data->SetData(1, "person info");
-    data->SetData(2, "new text");
-    data->SetData(3, "note");
-    data->SetData(4, "age");
-    data->SetData(5, "gender");
-    data->SetData(6, "job");
-    data->SetData(7, "appearance");
+    QStringList vals = {
+        "person info",
+        "new text",
+        "note",
+        "fullname",
+        "age",
+        "gender",
+        "job",
+        "appearance",
+    };
+    for (int i = 1; i < vals.count(); ++i) {
+        data->SetData(i, vals);
+    }
     return data;
 }
 
