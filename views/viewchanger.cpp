@@ -2,9 +2,9 @@
 
 #include "ui_mainwindow.h"
 
+#include "common/generalenums.h"
 #include "editor/drafteditor.h"
 #include "editor/ploteditor.h"
-#include "enums/generaltypes.h"
 #include "items/treeitem.h"
 #include "views/bookinfoview.h"
 #include "utils/itemutility.h"
@@ -14,7 +14,7 @@
 #include <QDebug>
 
 ViewChanger::ViewChanger(Ui::MainWindow *ui)
-    :previous_cat_{Category::None}
+    :previous_cat_{GeneralType::Category::None}
 {
     // set ui widgets
     outline_tab_ = ui->outlineTab;
@@ -50,36 +50,36 @@ ViewChanger::~ViewChanger()
 }
 
 // methods
-void ViewChanger::Change(Category category)
+void ViewChanger::Change(GeneralType::Category category)
 {
     SavePreviousPageData_(category);
 
     switch (category) {
-      case Category::BookInfo:
+      case GeneralType::Category::BookInfo:
         ChangeBookInfo_();
         break;
-      case Category::Draft:
+      case GeneralType::Category::Draft:
         ChangeDraft_();
         break;
-      case Category::Plot:
+      case GeneralType::Category::Plot:
         ChangePlot_();
         break;
-      case Category::Persons:
+      case GeneralType::Category::Persons:
         ChangePersons_();
         break;
-      case Category::Worlds:
+      case GeneralType::Category::Worlds:
         ChangeWorlds_();
         break;
-      case Category::Research:
+      case GeneralType::Category::Research:
         ChangeResearch_();
         break;
-      case Category::Notes:
+      case GeneralType::Category::Notes:
         ChangeNotes_();
         break;
-      case Category::Rubi:
+      case GeneralType::Category::Rubi:
         ChangeRubi_();
         break;
-      case Category::Trash:
+      case GeneralType::Category::Trash:
         ChangeTrash_();
         break;
       default:
@@ -91,35 +91,35 @@ void ViewChanger::Change(Category category)
 /*
  * NOTE: ここではdata→viewという反映のみ行うこと
  * */
-void ViewChanger::Update(Category category)
+void ViewChanger::Update(GeneralType::Category category)
 {
     SavePreviousPageData_(category);
     switch (category) {
-      case Category::BookInfo:
+      case GeneralType::Category::BookInfo:
         UpdateBookInfo_();
         break;
-      case Category::Draft:
+      case GeneralType::Category::Draft:
         UpdateDraft_();
         break;
-      case Category::Plot:
+      case GeneralType::Category::Plot:
         UpdatePlot_();
         break;
-      case Category::Persons:
+      case GeneralType::Category::Persons:
         UpdatePersons_();
         break;
-      case Category::Worlds:
+      case GeneralType::Category::Worlds:
         UpdateWorlds_();
         break;
-      case Category::Research:
+      case GeneralType::Category::Research:
         UpdateResearch_();
         break;
-      case Category::Notes:
+      case GeneralType::Category::Notes:
         UpdateNotes_();
         break;
-      case Category::Rubi:
+      case GeneralType::Category::Rubi:
         UpdateRubi_();
         break;
-      case Category::Trash:
+      case GeneralType::Category::Trash:
         UpdateTrash_();
         break;
       default:
@@ -133,7 +133,7 @@ void ViewChanger::ChangeBookInfo_()
 {
     ShowHideViews_(ViewDisp::OFF, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeMainTab_(MainTabCat::BookInfo);
-    UpdatePreviousPage_(Category::BookInfo);
+    UpdatePreviousPage_(GeneralType::Category::BookInfo);
 }
 
 void ViewChanger::ChangeDraft_()
@@ -142,7 +142,7 @@ void ViewChanger::ChangeDraft_()
     ChangeOutlineTree_(OutlineCat::Draft);
     ChangeMainTab_(MainTabCat::Corkboard);
     ChangeSideTab_(SideTabCat::Draft);
-    UpdatePreviousPage_(Category::Draft);
+    UpdatePreviousPage_(GeneralType::Category::Draft);
 }
 
 void ViewChanger::ChangePlot_()
@@ -151,7 +151,7 @@ void ViewChanger::ChangePlot_()
     ChangeOutlineTree_(OutlineCat::Plot);
     ChangeMainTab_(MainTabCat::Corkboard);
     ChangeSideTab_(SideTabCat::Plot);
-    UpdatePreviousPage_(Category::Plot);
+    UpdatePreviousPage_(GeneralType::Category::Plot);
 }
 
 void ViewChanger::ChangePersons_()
@@ -160,7 +160,7 @@ void ViewChanger::ChangePersons_()
     ChangeOutlineTree_(OutlineCat::Persons);
     ChangeMainTab_(MainTabCat::PersonsTable);
     ChangeSideTab_(SideTabCat::Persons);
-    UpdatePreviousPage_(Category::Persons);
+    UpdatePreviousPage_(GeneralType::Category::Persons);
 }
 
 void ViewChanger::ChangeWorlds_()
@@ -169,7 +169,7 @@ void ViewChanger::ChangeWorlds_()
     ChangeOutlineTree_(OutlineCat::Worlds);
     ChangeMainTab_(MainTabCat::WorldsTable);
     ChangeSideTab_(SideTabCat::Worlds);
-    UpdatePreviousPage_(Category::Worlds);
+    UpdatePreviousPage_(GeneralType::Category::Worlds);
 }
 
 void ViewChanger::ChangeResearch_()
@@ -177,7 +177,7 @@ void ViewChanger::ChangeResearch_()
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Research);
     ChangeMainTab_(MainTabCat::Corkboard);
-    UpdatePreviousPage_(Category::Research);
+    UpdatePreviousPage_(GeneralType::Category::Research);
 }
 
 void ViewChanger::ChangeNotes_()
@@ -185,7 +185,7 @@ void ViewChanger::ChangeNotes_()
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Notes);
     ChangeMainTab_(MainTabCat::Corkboard);
-    UpdatePreviousPage_(Category::Notes);
+    UpdatePreviousPage_(GeneralType::Category::Notes);
 }
 
 void ViewChanger::ChangeRubi_()
@@ -194,7 +194,7 @@ void ViewChanger::ChangeRubi_()
     ChangeOutlineTree_(OutlineCat::Rubi);
     ChangeMainTab_(MainTabCat::RubiTable);
     ChangeSideTab_(SideTabCat::Rubi);
-    UpdatePreviousPage_(Category::Rubi);
+    UpdatePreviousPage_(GeneralType::Category::Rubi);
 }
 
 void ViewChanger::ChangeTrash_()
@@ -202,7 +202,7 @@ void ViewChanger::ChangeTrash_()
     ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Trash);
     ChangeMainTab_(MainTabCat::Corkboard);
-    UpdatePreviousPage_(Category::Trash);
+    UpdatePreviousPage_(GeneralType::Category::Trash);
 }
 
 void ViewChanger::ChangeOutlineTree_(OutlineCat cat)
@@ -220,35 +220,35 @@ void ViewChanger::ChangeSideTab_(SideTabCat cat)
     side_tab_->setCurrentIndex(static_cast<int>(cat));
 }
 
-void ViewChanger::SavePreviousPageData_(Category category)
+void ViewChanger::SavePreviousPageData_(GeneralType::Category category)
 {
     switch (previous_cat_) {
-      case Category::BookInfo:
+      case GeneralType::Category::BookInfo:
         bookinfo_view_->SaveData();
         break;
-      case Category::Draft:
+      case GeneralType::Category::Draft:
         main_editor_->SaveCurrentItem();
         draft_editor_->SaveCurrentItem();
         break;
-      case Category::Plot:
+      case GeneralType::Category::Plot:
         main_editor_->SaveCurrentItem();
         plot_editor_->SaveCurrentItem();
         break;
-      case Category::Persons:
+      case GeneralType::Category::Persons:
         main_editor_->SaveCurrentItem();
         break;
-      case Category::Worlds:
+      case GeneralType::Category::Worlds:
         main_editor_->SaveCurrentItem();
         break;
-      case Category::Research:
+      case GeneralType::Category::Research:
         main_editor_->SaveCurrentItem();
         break;
-      case Category::Notes:
+      case GeneralType::Category::Notes:
         main_editor_->SaveCurrentItem();
         break;
-      case Category::Rubi:
+      case GeneralType::Category::Rubi:
         break;
-      case Category::Trash:
+      case GeneralType::Category::Trash:
         break;
       default:
         qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
@@ -421,7 +421,7 @@ void ViewChanger::UpdateWorlds_()
     }
 }
 
-void ViewChanger::UpdatePreviousPage_(Category category)
+void ViewChanger::UpdatePreviousPage_(GeneralType::Category category)
 {
     previous_cat_ = category;
 }

@@ -26,7 +26,9 @@ class TrashTree;
 class WorldTree;
 class WorldsTableView;
 
+namespace GeneralType {
 enum class Category;
+}
 
 class ViewChanger
 {
@@ -34,8 +36,8 @@ public:
     explicit ViewChanger(Ui::MainWindow *ui);
     ~ViewChanger();
 
-    void Change(Category category);
-    void Update(Category category);
+    void Change(GeneralType::Category category);
+    void Update(GeneralType::Category category);
 
 private:
     enum class ViewDisp {
@@ -93,8 +95,8 @@ private:
 
     void ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp editor, ViewDisp side);
 
-    void UpdatePreviousPage_(Category category);
-    void SavePreviousPageData_(Category category);
+    void UpdatePreviousPage_(GeneralType::Category category);
+    void SavePreviousPageData_(GeneralType::Category category);
 
     QTabWidget *outline_tab_;
     QTabWidget *main_tab_;
@@ -119,7 +121,7 @@ private:
     DraftEditor *draft_editor_;
     PlotEditor *plot_editor_;
 
-    Category previous_cat_;
+    GeneralType::Category previous_cat_;
 };
 
 #endif // VIEWCHANGER_H
