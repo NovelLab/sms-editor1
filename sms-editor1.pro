@@ -12,6 +12,7 @@ SOURCES += \
     builder/novelbuilder.cpp \
     editor/drafteditor.cpp \
     editor/markdownhighlighter.cpp \
+    editor/personeditor.cpp \
     editor/ploteditor.cpp \
     editor/textedit.cpp \
     items/bookinfoitem.cpp \
@@ -46,12 +47,13 @@ SOURCES += \
 HEADERS += \
     builder/novelbuilder.h \
     common/appsettings.h \
+    common/generalenums.h \
+    common/itemkeys.h \
     editor/drafteditor.h \
     editor/markdownhighlighter.h \
+    editor/personeditor.h \
     editor/ploteditor.h \
     editor/textedit.h \
-    enums/bookinfotypes.h \
-    enums/generaltypes.h \
     items/bookinfoitem.h \
     items/treeitem.h \
     mainwindow.h \
