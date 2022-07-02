@@ -9,7 +9,7 @@ QT_END_NAMESPACE
 
 class QTabWidget;
 
-class BookInfoView;
+class BookInfoEditor;
 class CorkboardView;
 class DraftEditor;
 class DraftTree;
@@ -104,7 +104,8 @@ private:
     TextEdit *main_editor_;
     QTabWidget *side_tab_;
 
-    BookInfoView *bookinfo_view_;
+    BookInfoEditor *bookinfo_editor_;
+
     DraftTree *draft_tree_;
     PlotTree *plot_tree_;
     PersonTree *person_tree_;

@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 
 #include "common/generalenums.h"
+#include "editor/bookinfoeditor.h"
 #include "editor/drafteditor.h"
 #include "editor/personeditor.h"
 #include "editor/ploteditor.h"
@@ -23,7 +24,8 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     main_editor_ = ui->mainEditor;
     side_tab_ = ui->sideTab;
 
-    bookinfo_view_ = new BookInfoView(ui);
+    bookinfo_editor_ = new BookInfoEditor(ui);
+
     draft_tree_ = ui->draftTreeView;
     plot_tree_ = ui->plotTreeView;
     person_tree_ = ui->personTreeView;
@@ -46,7 +48,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
 ViewChanger::~ViewChanger()
 {
     // TODO: 自身でnewしたものはここで解放
-    delete bookinfo_view_;
+    delete bookinfo_editor_;
     delete draft_editor_;
     delete plot_editor_;
     delete person_editor_;
@@ -227,7 +229,7 @@ void ViewChanger::SavePreviousPageData_(GeneralType::Category category)
 {
     switch (previous_cat_) {
       case GeneralType::Category::BookInfo:
-        bookinfo_view_->SaveData();
+        bookinfo_editor_->SaveCurrentItem();
         break;
       case GeneralType::Category::Draft:
         main_editor_->SaveCurrentItem();
@@ -270,7 +272,7 @@ void ViewChanger::ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp edito
 
 void ViewChanger::UpdateBookInfo_()
 {
-    bookinfo_view_->UpdateView();
+    bookinfo_editor_->UpdateView();
 }
 
 void ViewChanger::UpdateDraft_()

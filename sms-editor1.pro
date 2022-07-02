@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     builder/novelbuilder.cpp \
+    editor/bookinfoeditor.cpp \
     editor/drafteditor.cpp \
     editor/markdownhighlighter.cpp \
     editor/personeditor.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     common/appsettings.h \
     common/generalenums.h \
     common/itemkeys.h \
+    editor/bookinfoeditor.h \
     editor/drafteditor.h \
     editor/markdownhighlighter.h \
     editor/personeditor.h \

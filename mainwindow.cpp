@@ -85,6 +85,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(card_model, &CardModel::UpdatedItemData, ui->researchTreeView, &ResearchTree::UpdateItemData);
     connect(card_model, &CardModel::UpdatedItemData, ui->notesTreeView, &NotesTree::UpdateItemData);
     connect(rubi_model, &RubisModel::UpdatedItemData, ui->rubiTreeView, &RubiTree::UpdateItemData);
+
+    // set default
+    on_btnBookInfo_clicked();
 }
 
 MainWindow::~MainWindow()
