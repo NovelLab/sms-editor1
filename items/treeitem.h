@@ -5,6 +5,17 @@
 #include <QVector>
 #include <QUuid>
 
+namespace ItemKeys {
+enum class BookInfo;
+enum class Draft;
+enum class Plot;
+enum class Person;
+enum class World;
+enum class Research;
+enum class Note;
+enum class Rubi;
+}
+
 enum class Category;
 enum class ItemType;
 
@@ -15,7 +26,24 @@ public:
     ~TreeItem();
 
     QVariant DataOf(int column) const;
+    QVariant DataOf(ItemKeys::BookInfo key) const;
+    QVariant DataOf(ItemKeys::Draft key) const;
+    QVariant DataOf(ItemKeys::Plot key) const;
+    QVariant DataOf(ItemKeys::Person key) const;
+    QVariant DataOf(ItemKeys::World key) const;
+    QVariant DataOf(ItemKeys::Research key) const;
+    QVariant DataOf(ItemKeys::Note key) const;
+    QVariant DataOf(ItemKeys::Rubi key) const;
+
     bool SetData(int column, const QVariant &value);
+    bool SetData(ItemKeys::BookInfo key, const QVariant &value);
+    bool SetData(ItemKeys::Draft key, const QVariant &value);
+    bool SetData(ItemKeys::Plot key, const QVariant &value);
+    bool SetData(ItemKeys::Person key, const QVariant &value);
+    bool SetData(ItemKeys::World key, const QVariant &value);
+    bool SetData(ItemKeys::Research key, const QVariant &value);
+    bool SetData(ItemKeys::Note key, const QVariant &value);
+    bool SetData(ItemKeys::Rubi key, const QVariant &value);
 
     ItemType TypeOf() const;
     Category CategoryOf() const;

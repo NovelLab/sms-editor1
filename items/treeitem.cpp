@@ -36,6 +36,22 @@ QVariant TreeItem::DataOf(int column) const
     return values_.value(column);
 }
 
+QVariant TreeItem::DataOf(ItemKeys::BookInfo key) const {return DataOf(static_cast<int>(key));}
+
+QVariant TreeItem::DataOf(ItemKeys::Draft key) const {return DataOf(static_cast<int>(key));}
+
+QVariant TreeItem::DataOf(ItemKeys::Plot key) const {return DataOf(static_cast<int>(key));}
+
+QVariant TreeItem::DataOf(ItemKeys::Person key) const {return DataOf(static_cast<int>(key));}
+
+QVariant TreeItem::DataOf(ItemKeys::World key) const {return DataOf(static_cast<int>(key));}
+
+QVariant TreeItem::DataOf(ItemKeys::Research key) const {return DataOf(static_cast<int>(key));}
+
+QVariant TreeItem::DataOf(ItemKeys::Note key) const {return DataOf(static_cast<int>(key));}
+
+QVariant TreeItem::DataOf(ItemKeys::Rubi key) const {return DataOf(static_cast<int>(key));}
+
 bool TreeItem::SetData(int column, const QVariant &value)
 {
     if (!IsValidColumn_(column))
@@ -43,6 +59,22 @@ bool TreeItem::SetData(int column, const QVariant &value)
     values_[column] = value;
     return true;
 }
+
+bool TreeItem::SetData(ItemKeys::BookInfo key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
+
+bool TreeItem::SetData(ItemKeys::Draft key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
+
+bool TreeItem::SetData(ItemKeys::Plot key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
+
+bool TreeItem::SetData(ItemKeys::Person key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
+
+bool TreeItem::SetData(ItemKeys::World key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
+
+bool TreeItem::SetData(ItemKeys::Research key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
+
+bool TreeItem::SetData(ItemKeys::Note key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
+
+bool TreeItem::SetData(ItemKeys::Rubi key, const QVariant &value) {return SetData(static_cast<int>(key), value);}
 
 ItemType TreeItem::TypeOf() const
 {
