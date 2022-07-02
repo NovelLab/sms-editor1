@@ -1,6 +1,6 @@
 #include "textedit.h"
 
-#include "enums/generaltypes.h"
+#include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
@@ -10,11 +10,6 @@ TextEdit::TextEdit(QWidget *parent)
     : QTextEdit{parent}
 {
 
-}
-
-TextEdit::~TextEdit()
-{
-    delete current_item_;
 }
 
 // methods
@@ -33,7 +28,7 @@ void TextEdit::UpdateView(const QTreeWidgetItem *item, bool isReadOnly)
         return;
     TreeItem *data = util.ItemFromTreeWidgetItem(item);
     if (data) {
-        this->setPlainText(data->DataOf(2).toString());
+        this->setPlainText(data->DataOf(ItemKeys::CommonKey::Text).toString());
         current_item_ = data;
         this->setReadOnly(isReadOnly);
     }
@@ -45,5 +40,5 @@ void TextEdit::SaveToCurrentItem_()
     if (!current_item_)
         return;
 
-    current_item_->SetData(2, this->toPlainText());
+    current_item_->SetData(ItemKeys::CommonKey::Text, this->toPlainText());
 }

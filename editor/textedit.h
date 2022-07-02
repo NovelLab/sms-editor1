@@ -12,7 +12,6 @@ class TextEdit : public QTextEdit
     Q_OBJECT
 public:
     explicit TextEdit(QWidget *parent = nullptr);
-    ~TextEdit();
 
     void SaveCurrentItem();
     void UpdateView(const QTreeWidgetItem *item, bool isReadonly = false);
