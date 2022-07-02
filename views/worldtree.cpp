@@ -1,13 +1,14 @@
 #include "worldtree.h"
 
-#include "enums/generaltypes.h"
+#include "common/generalenums.h"
+#include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
 #include <QDebug>
 
 WorldTree::WorldTree(QWidget *parent)
-    : BaseTreeView{Category::Persons, parent}
+    : BaseTreeView{GeneralType::Category::Persons, parent}
 {
 }
 
@@ -37,12 +38,12 @@ void WorldTree::UpdateItemData(const QModelIndex &index)
 // overrides
 TreeItem* WorldTree::CreateFileItem_()
 {
-    TreeItem *data = new TreeItem(ItemType::File, BaseCategoryOf());
-    data->SetData(0, CreateNewFileTitle());
-    data->SetData(1, "world info");
-    data->SetData(2, "new text");
-    data->SetData(3, "note");
-    data->SetData(4, "other");// category
+    TreeItem *data = new TreeItem(GeneralType::ItemType::File, BaseCategoryOf());
+    data->SetData(ItemKeys::World::Name, CreateNewFileTitle());
+    data->SetData(ItemKeys::World::Info, "world info");
+    data->SetData(ItemKeys::World::Text, "new text");
+    data->SetData(ItemKeys::World::Note, "note");
+    data->SetData(ItemKeys::World::Division, "other");// division
     return data;
 }
 
