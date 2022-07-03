@@ -153,7 +153,7 @@ void ViewChanger::ChangeBookInfo_()
 
 void ViewChanger::ChangeDraft_()
 {
-    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Draft);
     ChangeMainTab_(MainTabCat::Corkboard);
     ChangeSideTab_(SideTabCat::Draft);
@@ -162,7 +162,7 @@ void ViewChanger::ChangeDraft_()
 
 void ViewChanger::ChangePlot_()
 {
-    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Plot);
     ChangeMainTab_(MainTabCat::Corkboard);
     ChangeSideTab_(SideTabCat::Plot);
@@ -171,7 +171,7 @@ void ViewChanger::ChangePlot_()
 
 void ViewChanger::ChangePersons_()
 {
-    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Persons);
     ChangeMainTab_(MainTabCat::PersonsTable);
     ChangeSideTab_(SideTabCat::Persons);
@@ -180,7 +180,7 @@ void ViewChanger::ChangePersons_()
 
 void ViewChanger::ChangeWorlds_()
 {
-    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Worlds);
     ChangeMainTab_(MainTabCat::WorldsTable);
     ChangeSideTab_(SideTabCat::Worlds);
@@ -205,7 +205,7 @@ void ViewChanger::ChangeNotes_()
 
 void ViewChanger::ChangeRubi_()
 {
-    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::ON);
+    ShowHideViews_(ViewDisp::ON, ViewDisp::ON, ViewDisp::OFF, ViewDisp::OFF);
     ChangeOutlineTree_(OutlineCat::Rubi);
     ChangeMainTab_(MainTabCat::RubiTable);
     ChangeSideTab_(SideTabCat::Rubi);
