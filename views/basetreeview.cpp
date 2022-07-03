@@ -5,6 +5,7 @@
 
 #include "utils/itemutility.h"
 
+#include <QAction>
 #include <QDropEvent>
 #include <QFileIconProvider>
 #include <QMenu>
@@ -212,9 +213,28 @@ void BaseTreeView::dropEvent(QDropEvent *event)
 void BaseTreeView::ContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
-    menu.addMenu("A");
-    menu.addMenu("B");
-    menu.addMenu("C");
+
+    QAction *actAddFolder = new QAction("New folder", this);
+    connect(actAddFolder, &QAction::triggered,
+            [=](){
+        AddFolder(this->currentItem());
+    });
+    menu.addAction(actAddFolder);
+
+    QAction *actAddFile = new QAction("New file", this);
+    connect(actAddFile, &QAction::triggered,
+            [=](){
+        AddFile(this->currentItem());
+    });
+    menu.addAction(actAddFile);
+
+    QAction *actDelFile = new QAction("Delete", this);
+    connect(actDelFile, &QAction::triggered,
+            [=](){
+        RemoveItem(this->currentItem());
+    });
+    menu.addAction(actDelFile);
+
     menu.exec(mapToGlobal(pos));
 }
 
