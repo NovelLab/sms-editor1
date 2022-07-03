@@ -427,3 +427,39 @@ void MainWindow::on_btnClearTrash_clicked()
     trash_tree_->ClearAllItems();
     view_changer_->Update(GeneralType::Category::Trash);
 }
+
+void MainWindow::on_actionUndo_triggered()
+{
+    qDebug() << "(unimp) menu - Undo";
+}
+
+
+void MainWindow::on_actionRedo_triggered()
+{
+    qDebug() << "(unimp) menu - Redo";
+}
+
+
+void MainWindow::on_actionCut_triggered()
+{
+    qDebug() << "(unimp) menu - Cut";
+}
+
+
+void MainWindow::on_actionCopy_triggered()
+{
+    qDebug() << "(unimp) menu - Copy";
+}
+
+
+void MainWindow::on_actionPaste_triggered()
+{
+    qDebug() << "(unimp) menu - Paste";
+}
+
+
+void MainWindow::on_actionPreference_triggered()
+{
+    qDebug() << "(unimp) menu - Preference";
+}
+
