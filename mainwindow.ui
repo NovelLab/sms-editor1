@@ -491,7 +491,7 @@
       </widget>
       <widget class="QTabWidget" name="mainViewTab">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tabBookInfo">
         <attribute name="title">
@@ -690,6 +690,13 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_10">
          <item>
+          <widget class="QLabel" name="lblPersonTableTitle">
+           <property name="text">
+            <string>Folder title</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="PersonsTableView" name="personsTableView"/>
          </item>
         </layout>
@@ -700,6 +707,13 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_12">
          <item>
+          <widget class="QLabel" name="lblWorldTableTitle">
+           <property name="text">
+            <string>Folder title</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="WorldsTableView" name="worldsTableView"/>
          </item>
         </layout>
@@ -709,6 +723,13 @@
          <string>RubiTable</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_16">
+         <item>
+          <widget class="QLabel" name="lblRubiTableTitle">
+           <property name="text">
+            <string>Folder title</string>
+           </property>
+          </widget>
+         </item>
          <item>
           <widget class="RubiTableView" name="rubiTableView"/>
          </item>

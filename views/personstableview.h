@@ -3,6 +3,7 @@
 
 #include <QTableView>
 
+class QLabel;
 class QTreeWidgetItem;
 
 class PersonsTableView : public QTableView
@@ -11,7 +12,11 @@ class PersonsTableView : public QTableView
 public:
     explicit PersonsTableView(QWidget *parent = nullptr);
 
+    void SetTitleLabel(QLabel *label);
     void UpdateView(const QTreeWidgetItem *item);
+
+private:
+    QLabel *title_label_ = nullptr;
 };
 
 #endif // PERSONSTABLEVIEW_H

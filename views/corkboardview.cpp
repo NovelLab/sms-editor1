@@ -5,6 +5,7 @@
 #include "utils/itemutility.h"
 
 #include <QHeaderView>
+#include <QLabel>
 #include <QTreeWidgetItem>
 
 CorkboardView::CorkboardView(QWidget *parent)
@@ -20,6 +21,11 @@ CorkboardView::~CorkboardView()
 }
 
 // methods
+void CorkboardView::SetTitleLabel(QLabel *label)
+{
+    title_label_ = label;
+}
+
 void CorkboardView::UpdateView(const QTreeWidgetItem *item)
 {
     CardModel *model = static_cast<CardModel*>(this->model());
@@ -27,6 +33,9 @@ void CorkboardView::UpdateView(const QTreeWidgetItem *item)
 
     if (!item)
         return;
+
+    if (title_label_)
+        title_label_->setText(item->text(0));
 
     ItemUtility util;
 

@@ -3,6 +3,7 @@
 
 #include <QTableView>
 
+class QLabel;
 class QTreeWidgetItem;
 
 class WorldsTableView : public QTableView
@@ -11,7 +12,11 @@ class WorldsTableView : public QTableView
 public:
     explicit WorldsTableView(QWidget *parent = nullptr);
 
+    void SetTitleLabel(QLabel *label);
     void UpdateView(const QTreeWidgetItem *item);
+
+private:
+    QLabel *title_label_ = nullptr;
 };
 
 #endif // WORLDSTABLEVIEW_H

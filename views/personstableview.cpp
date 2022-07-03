@@ -5,6 +5,7 @@
 #include "utils/itemutility.h"
 
 #include <QHeaderView>
+#include <QLabel>
 #include <QTreeWidgetItem>
 
 PersonsTableView::PersonsTableView(QWidget *parent)
@@ -14,6 +15,11 @@ PersonsTableView::PersonsTableView(QWidget *parent)
 }
 
 // methods
+void PersonsTableView::SetTitleLabel(QLabel *label)
+{
+    title_label_ = label;
+}
+
 void PersonsTableView::UpdateView(const QTreeWidgetItem *item)
 {
     PersonsModel *model = static_cast<PersonsModel*>(this->model());
@@ -21,6 +27,9 @@ void PersonsTableView::UpdateView(const QTreeWidgetItem *item)
 
     if (!item)
         return;
+
+    if (title_label_)
+        title_label_->setText(item->text(0));
 
     ItemUtility util;
 

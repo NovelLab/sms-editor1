@@ -5,6 +5,7 @@
 #include "utils/itemutility.h"
 
 #include <QHeaderView>
+#include <QLabel>
 #include <QTreeWidgetItem>
 
 WorldsTableView::WorldsTableView(QWidget *parent)
@@ -14,6 +15,11 @@ WorldsTableView::WorldsTableView(QWidget *parent)
 }
 
 // methods
+void WorldsTableView::SetTitleLabel(QLabel *label)
+{
+    title_label_ = label;
+}
+
 void WorldsTableView::UpdateView(const QTreeWidgetItem *item)
 {
     WorldsModel *model = static_cast<WorldsModel*>(this->model());
@@ -21,6 +27,9 @@ void WorldsTableView::UpdateView(const QTreeWidgetItem *item)
 
     if (!item)
         return;
+
+    if (title_label_)
+        title_label_->setText(item->text(0));
 
     ItemUtility util;
 

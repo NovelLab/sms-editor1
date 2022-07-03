@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     rubi_tree_ = ui->rubiTreeView;
     trash_tree_ = ui->trashTreeView;
 
+
     // size settings
     ui->frameChanger->setMaximumWidth(120);
     ui->outlineTab->setMaximumWidth(200);
@@ -63,6 +64,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->worldsTableView->setModel(worlds_model);
     RubisModel *rubi_model = new RubisModel();
     ui->rubiTableView->setModel(rubi_model);
+
+    // title label
+    ui->corkboardView->SetTitleLabel(ui->lblCorkboardTitle);
+    ui->personsTableView->SetTitleLabel(ui->lblPersonTableTitle);
+    ui->worldsTableView->SetTitleLabel(ui->lblWorldTableTitle);
+    ui->rubiTableView->SetTitleLabel(ui->lblRubiTableTitle);
 
     // start view setting
     view_changer_->Change(GeneralType::Category::BookInfo);
@@ -420,4 +427,3 @@ void MainWindow::on_btnClearTrash_clicked()
     trash_tree_->ClearAllItems();
     view_changer_->Update(GeneralType::Category::Trash);
 }
-

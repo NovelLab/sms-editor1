@@ -82,7 +82,6 @@ private slots:
     void on_btnDelRubi_clicked();
     // trash tree
     void on_trashTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
-
     void on_btnClearTrash_clicked();
 
 private:

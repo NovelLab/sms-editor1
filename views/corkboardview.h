@@ -3,6 +3,7 @@
 
 #include <QTableView>
 
+class QLabel;
 class QTreeWidgetItem;
 
 class CorkboardView : public QTableView
@@ -12,7 +13,11 @@ public:
     explicit CorkboardView(QWidget *parent = nullptr);
     ~CorkboardView();
 
+    void SetTitleLabel(QLabel *label);
     void UpdateView(const QTreeWidgetItem *item);
+
+private:
+    QLabel *title_label_ = nullptr;
 };
 
 #endif // CORKBOARDVIEW_H

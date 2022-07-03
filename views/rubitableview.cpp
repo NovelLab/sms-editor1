@@ -5,6 +5,7 @@
 #include "utils/itemutility.h"
 
 #include <QHeaderView>
+#include <QLabel>
 #include <QTreeWidgetItem>
 
 RubiTableView::RubiTableView(QWidget *parent)
@@ -14,6 +15,11 @@ RubiTableView::RubiTableView(QWidget *parent)
 }
 
 // methods
+void RubiTableView::SetTitleLabel(QLabel *label)
+{
+    title_label_ = label;
+}
+
 void RubiTableView::UpdateView(const QTreeWidgetItem *item)
 {
     RubisModel *model = static_cast<RubisModel*>(this->model());
@@ -21,6 +27,9 @@ void RubiTableView::UpdateView(const QTreeWidgetItem *item)
 
     if (!item)
         return;
+
+    if (title_label_)
+        title_label_->setText(item->text(0));
 
     ItemUtility util;
 
