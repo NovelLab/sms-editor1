@@ -28,7 +28,7 @@ private:
     QTextEdit *synop_;
     QTextEdit *note_;
 
-    TreeItem *current_item_;
+    TreeItem *current_item_ = nullptr;
 };
 
 #endif // PLOTEDITOR_H

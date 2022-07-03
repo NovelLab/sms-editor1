@@ -19,7 +19,7 @@ public:
 private:
     void SaveToCurrentItem_();
 
-    TreeItem *current_item_;
+    TreeItem *current_item_ = nullptr;
 };
 
 #endif // TEXTEDIT_H

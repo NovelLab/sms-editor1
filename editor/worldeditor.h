@@ -31,7 +31,7 @@ private:
     QTextEdit *info_;
     QTextEdit *note_;
 
-    TreeItem *current_item_;
+    TreeItem *current_item_ = nullptr;
 };
 
 #endif // WORLDEDITOR_H

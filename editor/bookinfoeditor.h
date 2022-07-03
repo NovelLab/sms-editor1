@@ -42,7 +42,7 @@ private:
     QTextEdit *three_lines_;
     QTextEdit *abstract_;
 
-    TreeItem *current_item_;
+    TreeItem *current_item_ = nullptr;
 };
 
 #endif // BOOKINFOEDITOR_H
