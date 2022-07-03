@@ -20,6 +20,7 @@ class PersonsTableView;
 class PlotEditor;
 class PlotTree;
 class ResearchTree;
+class RubiEditor;
 class RubiTree;
 class RubiTableView;
 class TextEdit;
@@ -126,6 +127,7 @@ private:
     PlotEditor *plot_editor_;
     PersonEditor *person_editor_;
     WorldEditor *world_editor_;
+    RubiEditor *rubi_editor_;
 
     GeneralType::Category previous_cat_;
 };

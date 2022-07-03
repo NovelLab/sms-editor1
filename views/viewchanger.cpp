@@ -7,6 +7,7 @@
 #include "editor/drafteditor.h"
 #include "editor/personeditor.h"
 #include "editor/ploteditor.h"
+#include "editor/rubieditor.h"
 #include "editor/worldeditor.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
@@ -44,6 +45,7 @@ ViewChanger::ViewChanger(Ui::MainWindow *ui)
     plot_editor_ = new PlotEditor(ui);
     person_editor_ = new PersonEditor(ui);
     world_editor_ = new WorldEditor(ui);
+    rubi_editor_ = new RubiEditor(ui);
 }
 
 ViewChanger::~ViewChanger()
@@ -54,6 +56,7 @@ ViewChanger::~ViewChanger()
     delete plot_editor_;
     delete person_editor_;
     delete world_editor_;
+    delete rubi_editor_;
 }
 
 // methods
@@ -261,6 +264,7 @@ void ViewChanger::SavePreviousPageData_()
         main_editor_->SaveCurrentItem();
         break;
       case GeneralType::Category::Rubi:
+        rubi_editor_->SaveCurrentItem();
         break;
       case GeneralType::Category::Trash:
         break;
@@ -387,12 +391,10 @@ void ViewChanger::UpdateRubi_()
     if (util.IsFolder(cur)) {
         rubi_table_->UpdateView(cur);
         main_tab_->show();
-        //main_editor_->hide();
         side_tab_->hide();
     } else if (util.IsFile(cur)) {
-    //    main_editor_->UpdateView(cur);
+        rubi_editor_->UpdateView(cur);
         main_tab_->hide();
-    //    main_editor_->show();
         side_tab_->show();
     }
 }

@@ -15,6 +15,7 @@ SOURCES += \
     editor/markdownhighlighter.cpp \
     editor/personeditor.cpp \
     editor/ploteditor.cpp \
+    editor/rubieditor.cpp \
     editor/textedit.cpp \
     editor/worldeditor.cpp \
     items/bookinfoitem.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     editor/markdownhighlighter.h \
     editor/personeditor.h \
     editor/ploteditor.h \
+    editor/rubieditor.h \
     editor/textedit.h \
     editor/worldeditor.h \
     items/bookinfoitem.h \

@@ -41,7 +41,7 @@ TreeItem* RubiTree::CreateFileItem_()
     data->SetData(ItemKeys::Rubi::Name, CreateNewFileTitle());
     data->SetData(ItemKeys::Rubi::Keyword, "key");
     data->SetData(ItemKeys::Rubi::Converted, "converted");
-    data->SetData(ItemKeys::Rubi::Always, "always");
+    data->SetData(ItemKeys::Rubi::Always, "false");
     data->SetData(ItemKeys::Rubi::Exclusions, "exclusions");
     return data;
 }
