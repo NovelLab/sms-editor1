@@ -718,7 +718,7 @@
       <widget class="TextEdit" name="mainEditor"/>
       <widget class="QTabWidget" name="sideTab">
        <property name="currentIndex">
-        <number>2</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tabDraftSide">
         <attribute name="title">
@@ -996,6 +996,73 @@
         <attribute name="title">
          <string>Worlds</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_29">
+         <item>
+          <widget class="QLabel" name="lblWorldTitle">
+           <property name="text">
+            <string>File title</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QFormLayout" name="formLayout_6">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_32">
+             <property name="text">
+              <string>Division</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineWorldDivision"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_17">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_27">
+            <item>
+             <widget class="QLabel" name="label_35">
+              <property name="text">
+               <string>Information</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="txtEditWorldInfo"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_18">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_28">
+            <item>
+             <widget class="QLabel" name="label_36">
+              <property name="text">
+               <string>Note</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="txtEditWorldNote"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tabRubiSide">
         <attribute name="title">
