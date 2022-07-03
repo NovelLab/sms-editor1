@@ -24,6 +24,7 @@ class RubiTree;
 class RubiTableView;
 class TextEdit;
 class TrashTree;
+class WorldEditor;
 class WorldTree;
 class WorldsTableView;
 
@@ -124,6 +125,7 @@ private:
     DraftEditor *draft_editor_;
     PlotEditor *plot_editor_;
     PersonEditor *person_editor_;
+    WorldEditor *world_editor_;
 
     GeneralType::Category previous_cat_;
 };
