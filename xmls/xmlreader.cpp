@@ -162,6 +162,8 @@ void XmlReader::ReadDraftFolder_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "folding") {
+            child->setExpanded(QVariant(xml_.readElementText()).toBool());
         } else if (xml_.name() == "folder") {
             ReadDraftFolder_(child);
         } else if (xml_.name() == "file") {
@@ -227,6 +229,8 @@ void XmlReader::ReadNotesFolder_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "folding") {
+            child->setExpanded(QVariant(xml_.readElementText()).toBool());
         } else if (xml_.name() == "folder") {
             ReadNotesFolder_(child);
         } else if (xml_.name() == "file") {
@@ -298,6 +302,8 @@ void XmlReader::ReadPersonsFolder_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "folding") {
+            child->setExpanded(QVariant(xml_.readElementText()).toBool());
         } else if (xml_.name() == "folder") {
             ReadPersonsFolder_(child);
         } else if (xml_.name() == "file") {
@@ -362,6 +368,8 @@ void XmlReader::ReadPlotFolder_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "folding") {
+            child->setExpanded(QVariant(xml_.readElementText()).toBool());
         } else if (xml_.name() == "folder") {
             ReadPlotFolder_(child);
         } else if (xml_.name() == "file") {
@@ -425,6 +433,8 @@ void XmlReader::ReadResearchFolder_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "folding") {
+            child->setExpanded(QVariant(xml_.readElementText()).toBool());
         } else if (xml_.name() == "folder") {
             ReadResearchFolder_(child);
         } else if (xml_.name() == "file") {
@@ -490,6 +500,8 @@ void XmlReader::ReadRubisFolder_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "folding") {
+            child->setExpanded(QVariant(xml_.readElementText()).toBool());
         } else if (xml_.name() == "folder") {
             ReadRubisFolder_(child);
         } else if (xml_.name() == "file") {
@@ -548,6 +560,8 @@ void XmlReader::ReadTrashFolder_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "folding") {
+            child->setExpanded(QVariant(xml_.readElementText()).toBool());
         } else if (xml_.name() == "folder") {
             ReadTrashFolder_(child);
         } else if (xml_.name() == "file") {
@@ -613,6 +627,8 @@ void XmlReader::ReadWorldsFolder_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "folding") {
+            child->setExpanded(QVariant(xml_.readElementText()).toBool());
         } else if (xml_.name() == "folder") {
             ReadWorldsFolder_(child);
         } else if (xml_.name() == "file") {

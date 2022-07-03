@@ -117,6 +117,7 @@ void XmlWriter::WriteDraftFolder_(const QTreeWidgetItem *item)
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);
@@ -175,6 +176,7 @@ void XmlWriter::WriteNotesFolder_(const QTreeWidgetItem *item)
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);
@@ -237,6 +239,7 @@ void XmlWriter::WritePersonsFolder_(const QTreeWidgetItem *item)
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);
@@ -295,6 +298,7 @@ void XmlWriter::WritePlotFolder_(const QTreeWidgetItem *item)
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);
@@ -353,6 +357,7 @@ void XmlWriter::WriteResearchFolder_(const QTreeWidgetItem *item)
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);
@@ -412,6 +417,7 @@ void XmlWriter::WriteRubisFolder_(const QTreeWidgetItem *item)
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);
@@ -469,6 +475,7 @@ void XmlWriter::WriteTrashFolder_(const QTreeWidgetItem *item)
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);
@@ -528,6 +535,7 @@ void XmlWriter::WriteWorldsFolder_(const QTreeWidgetItem *item)
     xml_.writeStartElement("folder");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);
