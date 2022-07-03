@@ -68,6 +68,12 @@ void BaseTreeView::UpdateItemData(const QModelIndex &index)
 // methods
 void BaseTreeView::AddFile(const QTreeWidgetItem *item)
 {
+    ItemUtility util;
+    if (!util.IsValidTreeWidgetItem(item))
+        return;
+    if (util.IsFile(item))
+        return;
+
     const QTreeWidgetItem *par = GetParentOrRoot_(item);
     QTreeWidgetItem *child = CreateChild_(par);
     child->setText(0, CreateNewFileTitle());
@@ -82,6 +88,10 @@ void BaseTreeView::AddFile(const QTreeWidgetItem *item)
 
 void BaseTreeView::AddFolder(const QTreeWidgetItem *item)
 {
+    ItemUtility util;
+    if (item && util.IsFile(item))
+        return;
+
     const QTreeWidgetItem *par = GetParentOrRoot_(item);
     QTreeWidgetItem *child = CreateChild_(par);
 
