@@ -8,7 +8,6 @@
 #include "editor/personeditor.h"
 #include "editor/ploteditor.h"
 #include "items/treeitem.h"
-#include "views/bookinfoview.h"
 #include "utils/itemutility.h"
 
 #include <QTreeWidgetItem>
@@ -57,7 +56,7 @@ ViewChanger::~ViewChanger()
 // methods
 void ViewChanger::Change(GeneralType::Category category)
 {
-    SavePreviousPageData_(category);
+    SavePreviousPageData_();
 
     switch (category) {
       case GeneralType::Category::BookInfo:
@@ -93,12 +92,17 @@ void ViewChanger::Change(GeneralType::Category category)
     }
 }
 
+BookInfoEditor* ViewChanger::GetBookInfo() const
+{
+    return bookinfo_editor_;
+}
+
 /*
  * NOTE: ここではdata→viewという反映のみ行うこと
  * */
 void ViewChanger::Update(GeneralType::Category category)
 {
-    SavePreviousPageData_(category);
+    SavePreviousPageData_();
     switch (category) {
       case GeneralType::Category::BookInfo:
         UpdateBookInfo_();
@@ -225,7 +229,7 @@ void ViewChanger::ChangeSideTab_(SideTabCat cat)
     side_tab_->setCurrentIndex(static_cast<int>(cat));
 }
 
-void ViewChanger::SavePreviousPageData_(GeneralType::Category category)
+void ViewChanger::SavePreviousPageData_()
 {
     switch (previous_cat_) {
       case GeneralType::Category::BookInfo:
@@ -257,7 +261,6 @@ void ViewChanger::SavePreviousPageData_(GeneralType::Category category)
       case GeneralType::Category::Trash:
         break;
       default:
-        qWarning() << "unreachable in change view: Category is: " << static_cast<int>(category);
         break;
     }
 }

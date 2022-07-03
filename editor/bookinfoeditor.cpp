@@ -31,6 +31,18 @@ BookInfoEditor::~BookInfoEditor()
 }
 
 // methods
+void BookInfoEditor::Clear()
+{
+    if (!current_item_)
+        current_item_ = new TreeItem(GeneralType::ItemType::File, GeneralType::Category::BookInfo);
+    SetDefaultData_();
+}
+
+TreeItem* BookInfoEditor::GetCurrentItem() const
+{
+    return current_item_;
+}
+
 void BookInfoEditor::SaveCurrentItem()
 {
     if (current_item_)

@@ -126,7 +126,8 @@ void MainWindow::on_actionNew_triggered()
 void MainWindow::on_actionOpen_triggered()
 {
     SaveDataFiler filer;
-    if (filer.OpenFile(this, ui, settings_)) {
+    if (filer.OpenFile(this, ui, view_changer_, settings_)) {
+        view_changer_->Change(GeneralType::Category::BookInfo);
         this->statusBar()->showMessage("file loaded.", 2000);
     }
 }
@@ -139,7 +140,7 @@ void MainWindow::on_actionQuit_triggered()
 void MainWindow::on_actionSave_triggered()
 {
     SaveDataFiler filer;
-    if (filer.SaveFile(this, ui, settings_)) {
+    if (filer.SaveFile(this, ui, view_changer_, settings_)) {
         this->statusBar()->showMessage("file saved", 2000);
     }
 }
@@ -147,7 +148,7 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::on_actionSave_As_triggered()
 {
     SaveDataFiler filer;
-    if (filer.SaveFileAs(this, ui, settings_)) {
+    if (filer.SaveFileAs(this, ui, view_changer_, settings_)) {
         this->statusBar()->showMessage("file saved", 2000);
     }
 }

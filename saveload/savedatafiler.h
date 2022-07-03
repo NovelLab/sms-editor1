@@ -9,21 +9,22 @@ QT_END_NAMESPACE
 
 class QSettings;
 class MainWindow;
+class ViewChanger;
 
 class SaveDataFiler: public QObject
 {
 public:
     explicit SaveDataFiler();
-    ~SaveDataFiler();
 
-    bool OpenFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
-    bool SaveFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
-    bool SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
+    bool OpenFile(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings);
+    bool SaveFile(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings);
+    bool SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings);
 
+    // TODO: view changer using for book-title etc.
     bool BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
 
 private:
-    bool SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, const QString &filename);
+    bool SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings, const QString &filename);
     QString ValidatedFilename_(const QString &fname, const QString &ext);
 };
 

@@ -5,6 +5,7 @@
 
 #include "builder/novelbuilder.h"
 #include "common/appsettings.h"
+#include "views/viewchanger.h"
 #include "xmls/xmlreader.h"
 #include "xmls/xmlwriter.h"
 
@@ -21,11 +22,6 @@ static const QString kDefaultOutputFile = DefaultSettings::kBuildFilename;
 
 SaveDataFiler::SaveDataFiler()
     : QObject{}
-{
-
-}
-
-SaveDataFiler::~SaveDataFiler()
 {
 
 }
@@ -64,7 +60,7 @@ bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings 
     }
 }
 
-bool SaveDataFiler::OpenFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings)
+bool SaveDataFiler::OpenFile(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings)
 {
     QString fileName = QFileDialog::getOpenFileName(mwin,
                                                     tr("Open File"),
@@ -84,7 +80,7 @@ bool SaveDataFiler::OpenFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *se
         return false;
     }
 
-    XmlReader reader(ui);
+    XmlReader reader(ui, changer);
     if (!reader.Read(&file)) {
         QMessageBox::warning(mwin, tr("XmlStream Reader"),
                              tr("Parse error in file %1:\n\n%2")
@@ -96,28 +92,28 @@ bool SaveDataFiler::OpenFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *se
     }
 }
 
-bool SaveDataFiler::SaveFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings)
+bool SaveDataFiler::SaveFile(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings)
 {
     QString filename = settings->value(kKeyProjectPath).toString();
     if (filename.isEmpty()) {
-        return SaveFileAs(mwin, ui, settings);
+        return SaveFileAs(mwin, ui, changer, settings);
     } else {
-        return SaveFile_(mwin, ui, settings, filename);
+        return SaveFile_(mwin, ui, changer, settings, filename);
     }
 }
 
-bool SaveDataFiler::SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings)
+bool SaveDataFiler::SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings)
 {
     QString fileName = QFileDialog::getSaveFileName(mwin,
                                                     tr("Save File"),
                                                     QDir::currentPath(),
                                                     tr("XML Files (*.xml);;All Files (*)"));
 
-    return SaveFile_(mwin, ui, settings, fileName);
+    return SaveFile_(mwin, ui, changer, settings, fileName);
 }
 
 // methods (private)
-bool SaveDataFiler::SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, const QString &filename)
+bool SaveDataFiler::SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings, const QString &filename)
 {
     if (filename.isEmpty())
         return false;
@@ -133,7 +129,7 @@ bool SaveDataFiler::SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, QSettings *s
         return false;
     }
 
-    XmlWriter writer(ui);
+    XmlWriter writer(ui, changer);
     if (writer.WriteFile(&file)) {
         settings->setValue(kKeyProjectPath, f_name);
         return true;

@@ -39,6 +39,7 @@ public:
 
     void Change(GeneralType::Category category);
     void Update(GeneralType::Category category);
+    BookInfoEditor* GetBookInfo() const;
 
 private:
     enum class ViewDisp {
@@ -97,7 +98,7 @@ private:
     void ShowHideViews_(ViewDisp outline, ViewDisp mtab, ViewDisp editor, ViewDisp side);
 
     void UpdatePreviousPage_(GeneralType::Category category);
-    void SavePreviousPageData_(GeneralType::Category category);
+    void SavePreviousPageData_();
 
     QTabWidget *outline_tab_;
     QTabWidget *main_tab_;

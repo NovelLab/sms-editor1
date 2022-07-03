@@ -2,13 +2,16 @@
 
 #include "ui_mainwindow.h"
 
+#include "common/itemkeys.h"
+#include "editor/bookinfoeditor.h"
 #include "items/treeitem.h"
 #include "views/drafttree.h"
+#include "views/viewchanger.h"
 #include "utils/itemutility.h"
 
 #include <QDebug>
 
-XmlReader::XmlReader(Ui::MainWindow *ui)
+XmlReader::XmlReader(Ui::MainWindow *ui, ViewChanger *changer)
 {
     draft_view_ = ui->draftTreeView;
     plot_view_ = ui->plotTreeView;
@@ -18,6 +21,8 @@ XmlReader::XmlReader(Ui::MainWindow *ui)
     notes_view_ = ui->notesTreeView;
     rubi_view_ = ui->rubiTreeView;
     trash_view_ = ui->trashTreeView;
+
+    bookinfo_editor_ = changer->GetBookInfo();
 }
 
 // methods
@@ -65,7 +70,7 @@ void XmlReader::ReadXmlData_()
         xml_.readNextStartElement();
 
         if (xml_.name() == "category-bookinfo") {
-            qDebug() << "(unimp) book info xml";
+            ReadBookInfo_();
         } else if (xml_.name() == "category-draft") {
             ReadDraft_();
         } else if (xml_.name() == "category-plot") {
@@ -86,6 +91,29 @@ void XmlReader::ReadXmlData_()
             xml_.skipCurrentElement();
         }
     }
+}
+
+void XmlReader::ReadBookInfo_()
+{
+    bookinfo_editor_->Clear();
+
+    TreeItem *data = bookinfo_editor_->GetCurrentItem();
+
+    bool isMatch = false;
+    while (xml_.readNextStartElement()) {
+        isMatch = false;
+        for (int i = 0; i < ItemKeys::kBookInfoStrList.count(); ++i) {
+            if (xml_.name() == ItemKeys::kBookInfoStrList.at(i).toLower()) {
+                data->SetData(i, xml_.readElementText());
+                isMatch = true;
+                break;
+            }
+        }
+        if (!isMatch)
+            xml_.skipCurrentElement();
+    }
+
+    bookinfo_editor_->UpdateView();
 }
 
 void XmlReader::ReadDraftFile_(QTreeWidgetItem *item)

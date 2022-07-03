@@ -21,6 +21,9 @@ public:
 
     void UpdateView();
     void SaveCurrentItem();
+    void Clear();
+
+    TreeItem* GetCurrentItem() const;
 
 private:
     void SaveCurrentItemInternal_();

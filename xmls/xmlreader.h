@@ -9,6 +9,7 @@ QT_END_NAMESPACE
 
 class QTreeWidgetItem;
 
+class BookInfoEditor;
 class DraftTree;
 class NotesTree;
 class PersonTree;
@@ -17,17 +18,20 @@ class ResearchTree;
 class RubiTree;
 class TrashTree;
 class WorldTree;
+class ViewChanger;
 
 class XmlReader
 {
 public:
-    explicit XmlReader(Ui::MainWindow *ui);
+    explicit XmlReader(Ui::MainWindow *ui, ViewChanger *changer);
 
     bool Read(QIODevice *device);
     QString ErrorString() const;
 
 private:
     void ReadXmlData_();
+
+    void ReadBookInfo_();
 
     void ReadDraft_();
     void ReadDraftFolder_(QTreeWidgetItem *item);
@@ -64,6 +68,7 @@ private:
     void ClearWidgets_();
 
     QXmlStreamReader xml_;
+    BookInfoEditor *bookinfo_editor_;
     DraftTree *draft_view_;
     PlotTree *plot_view_;
     PersonTree *persons_view_;
