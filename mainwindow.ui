@@ -718,7 +718,7 @@
       <widget class="TextEdit" name="mainEditor"/>
       <widget class="QTabWidget" name="sideTab">
        <property name="currentIndex">
-        <number>3</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="tabDraftSide">
         <attribute name="title">
@@ -1068,6 +1068,76 @@
         <attribute name="title">
          <string>Rubi</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_30">
+         <item>
+          <widget class="QLabel" name="lblRubiTitle">
+           <property name="text">
+            <string>File title</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QFormLayout" name="formLayout_7">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_30">
+             <property name="text">
+              <string>Keyword</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineRubiKeyword"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_31">
+             <property name="text">
+              <string>Converted</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineRubiConverted"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_33">
+             <property name="text">
+              <string>Always</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_34">
+             <property name="text">
+              <string>Exclusions</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="lineRubiExclusions"/>
+           </item>
+           <item row="2" column="1">
+            <widget class="QCheckBox" name="checkRubiAlways">
+             <property name="text">
+              <string>Use</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </widget>
       </widget>
      </widget>
