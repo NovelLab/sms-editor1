@@ -16,6 +16,7 @@ SOURCES += \
     editor/personeditor.cpp \
     editor/ploteditor.cpp \
     editor/textedit.cpp \
+    editor/worldeditor.cpp \
     items/bookinfoitem.cpp \
     items/treeitem.cpp \
     main.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     editor/personeditor.h \
     editor/ploteditor.h \
     editor/textedit.h \
+    editor/worldeditor.h \
     items/bookinfoitem.h \
     items/treeitem.h \
     mainwindow.h \
