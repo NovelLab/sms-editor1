@@ -1,6 +1,8 @@
 #ifndef ITEMKEYS_H
 #define ITEMKEYS_H
 
+#include <QStringList>
+
 namespace ItemKeys {
 
 // TODO: 全部をkeyで取得、設定できるようにする
@@ -27,6 +29,19 @@ enum class BookInfo {
 };
 
 constexpr int kBookInfoTypeCount = static_cast<int>(BookInfo::Abstract) + 1;
+const QStringList kBookInfoStrList = {
+  "Title",
+    "Subtitle",
+    "Series",
+    "Volume",
+    "Genre",
+    "License",
+    "AuthorName",
+    "Email",
+    "OneLine",
+    "ThreeLines",
+    "Abstract",
+};
 
 enum class Draft {
     Title = 0,
