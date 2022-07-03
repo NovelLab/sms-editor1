@@ -9,6 +9,7 @@ QT_END_NAMESPACE
 
 class QTreeWidgetItem;
 
+class BookInfoEditor;
 class DraftTree;
 class NotesTree;
 class PlotTree;
@@ -18,15 +19,17 @@ class RubiTree;
 class TreeItem;
 class TrashTree;
 class WorldTree;
+class ViewChanger;
 
 class XmlWriter
 {
 public:
-    explicit XmlWriter(const Ui::MainWindow *ui);
+    explicit XmlWriter(const Ui::MainWindow *ui, const ViewChanger *changer);
 
     bool WriteFile(QIODevice *device);
 
 private:
+    void WriteBookInfo_();
     void WriteDraft_();
     void WriteDraftFolder_(const QTreeWidgetItem *item);
     void WriteDraftFile_(const QTreeWidgetItem *item);
@@ -53,6 +56,7 @@ private:
     void WriteTrashFile_(const QTreeWidgetItem *item);
 
     QXmlStreamWriter xml_;
+    const BookInfoEditor *bookinfo_editor_;
     const DraftTree *draft_view_;
     const PlotTree *plot_view_;
     const PersonTree *persons_view_;
