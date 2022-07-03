@@ -44,6 +44,7 @@ protected:
 
 private slots:
     void OnTitleChanged(QTreeWidgetItem *item, int column);
+    void ContextMenu(const QPoint &pos);
 
 private:
     friend XmlReader;

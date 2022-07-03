@@ -5,9 +5,10 @@
 
 #include "utils/itemutility.h"
 
-#include <QMimeData>
 #include <QDropEvent>
 #include <QFileIconProvider>
+#include <QMenu>
+#include <QMimeData>
 
 #include <QDebug>
 
@@ -28,7 +29,11 @@ BaseTreeView::BaseTreeView(GeneralType::Category category, QWidget *parent)
     this->setDefaultDropAction(Qt::MoveAction);
     this->setDragDropOverwriteMode(false);
 
+    // NOTE: custom menu using
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+
     connect(this, &QTreeWidget::itemChanged, this, &BaseTreeView::OnTitleChanged);
+    connect(this, &QTreeWidget::customContextMenuRequested, this, &BaseTreeView::ContextMenu);
 }
 
 BaseTreeView::~BaseTreeView()
@@ -204,6 +209,15 @@ void BaseTreeView::dropEvent(QDropEvent *event)
 }
 
 // slots (private)
+void BaseTreeView::ContextMenu(const QPoint &pos)
+{
+    QMenu menu(this);
+    menu.addMenu("A");
+    menu.addMenu("B");
+    menu.addMenu("C");
+    menu.exec(mapToGlobal(pos));
+}
+
 void BaseTreeView::OnTitleChanged(QTreeWidgetItem *item, int column)
 {
     ItemUtility util;
