@@ -7,6 +7,7 @@
 
 #include <QMimeData>
 #include <QDropEvent>
+#include <QFileIconProvider>
 
 #include <QDebug>
 
@@ -65,6 +66,10 @@ void BaseTreeView::AddFile(const QTreeWidgetItem *item)
     QTreeWidgetItem *child = CreateChild_(par);
     child->setText(0, CreateNewFileTitle());
 
+    QFileIconProvider provider;
+    QIcon icon = provider.icon(QFileIconProvider::File);
+    child->setIcon(0, icon);
+
     TreeItem *data = CreateFileItem_();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 }
@@ -73,6 +78,10 @@ void BaseTreeView::AddFolder(const QTreeWidgetItem *item)
 {
     const QTreeWidgetItem *par = GetParentOrRoot_(item);
     QTreeWidgetItem *child = CreateChild_(par);
+
+    QFileIconProvider provider;
+    QIcon icon = provider.icon(QFileIconProvider::Folder);
+    child->setIcon(0, icon);
 
     TreeItem *data = CreateFolderItem_();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
