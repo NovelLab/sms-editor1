@@ -3,6 +3,7 @@
 
 #include "common/appsettings.h"
 #include "common/generalenums.h"
+#include "configs/configdialog.h"
 #include "editor/markdownhighlighter.h"
 #include "models/cardmodel.h"
 #include "models/personsmodel.h"
@@ -460,6 +461,8 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionPreference_triggered()
 {
+    ConfigDialog *conf = new ConfigDialog(this);
+    conf->exec();
     qDebug() << "(unimp) menu - Preference";
 }
 
