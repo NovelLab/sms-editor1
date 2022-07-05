@@ -4,8 +4,8 @@
 #include "common/appsettings.h"
 #include "common/generalenums.h"
 #include "configs/configdialog.h"
+#include "configs/globalsetting.h"
 #include "editor/markdownhighlighter.h"
-#include "items/configitem.h"
 #include "models/cardmodel.h"
 #include "models/personsmodel.h"
 #include "models/rubismodel.h"
@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope, "sms", "sms");
     settings_->setIniCodec(QTextCodec::codecForName("UTF-8"));
 
-    config_ = new ConfigItem();
+    global_setting_ = new GlobalSetting();
 
     view_changer_ = new ViewChanger(ui);
     draft_tree_ = ui->draftTreeView;
@@ -99,6 +99,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // set default
     on_btnBookInfo_clicked();
+    global_setting_->UpdateUi();
 }
 
 MainWindow::~MainWindow()
@@ -111,7 +112,7 @@ MainWindow::~MainWindow()
     delete research_tree_;
     delete notes_tree_;
     delete rubi_tree_;
-    delete config_;
+    delete global_setting_;
     delete settings_;
     delete ui;
 }
@@ -465,8 +466,10 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionPreference_triggered()
 {
-    ConfigDialog *conf = new ConfigDialog(config_, this);
-    conf->exec();
-    qDebug() << "(unimp) menu - Preference";
+    ConfigDialog *conf = new ConfigDialog(global_setting_->GetModel(), this);
+    bool result = conf->exec();
+    if (result) {
+        global_setting_->UpdateUi();
+    }
 }
 

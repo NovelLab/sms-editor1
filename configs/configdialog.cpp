@@ -2,18 +2,20 @@
 #include "ui_configdialog.h"
 
 #include "common/configenums.h"
+#include "configs/configmodel.h"
 #include "items/configitem.h"
 
 #include <QColorDialog>
 
 #include <QDebug>
 
-ConfigDialog::ConfigDialog(ConfigItem *item, QWidget *parent) :
+ConfigDialog::ConfigDialog(ConfigModel *model, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ConfigDialog),
-    current_item_{item}
+    model_{model}
 {
     ui->setupUi(this);
+    UpdateUI_();
 }
 
 ConfigDialog::~ConfigDialog()
@@ -24,33 +26,53 @@ ConfigDialog::~ConfigDialog()
 // slots
 void ConfigDialog::on_cmbBoxUiFontFamily_currentFontChanged(const QFont &f)
 {
-    qDebug() << "(unimp) combo box changed - font family";
+    model_->SetData(Config::UI::FontFamily, f.toString());
 }
 
 
 void ConfigDialog::on_spinBoxUiFontSize_editingFinished()
 {
-    qDebug() << "(unimp) spin box finished - ui font size";
+    model_->SetData(Config::UI::FontSize, ui->spinBoxUiFontSize->value());
 }
 
 
 void ConfigDialog::on_btnUiFontColor_clicked()
 {
-    qDebug() << "(unimp) button ui font color";
-    QColor color = QColorDialog::getColor("#FFFFFF", this, "色選択",
+    QColor color = QColorDialog::getColor(model_->DataOf(Config::UI::FontColor).toString(),
+                                          this,
+                                          "色選択",
                                           QColorDialog::ShowAlphaChannel);
     if (color.isValid()) {
-        qDebug() << "(unimp) select color: " << color.name();
-        ui->btnUiFontColor->setText(color.name());
-        QString style = QString("background-color: %1").arg(color.name());
-        ui->btnUiFontColor->setStyleSheet(style);
+        model_->SetData(Config::UI::FontColor, color.name());
+        UpdateUiFontColorButton_(color);
     }
 }
 
 
 // methods (private)
-void ConfigDialog::SetDataFromItem_()
+void ConfigDialog::UpdateUI_()
 {
-    // ui
+    // UI
+    UpdateUiFontFamily_(model_->DataOf(Config::UI::FontFamily).toString());
+    UpdateUiFontSize_(model_->DataOf(Config::UI::FontSize).toInt());
+    UpdateUiFontColorButton_(QColor(model_->DataOf(Config::UI::FontColor).toString()));
 }
 
+void ConfigDialog::UpdateUiFontFamily_(const QString &value)
+{
+    ui->cmbBoxUiFontFamily->setCurrentFont(QFont(value));
+}
+
+void ConfigDialog::UpdateUiFontSize_(const int size)
+{
+    ui->spinBoxUiFontSize->setValue(size);
+}
+
+void ConfigDialog::UpdateUiFontColorButton_(const QColor &color)
+{
+    // label
+    ui->btnUiFontColor->setText(color.name());
+    // background color
+    QString style = QString("background-color: %1").arg(color.name());
+    ui->btnUiFontColor->setStyleSheet(style);
+}

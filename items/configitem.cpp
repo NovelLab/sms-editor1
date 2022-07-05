@@ -8,7 +8,17 @@ ConfigItem::ConfigItem()
 
 }
 
+ConfigItem::~ConfigItem()
+{
+    values_.clear();
+}
+
 // methods
+int ConfigItem::ColumnCount() const
+{
+    return values_.size();
+}
+
 QVariant ConfigItem::DataOf(int column) const
 {
     if (!IsValidColumn_(column))

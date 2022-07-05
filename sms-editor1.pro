@@ -11,6 +11,8 @@ CONFIG += c++11
 SOURCES += \
     builder/novelbuilder.cpp \
     configs/configdialog.cpp \
+    configs/configmodel.cpp \
+    configs/globalsetting.cpp \
     editor/bookinfoeditor.cpp \
     editor/drafteditor.cpp \
     editor/markdownhighlighter.cpp \
@@ -55,6 +57,8 @@ HEADERS += \
     common/generalenums.h \
     common/itemkeys.h \
     configs/configdialog.h \
+    configs/configmodel.h \
+    configs/globalsetting.h \
     editor/bookinfoeditor.h \
     editor/drafteditor.h \
     editor/markdownhighlighter.h \

@@ -20,7 +20,7 @@ class TrashTree;
 class ViewChanger;
 class WorldTree;
 
-class ConfigItem;
+class GlobalSetting;
 
 class MainWindow : public QMainWindow
 {
@@ -31,13 +31,23 @@ public:
     ~MainWindow();
 
 private slots:
+    // menu - file
     void on_actionQuit_triggered();
     void on_actionOpen_triggered();
     void on_actionSave_triggered();
     void on_actionSave_As_triggered();
     void on_actionNew_triggered();
     void on_actionClose_triggered();
+    // menu - edit
+    void on_actionUndo_triggered();
+    void on_actionRedo_triggered();
+    void on_actionCut_triggered();
+    void on_actionCopy_triggered();
+    void on_actionPaste_triggered();
+    void on_actionPreference_triggered();
+    // menu - build
     void on_actionCompile_triggered();
+    // category buttons
     void on_btnBookInfo_clicked();
     void on_btnDraft_clicked();
     void on_btnPlot_clicked();
@@ -86,18 +96,6 @@ private slots:
     void on_trashTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
     void on_btnClearTrash_clicked();
 
-    void on_actionUndo_triggered();
-
-    void on_actionRedo_triggered();
-
-    void on_actionCut_triggered();
-
-    void on_actionCopy_triggered();
-
-    void on_actionPaste_triggered();
-
-    void on_actionPreference_triggered();
-
 private:
     Ui::MainWindow *ui;
     QSettings *settings_;
@@ -112,6 +110,6 @@ private:
     RubiTree *rubi_tree_;
     TrashTree *trash_tree_;
 
-    ConfigItem *config_;
+    GlobalSetting *global_setting_;
 };
 #endif // MAINWINDOW_H

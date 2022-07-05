@@ -7,14 +7,15 @@ namespace Ui {
 class ConfigDialog;
 }
 
-class ConfigItem;
+class QColor;
+class ConfigModel;
 
 class ConfigDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ConfigDialog(ConfigItem *item, QWidget *parent = nullptr);
+    explicit ConfigDialog(ConfigModel *model, QWidget *parent = nullptr);
     ~ConfigDialog();
 
 private slots:
@@ -28,10 +29,14 @@ private:
         Project,
         Editor,
     };
-    void SetDataFromItem_();
+    void UpdateUI_();
+    //
+    void UpdateUiFontFamily_(const QString &value);
+    void UpdateUiFontSize_(const int size);
+    void UpdateUiFontColorButton_(const QColor &color);
 
     Ui::ConfigDialog *ui;
-    ConfigItem *current_item_;
+    ConfigModel *model_;
 };
 
 #endif // CONFIGDIALOG_H

@@ -1,18 +1,20 @@
-#ifndef CONFIGITEM_H
-#define CONFIGITEM_H
+#ifndef CONFIGMODEL_H
+#define CONFIGMODEL_H
 
-#include <QVector>
 #include <QVariant>
 
 namespace Config {
 enum class UI;
 }
+class ConfigItem;
 
-class ConfigItem
+class ConfigModel
 {
 public:
-    explicit ConfigItem();
-    ~ConfigItem();
+    explicit ConfigModel();
+    ~ConfigModel();
+
+    void SetDefaultValue();
 
     QVariant DataOf(int column) const;
     QVariant DataOf(Config::UI key) const;
@@ -20,12 +22,8 @@ public:
     bool SetData(int column, const QVariant &value);
     bool SetData(Config::UI key, const QVariant &value);
 
-    int ColumnCount() const;
-
 private:
-    bool IsValidColumn_(int column) const;
-
-    QVector<QVariant> values_;
+    ConfigItem *conf_item_;
 };
 
-#endif // CONFIGITEM_H
+#endif // CONFIGMODEL_H

@@ -31,6 +31,7 @@ const QString kBuildFileType = "BUILD_FILE_TYPE";
 
 namespace DefaultSettings {
 const int kFontSize = 12;
+const QString kFontColor = "#FFFFFF";
 const QString kBuildPath = "build";
 const QString kBuildFilename = "output.md";
 }
