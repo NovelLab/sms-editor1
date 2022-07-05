@@ -5,6 +5,7 @@
 #include "common/generalenums.h"
 #include "configs/configdialog.h"
 #include "editor/markdownhighlighter.h"
+#include "items/configitem.h"
 #include "models/cardmodel.h"
 #include "models/personsmodel.h"
 #include "models/rubismodel.h"
@@ -29,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
     // settings
     settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope, "sms", "sms");
     settings_->setIniCodec(QTextCodec::codecForName("UTF-8"));
+
+    config_ = new ConfigItem();
 
     view_changer_ = new ViewChanger(ui);
     draft_tree_ = ui->draftTreeView;
@@ -108,6 +111,7 @@ MainWindow::~MainWindow()
     delete research_tree_;
     delete notes_tree_;
     delete rubi_tree_;
+    delete config_;
     delete settings_;
     delete ui;
 }
@@ -461,7 +465,7 @@ void MainWindow::on_actionPaste_triggered()
 
 void MainWindow::on_actionPreference_triggered()
 {
-    ConfigDialog *conf = new ConfigDialog(this);
+    ConfigDialog *conf = new ConfigDialog(config_, this);
     conf->exec();
     qDebug() << "(unimp) menu - Preference";
 }

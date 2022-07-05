@@ -20,6 +20,7 @@ SOURCES += \
     editor/textedit.cpp \
     editor/worldeditor.cpp \
     items/bookinfoitem.cpp \
+    items/configitem.cpp \
     items/treeitem.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -50,6 +51,7 @@ SOURCES += \
 HEADERS += \
     builder/novelbuilder.h \
     common/appsettings.h \
+    common/configenums.h \
     common/generalenums.h \
     common/itemkeys.h \
     configs/configdialog.h \
@@ -62,6 +64,7 @@ HEADERS += \
     editor/textedit.h \
     editor/worldeditor.h \
     items/bookinfoitem.h \
+    items/configitem.h \
     items/treeitem.h \
     mainwindow.h \
     models/basetablemodel.h \

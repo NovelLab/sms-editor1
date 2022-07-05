@@ -20,6 +20,8 @@ class TrashTree;
 class ViewChanger;
 class WorldTree;
 
+class ConfigItem;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -109,5 +111,7 @@ private:
     NotesTree *notes_tree_;
     RubiTree *rubi_tree_;
     TrashTree *trash_tree_;
+
+    ConfigItem *config_;
 };
 #endif // MAINWINDOW_H
