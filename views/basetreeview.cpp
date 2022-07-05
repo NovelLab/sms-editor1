@@ -69,9 +69,7 @@ void BaseTreeView::UpdateItemData(const QModelIndex &index)
 void BaseTreeView::AddFile(const QTreeWidgetItem *item)
 {
     ItemUtility util;
-    if (!util.IsValidTreeWidgetItem(item))
-        return;
-    if (util.IsFile(item))
+    if (item && util.IsFile(item))
         return;
 
     const QTreeWidgetItem *par = GetParentOrRoot_(item);
