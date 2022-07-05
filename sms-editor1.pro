@@ -21,7 +21,6 @@ SOURCES += \
     editor/rubieditor.cpp \
     editor/textedit.cpp \
     editor/worldeditor.cpp \
-    items/bookinfoitem.cpp \
     items/configitem.cpp \
     items/treeitem.cpp \
     main.cpp \
@@ -67,7 +66,6 @@ HEADERS += \
     editor/rubieditor.h \
     editor/textedit.h \
     editor/worldeditor.h \
-    items/bookinfoitem.h \
     items/configitem.h \
     items/treeitem.h \
     mainwindow.h \
