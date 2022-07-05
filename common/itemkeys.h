@@ -102,5 +102,12 @@ enum class Rubi {
     Exclusions,
 };
 
+enum class Count {
+    Full = 0,
+    WhiteSpaces,
+};
+
+constexpr int kCountSize = static_cast<int>(Count::WhiteSpaces) + 1;
+
 }
 #endif // ITEMKEYS_H
