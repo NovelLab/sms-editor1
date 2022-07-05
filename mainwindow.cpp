@@ -3,17 +3,21 @@
 
 #include "common/appsettings.h"
 #include "common/generalenums.h"
+#include "common/itemkeys.h"
 #include "configs/configdialog.h"
 #include "configs/globalsetting.h"
 #include "editor/markdownhighlighter.h"
+#include "items/countitem.h"
 #include "models/cardmodel.h"
 #include "models/personsmodel.h"
 #include "models/rubismodel.h"
 #include "models/worldsmodel.h"
 #include "saveload/savedatafiler.h"
+#include "tools/counter.h"
 #include "views/viewchanger.h"
 
 #include <QSettings>
+#include <QString>
 #include <QTextCodec>
 
 #include <QDebug>
@@ -242,9 +246,13 @@ void MainWindow::on_btnFolderDraft_clicked()
 
 void MainWindow::on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
-    Q_UNUSED(current);
+    //Q_UNUSED(current);
     Q_UNUSED(previous);
     view_changer_->Update(GeneralType::Category::Draft);
+    Counter counter;
+    CountItem *item = counter.TextCharCountFrom(current);
+    QString chars = QString("CHAR: %1(%2)").arg(item->DataOf(ItemKeys::Count::Full).toInt()).arg(item->DataOf(ItemKeys::Count::WhiteSpaces).toInt());
+    this->statusBar()->showMessage(chars);
 }
 
 // slots (plot tree)

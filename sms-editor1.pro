@@ -22,6 +22,7 @@ SOURCES += \
     editor/textedit.cpp \
     editor/worldeditor.cpp \
     items/configitem.cpp \
+    items/countitem.cpp \
     items/treeitem.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
     models/rubismodel.cpp \
     models/worldsmodel.cpp \
     saveload/savedatafiler.cpp \
+    tools/counter.cpp \
     utils/itemutility.cpp \
     views/corkboardview.cpp \
     views/drafttree.cpp \
@@ -67,6 +69,7 @@ HEADERS += \
     editor/textedit.h \
     editor/worldeditor.h \
     items/configitem.h \
+    items/countitem.h \
     items/treeitem.h \
     mainwindow.h \
     models/basetablemodel.h \
@@ -75,6 +78,7 @@ HEADERS += \
     models/rubismodel.h \
     models/worldsmodel.h \
     saveload/savedatafiler.h \
+    tools/counter.h \
     utils/itemutility.h \
     views/corkboardview.h \
     views/drafttree.h \

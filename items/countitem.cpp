@@ -12,7 +12,7 @@ CountItem::CountItem()
 
 CountItem::~CountItem()
 {
-    qDeleteAll(values_);
+    values_.clear();
 }
 
 // methods
