@@ -35,21 +35,12 @@ SOURCES += \
     tools/counter.cpp \
     utils/itemutility.cpp \
     views/corkboardview.cpp \
-    views/drafttree.cpp \
     views/itemfactory.cpp \
-    views/notestree.cpp \
     views/outlineview.cpp \
     views/personstableview.cpp \
-    views/persontree.cpp \
-    views/plottree.cpp \
-    views/researchtree.cpp \
     views/rubitableview.cpp \
-    views/rubitree.cpp \
-    views/trashtree.cpp \
     views/viewchanger.cpp \
-    views/basetreeview.cpp \
     views/worldstableview.cpp \
-    views/worldtree.cpp \
     xmls/xmlreader.cpp \
     xmls/xmlwriter.cpp
 
@@ -83,21 +74,12 @@ HEADERS += \
     tools/counter.h \
     utils/itemutility.h \
     views/corkboardview.h \
-    views/drafttree.h \
     views/itemfactory.h \
-    views/notestree.h \
     views/outlineview.h \
     views/personstableview.h \
-    views/persontree.h \
-    views/plottree.h \
-    views/researchtree.h \
     views/rubitableview.h \
-    views/rubitree.h \
-    views/trashtree.h \
     views/viewchanger.h \
-    views/basetreeview.h \
     views/worldstableview.h \
-    views/worldtree.h \
     xmls/xmlreader.h \
     xmls/xmlwriter.h
 
