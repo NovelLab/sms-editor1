@@ -47,7 +47,6 @@ MainWindow::MainWindow(QWidget *parent)
     notes_tree_ = ui->notesTreeView;
     rubi_tree_ = ui->rubiTreeView;
     trash_tree_ = ui->trashTreeView;
-    OutlineView::SetTrashBox(trash_tree_);
 
     // set category
     draft_tree_->SetCategory(GeneralType::Category::Draft);
@@ -58,6 +57,8 @@ MainWindow::MainWindow(QWidget *parent)
     notes_tree_->SetCategory(GeneralType::Category::Notes);
     rubi_tree_->SetCategory(GeneralType::Category::Rubi);
     trash_tree_->SetCategory(GeneralType::Category::Trash);
+    // set trash
+    OutlineView::SetTrashBox(trash_tree_);
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);

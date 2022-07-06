@@ -24,6 +24,7 @@ private:
     TreeItem* CreateResearch_();
     TreeItem* CreateNote_();
     TreeItem* CreateRubi_();
+    TreeItem* CreateTrash_();
 
     GeneralType::Category cat_;
 };

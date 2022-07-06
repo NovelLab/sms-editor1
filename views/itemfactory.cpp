@@ -31,7 +31,7 @@ TreeItem* ItemFactory::CreateFileItem()
       case GeneralType::Category::Rubi:
         return CreateRubi_();
       case GeneralType::Category::Trash:
-        break;
+        return CreateTrash_();
       default:
         break;
     }
@@ -113,5 +113,11 @@ TreeItem* ItemFactory::CreateRubi_()
     for (int i = 0; i < ItemDefVals::kRubi.count(); ++i) {
         item->SetData(i, ItemDefVals::kRubi.at(i));
     }
+    return item;
+}
+
+TreeItem* ItemFactory::CreateTrash_()
+{
+    TreeItem *item = new TreeItem(GeneralType::ItemType::File, GeneralType::Category::Trash);
     return item;
 }
