@@ -36,7 +36,9 @@ SOURCES += \
     utils/itemutility.cpp \
     views/corkboardview.cpp \
     views/drafttree.cpp \
+    views/itemfactory.cpp \
     views/notestree.cpp \
+    views/outlineview.cpp \
     views/personstableview.cpp \
     views/persontree.cpp \
     views/plottree.cpp \
@@ -82,7 +84,9 @@ HEADERS += \
     utils/itemutility.h \
     views/corkboardview.h \
     views/drafttree.h \
+    views/itemfactory.h \
     views/notestree.h \
+    views/outlineview.h \
     views/personstableview.h \
     views/persontree.h \
     views/plottree.h \
