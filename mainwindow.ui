@@ -116,7 +116,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_7">
          <item>
-          <widget class="DraftTree" name="draftTreeView">
+          <widget class="OutlineView" name="draftTreeView">
            <column>
             <property name="text">
              <string>Draft</string>
@@ -165,7 +165,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_8">
          <item>
-          <widget class="PlotTree" name="plotTreeView">
+          <widget class="OutlineView" name="plotTreeView">
            <column>
             <property name="text">
              <string>Plot</string>
@@ -214,7 +214,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_9">
          <item>
-          <widget class="PersonTree" name="personTreeView">
+          <widget class="OutlineView" name="personTreeView">
            <column>
             <property name="text">
              <string>Persons</string>
@@ -263,7 +263,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_11">
          <item>
-          <widget class="WorldTree" name="worldTreeView">
+          <widget class="OutlineView" name="worldTreeView">
            <column>
             <property name="text">
              <string>Worlds</string>
@@ -312,7 +312,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_13">
          <item>
-          <widget class="ResearchTree" name="researchTreeView">
+          <widget class="OutlineView" name="researchTreeView">
            <column>
             <property name="text">
              <string>Research</string>
@@ -361,7 +361,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_14">
          <item>
-          <widget class="NotesTree" name="notesTreeView">
+          <widget class="OutlineView" name="notesTreeView">
            <column>
             <property name="text">
              <string>Notes</string>
@@ -410,7 +410,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_15">
          <item>
-          <widget class="RubiTree" name="rubiTreeView">
+          <widget class="OutlineView" name="rubiTreeView">
            <column>
             <property name="text">
              <string>Rubi</string>
@@ -459,7 +459,7 @@
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_17">
          <item>
-          <widget class="TrashTree" name="trashTreeView">
+          <widget class="OutlineView" name="trashTreeView">
            <column>
             <property name="text">
              <string>Trash</string>
@@ -1286,11 +1286,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>DraftTree</class>
-   <extends>QTreeWidget</extends>
-   <header>views/drafttree.h</header>
-  </customwidget>
-  <customwidget>
    <class>CorkboardView</class>
    <extends>QTableView</extends>
    <header>views/corkboardview.h</header>
@@ -1301,24 +1296,9 @@
    <header>editor/textedit.h</header>
   </customwidget>
   <customwidget>
-   <class>PlotTree</class>
-   <extends>QTreeWidget</extends>
-   <header>views/plottree.h</header>
-  </customwidget>
-  <customwidget>
-   <class>PersonTree</class>
-   <extends>QTreeWidget</extends>
-   <header>views/persontree.h</header>
-  </customwidget>
-  <customwidget>
    <class>PersonsTableView</class>
    <extends>QTableView</extends>
    <header>views/personstableview.h</header>
-  </customwidget>
-  <customwidget>
-   <class>WorldTree</class>
-   <extends>QTreeWidget</extends>
-   <header>views/worldtree.h</header>
   </customwidget>
   <customwidget>
    <class>WorldsTableView</class>
@@ -1326,29 +1306,14 @@
    <header>views/worldstableview.h</header>
   </customwidget>
   <customwidget>
-   <class>ResearchTree</class>
-   <extends>QTreeWidget</extends>
-   <header>views/researchtree.h</header>
-  </customwidget>
-  <customwidget>
-   <class>NotesTree</class>
-   <extends>QTreeWidget</extends>
-   <header>views/notestree.h</header>
-  </customwidget>
-  <customwidget>
-   <class>RubiTree</class>
-   <extends>QTreeWidget</extends>
-   <header>views/rubitree.h</header>
-  </customwidget>
-  <customwidget>
    <class>RubiTableView</class>
    <extends>QTableView</extends>
    <header>views/rubitableview.h</header>
   </customwidget>
   <customwidget>
-   <class>TrashTree</class>
+   <class>OutlineView</class>
    <extends>QTreeWidget</extends>
-   <header>views/trashtree.h</header>
+   <header>views/outlineview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

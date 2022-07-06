@@ -10,15 +10,8 @@ QT_END_NAMESPACE
 class QSettings;
 class QTreeWidgetItem;
 
-class DraftTree;
-class NotesTree;
-class PersonTree;
-class PlotTree;
-class ResearchTree;
-class RubiTree;
-class TrashTree;
+class OutlineView;
 class ViewChanger;
-class WorldTree;
 
 class GlobalSetting;
 
@@ -101,14 +94,14 @@ private:
     QSettings *settings_;
 
     ViewChanger *view_changer_;
-    DraftTree *draft_tree_;
-    PlotTree *plot_tree_;
-    PersonTree *person_tree_;
-    WorldTree *world_tree_;
-    ResearchTree *research_tree_;
-    NotesTree *notes_tree_;
-    RubiTree *rubi_tree_;
-    TrashTree *trash_tree_;
+    OutlineView *draft_tree_;
+    OutlineView *plot_tree_;
+    OutlineView *person_tree_;
+    OutlineView *world_tree_;
+    OutlineView *research_tree_;
+    OutlineView *notes_tree_;
+    OutlineView *rubi_tree_;
+    OutlineView *trash_tree_;
 
     GlobalSetting *global_setting_;
 };

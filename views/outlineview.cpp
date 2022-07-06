@@ -18,12 +18,11 @@ static const Qt::ItemFlags kItemFlags = Qt::ItemIsEnabled
         | Qt::ItemIsDragEnabled
         | Qt::ItemIsDropEnabled;
 
-OutlineView::OutlineView(GeneralType::Category category,
-                         QWidget *parent)
+OutlineView::OutlineView(QWidget *parent)
     : QTreeWidget{parent},
-      cat_{category}
+      cat_{GeneralType::Category::None}
 {
-    factory_ = new ItemFactory(category);
+    factory_ = nullptr;
 
     this->setDragEnabled(true);
     this->setAcceptDrops(true);
@@ -116,6 +115,7 @@ void OutlineView::UpdateItemData(const QModelIndex &index)
 // methods
 void OutlineView::AddFile(const QTreeWidgetItem *item)
 {
+    Q_ASSERT(factory_);
     ItemUtility util;
     if (item && util.IsFile(item))
         return;
@@ -134,6 +134,7 @@ void OutlineView::AddFile(const QTreeWidgetItem *item)
 
 void OutlineView::AddFolder(const QTreeWidgetItem *item)
 {
+    Q_ASSERT(factory_);
     ItemUtility util;
     if (item && util.IsFile(item))
         return;
@@ -147,6 +148,20 @@ void OutlineView::AddFolder(const QTreeWidgetItem *item)
 
     TreeItem *data = factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
+}
+
+void OutlineView::ClearAllItems()
+{
+    for (int i = 0; i < this->topLevelItemCount(); ++i) {
+        QTreeWidgetItem *par = this->topLevelItem(i);
+        for (int j = 0; j < par->childCount(); ++j) {
+            QTreeWidgetItem *child = par->child(i);
+            par->removeChild(child);
+            delete child;
+        }
+        delete par;
+    }
+    this->clear();
 }
 
 Qt::ItemFlags OutlineView::Flags() const
@@ -178,6 +193,18 @@ void OutlineView::RemoveItem(QTreeWidgetItem *item)
         par->removeChild(item);
 
     delete item;
+}
+
+void OutlineView::RemoveToTrash(QTreeWidgetItem *item)
+{
+    if (OutlineView::trash_)
+        MoveItem(item, OutlineView::trash_);
+}
+
+void OutlineView::SetCategory(GeneralType::Category cat)
+{
+    cat_ = cat;
+    factory_ = new ItemFactory(cat);
 }
 
 // slots (private)

@@ -14,6 +14,7 @@
 #include "models/worldsmodel.h"
 #include "saveload/savedatafiler.h"
 #include "tools/counter.h"
+#include "views/outlineview.h"
 #include "views/viewchanger.h"
 
 #include <QSettings>
@@ -46,7 +47,17 @@ MainWindow::MainWindow(QWidget *parent)
     notes_tree_ = ui->notesTreeView;
     rubi_tree_ = ui->rubiTreeView;
     trash_tree_ = ui->trashTreeView;
+    OutlineView::SetTrashBox(trash_tree_);
 
+    // set category
+    draft_tree_->SetCategory(GeneralType::Category::Draft);
+    plot_tree_->SetCategory(GeneralType::Category::Plot);
+    person_tree_->SetCategory(GeneralType::Category::Persons);
+    world_tree_->SetCategory(GeneralType::Category::Worlds);
+    research_tree_->SetCategory(GeneralType::Category::Research);
+    notes_tree_->SetCategory(GeneralType::Category::Notes);
+    rubi_tree_->SetCategory(GeneralType::Category::Rubi);
+    trash_tree_->SetCategory(GeneralType::Category::Trash);
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
@@ -93,13 +104,13 @@ MainWindow::MainWindow(QWidget *parent)
     highlighter->SetBaseFontSize(kDefaultFontSize);
 
     // connects
-    connect(card_model, &CardModel::UpdatedItemData, ui->draftTreeView, &DraftTree::UpdateItemData);
-    connect(card_model, &CardModel::UpdatedItemData, ui->plotTreeView, &PlotTree::UpdateItemData);
-    connect(persons_model, &PersonsModel::UpdatedItemData, ui->personTreeView, &PersonTree::UpdateItemData);
-    connect(worlds_model, &WorldsModel::UpdatedItemData, ui->worldTreeView, &WorldTree::UpdateItemData);
-    connect(card_model, &CardModel::UpdatedItemData, ui->researchTreeView, &ResearchTree::UpdateItemData);
-    connect(card_model, &CardModel::UpdatedItemData, ui->notesTreeView, &NotesTree::UpdateItemData);
-    connect(rubi_model, &RubisModel::UpdatedItemData, ui->rubiTreeView, &RubiTree::UpdateItemData);
+    connect(card_model, &CardModel::UpdatedItemData, ui->draftTreeView, &OutlineView::UpdateItemData);
+    connect(card_model, &CardModel::UpdatedItemData, ui->plotTreeView, &OutlineView::UpdateItemData);
+    connect(persons_model, &PersonsModel::UpdatedItemData, ui->personTreeView, &OutlineView::UpdateItemData);
+    connect(worlds_model, &WorldsModel::UpdatedItemData, ui->worldTreeView, &OutlineView::UpdateItemData);
+    connect(card_model, &CardModel::UpdatedItemData, ui->researchTreeView, &OutlineView::UpdateItemData);
+    connect(card_model, &CardModel::UpdatedItemData, ui->notesTreeView, &OutlineView::UpdateItemData);
+    connect(rubi_model, &RubisModel::UpdatedItemData, ui->rubiTreeView, &OutlineView::UpdateItemData);
 
     // set default
     on_btnBookInfo_clicked();
@@ -233,7 +244,7 @@ void MainWindow::on_btnAddDraft_clicked()
 
 void MainWindow::on_btnDelDraft_clicked()
 {
-    trash_tree_->RemoveItemToTrash(draft_tree_->currentItem());
+    draft_tree_->RemoveToTrash(draft_tree_->currentItem());
     view_changer_->Update(GeneralType::Category::Draft);
 }
 
@@ -279,7 +290,7 @@ void MainWindow::on_btnAddPlot_clicked()
 
 void MainWindow::on_btnDelPlot_clicked()
 {
-    trash_tree_->RemoveItemToTrash(plot_tree_->currentItem());
+    plot_tree_->RemoveToTrash(plot_tree_->currentItem());
     view_changer_->Update(GeneralType::Category::Plot);
 }
 
@@ -301,7 +312,7 @@ void MainWindow::on_btnAddPerson_clicked()
 
 void MainWindow::on_btnDelPerson_clicked()
 {
-    trash_tree_->RemoveItemToTrash(person_tree_->currentItem());
+    person_tree_->RemoveToTrash(person_tree_->currentItem());
     view_changer_->Update(GeneralType::Category::Persons);
 }
 
@@ -338,7 +349,7 @@ void MainWindow::on_btnAddWorld_clicked()
 
 void MainWindow::on_btnDelWorld_clicked()
 {
-    trash_tree_->RemoveItemToTrash(world_tree_->currentItem());
+    world_tree_->RemoveToTrash(world_tree_->currentItem());
     view_changer_->Update(GeneralType::Category::Worlds);
 }
 
@@ -367,7 +378,7 @@ void MainWindow::on_btnAddResearch_clicked()
 
 void MainWindow::on_btnDelResearch_clicked()
 {
-    trash_tree_->RemoveItemToTrash(research_tree_->currentItem());
+    research_tree_->RemoveToTrash(research_tree_->currentItem());
     view_changer_->Update(GeneralType::Category::Research);
 }
 
@@ -396,7 +407,7 @@ void MainWindow::on_btnAddNotes_clicked()
 
 void MainWindow::on_btnDelNotes_clicked()
 {
-    trash_tree_->RemoveItemToTrash(notes_tree_->currentItem());
+    notes_tree_->RemoveToTrash(notes_tree_->currentItem());
     view_changer_->Update(GeneralType::Category::Notes);
 }
 
@@ -424,7 +435,7 @@ void MainWindow::on_btnAddRubi_clicked()
 
 void MainWindow::on_btnDelRubi_clicked()
 {
-    trash_tree_->RemoveItemToTrash(rubi_tree_->currentItem());
+    rubi_tree_->RemoveToTrash(rubi_tree_->currentItem());
     view_changer_->Update(GeneralType::Category::Rubi);
 }
 

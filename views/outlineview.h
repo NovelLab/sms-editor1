@@ -16,9 +16,14 @@ class OutlineView : public QTreeWidget
 {
     Q_OBJECT
 public:
-    explicit OutlineView(GeneralType::Category category,
-                         QWidget *parent = nullptr);
+    static OutlineView* trash_;
+    static OutlineView* GetTrashBox() {return OutlineView::trash_;}
+    static void SetTrashBox(OutlineView *trash) {OutlineView::trash_ = trash;}
+
+    explicit OutlineView(QWidget *parent = nullptr);
     ~OutlineView();
+
+    void SetCategory(GeneralType::Category cat);
 
     virtual Qt::ItemFlags Flags() const;
 
@@ -26,6 +31,9 @@ public:
     virtual void AddFile(const QTreeWidgetItem *item);
     virtual void RemoveItem(QTreeWidgetItem *item);
     virtual void MoveItem(QTreeWidgetItem *item, OutlineView *view);
+    virtual void RemoveToTrash(QTreeWidgetItem *item);
+
+    virtual void ClearAllItems();
 
 public slots:
     virtual void UpdateItemData(const QModelIndex &index);
