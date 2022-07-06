@@ -10,6 +10,7 @@
 #include "editor/rubieditor.h"
 #include "editor/worldeditor.h"
 #include "items/treeitem.h"
+#include "views/outlineview.h"
 #include "utils/itemutility.h"
 
 #include <QTreeWidgetItem>

@@ -12,6 +12,8 @@ namespace GeneralType {
 enum class Category;
 }
 
+class XmlReader;
+
 class OutlineView : public QTreeWidget
 {
     Q_OBJECT

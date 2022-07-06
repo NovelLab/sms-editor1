@@ -9,16 +9,9 @@ QT_END_NAMESPACE
 
 class QTreeWidgetItem;
 
+class OutlineView;
 class BookInfoEditor;
-class DraftTree;
-class NotesTree;
-class PlotTree;
-class PersonTree;
-class ResearchTree;
-class RubiTree;
 class TreeItem;
-class TrashTree;
-class WorldTree;
 class ViewChanger;
 
 class XmlWriter
@@ -57,14 +50,14 @@ private:
 
     QXmlStreamWriter xml_;
     const BookInfoEditor *bookinfo_editor_;
-    const DraftTree *draft_view_;
-    const PlotTree *plot_view_;
-    const PersonTree *persons_view_;
-    const WorldTree *worlds_view_;
-    const ResearchTree *research_view_;
-    const NotesTree *notes_view_;
-    const RubiTree *rubi_view_;
-    const TrashTree *trash_view_;
+    const OutlineView *draft_view_;
+    const OutlineView *plot_view_;
+    const OutlineView *persons_view_;
+    const OutlineView *worlds_view_;
+    const OutlineView *research_view_;
+    const OutlineView *notes_view_;
+    const OutlineView *rubi_view_;
+    const OutlineView *trash_view_;
 };
 
 

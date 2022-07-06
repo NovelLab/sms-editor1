@@ -6,12 +6,7 @@
 #include "editor/bookinfoeditor.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
-#include "views/drafttree.h"
-#include "views/plottree.h"
-#include "views/rubitree.h"
-#include "views/worldtree.h"
-#include "views/researchtree.h"
-#include "views/trashtree.h"
+#include "views/outlineview.h"
 #include "views/viewchanger.h"
 
 #include <QDebug>

@@ -9,24 +9,17 @@ QT_END_NAMESPACE
 
 class QTabWidget;
 
+class OutlineView;
 class BookInfoEditor;
 class CorkboardView;
 class DraftEditor;
-class DraftTree;
-class NotesTree;
 class PersonEditor;
-class PersonTree;
 class PersonsTableView;
 class PlotEditor;
-class PlotTree;
-class ResearchTree;
 class RubiEditor;
-class RubiTree;
 class RubiTableView;
 class TextEdit;
-class TrashTree;
 class WorldEditor;
-class WorldTree;
 class WorldsTableView;
 
 namespace GeneralType {
@@ -109,14 +102,14 @@ private:
 
     BookInfoEditor *bookinfo_editor_;
 
-    DraftTree *draft_tree_;
-    PlotTree *plot_tree_;
-    PersonTree *person_tree_;
-    WorldTree *world_tree_;
-    ResearchTree *research_tree_;
-    NotesTree *notes_tree_;
-    RubiTree *rubi_tree_;
-    TrashTree *trash_tree_;
+    OutlineView *draft_tree_;
+    OutlineView *plot_tree_;
+    OutlineView *person_tree_;
+    OutlineView *world_tree_;
+    OutlineView *research_tree_;
+    OutlineView *notes_tree_;
+    OutlineView *rubi_tree_;
+    OutlineView *trash_tree_;
 
     CorkboardView *corkboard_;
     PersonsTableView *persons_table_;
