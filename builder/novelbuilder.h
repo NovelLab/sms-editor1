@@ -9,7 +9,8 @@ QT_END_NAMESPACE
 
 class QTreeWidgetItem;
 
-class DraftTree;
+class OutlineView;
+
 class NovelBuilder
 {
 public:
@@ -21,7 +22,7 @@ private:
     QStringList OutputStrsFromFile(const QTreeWidgetItem *item);
     QStringList OutputStrsFromFolder(const QTreeWidgetItem *item);
 
-    const DraftTree *draft_view_;
+    const OutlineView *draft_view_;
 };
 
 #endif // NOVELBUILDER_H

@@ -19,8 +19,8 @@ class OutlineView : public QTreeWidget
     Q_OBJECT
 public:
     static OutlineView* trash_;
-    static OutlineView* GetTrashBox() {return OutlineView::trash_;}
-    static void SetTrashBox(OutlineView *trash) {OutlineView::trash_ = trash;}
+    static OutlineView* GetTrashBox() {return trash_;}
+    static void SetTrashBox(OutlineView *trash) {trash_ = trash;}
 
     explicit OutlineView(QWidget *parent = nullptr);
     ~OutlineView();

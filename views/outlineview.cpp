@@ -18,6 +18,8 @@ static const Qt::ItemFlags kItemFlags = Qt::ItemIsEnabled
         | Qt::ItemIsDragEnabled
         | Qt::ItemIsDropEnabled;
 
+OutlineView* OutlineView::trash_;
+
 OutlineView::OutlineView(QWidget *parent)
     : QTreeWidget{parent},
       cat_{GeneralType::Category::None}
@@ -197,8 +199,9 @@ void OutlineView::RemoveItem(QTreeWidgetItem *item)
 
 void OutlineView::RemoveToTrash(QTreeWidgetItem *item)
 {
-    if (OutlineView::trash_)
-        MoveItem(item, OutlineView::trash_);
+    OutlineView *trash = OutlineView::GetTrashBox();
+    if (trash)
+        MoveItem(item, trash);
 }
 
 void OutlineView::SetCategory(GeneralType::Category cat)
@@ -256,4 +259,9 @@ QTreeWidgetItem* OutlineView::CreateChild_(const QTreeWidgetItem *item)
     child->setText(0, "NEW");
     child->setFlags(child->flags() | Flags());
     return child;
+}
+
+const QTreeWidgetItem* OutlineView::GetParentOrRoot_(const QTreeWidgetItem *item) const
+{
+    return item ? item: this->invisibleRootItem();
 }
