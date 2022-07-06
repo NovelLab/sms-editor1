@@ -85,7 +85,6 @@ enum class Research {
     Title = 0,
     Synopsys,
     Text,
-    Note,
 };
 
 enum class Note {
@@ -110,4 +109,81 @@ enum class Count {
 constexpr int kCountSize = static_cast<int>(Count::WhiteSpaces) + 1;
 
 }
+
+namespace ItemDefVals {
+
+const QStringList kBookInfo = {
+    "タイトル",
+    "サブタイトル",
+    "シリーズ",
+    "巻",
+    "ジャンル",
+    "ライセンス",
+    "著者名",
+    "Eメール",
+    "１行物語",
+    "３行解説",
+    "梗概",
+};
+
+const QStringList kDraft = {
+    "new draft",
+    "synopsys",
+    "new text",
+    "new note",
+    "POV",
+    "stage",
+    "date",
+    "time",
+};
+
+const QStringList kPlot = {
+    "new plot",
+    "synopsys",
+    "new text",
+    "new note",
+};
+
+const QStringList kPerson = {
+    "new person",
+    "person info",
+    "new text",
+    "new note",
+    "fullname",
+    "99",
+    "gender",
+    "job",
+    "appearance",
+};
+
+const QStringList kWorld = {
+    "new world",
+    "world info",
+    "new text",
+    "new note",
+    "world division",
+};
+
+const QStringList kResearch = {
+    "new research",
+    "synopsys",
+    "new text",
+};
+
+const QStringList kNote = {
+    "new note",
+    "info",
+    "new text",
+};
+
+const QStringList kRubi = {
+    "new rubi",
+    "keyword",
+    "converted",
+    "false",
+    "",
+};
+
+}
+
 #endif // ITEMKEYS_H
