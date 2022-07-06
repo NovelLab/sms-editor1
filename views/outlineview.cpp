@@ -232,7 +232,7 @@ void OutlineView::ContextMenu(const QPoint &pos)
     QAction *actDelFile = new QAction("Delete", this);
     connect(actDelFile, &QAction::triggered,
             [=](){
-        RemoveItem(this->currentItem());
+        RemoveToTrash(this->currentItem());
     });
     menu.addAction(actDelFile);
 
