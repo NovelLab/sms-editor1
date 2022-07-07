@@ -28,8 +28,10 @@ SOURCES += \
     mainwindow.cpp \
     models/basetablemodel.cpp \
     models/cardmodel.cpp \
+    models/modeldatafactory.cpp \
     models/personsmodel.cpp \
     models/rubismodel.cpp \
+    models/tableitemmodel.cpp \
     models/worldsmodel.cpp \
     saveload/savedatafiler.cpp \
     tools/counter.cpp \
@@ -68,8 +70,10 @@ HEADERS += \
     mainwindow.h \
     models/basetablemodel.h \
     models/cardmodel.h \
+    models/modeldatafactory.h \
     models/personsmodel.h \
     models/rubismodel.h \
+    models/tableitemmodel.h \
     models/worldsmodel.h \
     saveload/savedatafiler.h \
     tools/counter.h \

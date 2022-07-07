@@ -1,5 +1,8 @@
 #include "centerboardview.h"
 
+#include "items/treeitem.h"
+#include "utils/itemutility.h"
+
 CenterBoardView::CenterBoardView(QWidget *parent)
     : QTableView{parent}
 {
