@@ -491,7 +491,7 @@
       </widget>
       <widget class="QTabWidget" name="mainViewTab">
        <property name="currentIndex">
-        <number>1</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="tabBookInfo">
         <attribute name="title">
@@ -677,7 +677,7 @@
              </widget>
             </item>
             <item>
-             <widget class="CorkboardView" name="corkboardView"/>
+             <widget class="CenterBoardView" name="corkboardView"/>
             </item>
            </layout>
           </widget>
@@ -697,7 +697,7 @@
           </widget>
          </item>
          <item>
-          <widget class="PersonsTableView" name="personsTableView"/>
+          <widget class="CenterBoardView" name="personsTableView"/>
          </item>
         </layout>
        </widget>
@@ -714,7 +714,7 @@
           </widget>
          </item>
          <item>
-          <widget class="WorldsTableView" name="worldsTableView"/>
+          <widget class="CenterBoardView" name="worldsTableView"/>
          </item>
         </layout>
        </widget>
@@ -731,7 +731,7 @@
           </widget>
          </item>
          <item>
-          <widget class="RubiTableView" name="rubiTableView"/>
+          <widget class="CenterBoardView" name="rubiTableView"/>
          </item>
         </layout>
        </widget>
@@ -1286,34 +1286,19 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CorkboardView</class>
-   <extends>QTableView</extends>
-   <header>views/corkboardview.h</header>
-  </customwidget>
-  <customwidget>
    <class>TextEdit</class>
    <extends>QTextEdit</extends>
    <header>editor/textedit.h</header>
   </customwidget>
   <customwidget>
-   <class>PersonsTableView</class>
-   <extends>QTableView</extends>
-   <header>views/personstableview.h</header>
-  </customwidget>
-  <customwidget>
-   <class>WorldsTableView</class>
-   <extends>QTableView</extends>
-   <header>views/worldstableview.h</header>
-  </customwidget>
-  <customwidget>
-   <class>RubiTableView</class>
-   <extends>QTableView</extends>
-   <header>views/rubitableview.h</header>
-  </customwidget>
-  <customwidget>
    <class>OutlineView</class>
    <extends>QTreeWidget</extends>
    <header>views/outlineview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CenterBoardView</class>
+   <extends>QTableView</extends>
+   <header>views/centerboardview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

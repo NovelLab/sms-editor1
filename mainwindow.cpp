@@ -8,10 +8,7 @@
 #include "configs/globalsetting.h"
 #include "editor/markdownhighlighter.h"
 #include "items/countitem.h"
-#include "models/cardmodel.h"
-#include "models/personsmodel.h"
-#include "models/rubismodel.h"
-#include "models/worldsmodel.h"
+#include "models/tableitemmodel.h"
 #include "saveload/savedatafiler.h"
 #include "tools/counter.h"
 #include "views/outlineview.h"
@@ -75,14 +72,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->sideTab->tabBar()->show();
 #endif
 
+    // set category
+    ui->corkboardView->SetCategory(GeneralType::Category::Draft);
+    ui->personsTableView->SetCategory(GeneralType::Category::Persons);
+    ui->worldsTableView->SetCategory(GeneralType::Category::Worlds);
+    ui->rubiTableView->SetCategory(GeneralType::Category::Rubi);
+
     // set model
-    CardModel *card_model = new CardModel();
+    TableItemModel *card_model = new TableItemModel(GeneralType::Category::Draft);
     ui->corkboardView->setModel(card_model);
-    PersonsModel *persons_model = new PersonsModel();
+    TableItemModel *persons_model = new TableItemModel(GeneralType::Category::Persons);
     ui->personsTableView->setModel(persons_model);
-    WorldsModel *worlds_model = new WorldsModel();
+    TableItemModel *worlds_model = new TableItemModel(GeneralType::Category::Worlds);
     ui->worldsTableView->setModel(worlds_model);
-    RubisModel *rubi_model = new RubisModel();
+    TableItemModel *rubi_model = new TableItemModel(GeneralType::Category::Rubi);
     ui->rubiTableView->setModel(rubi_model);
 
     // title label
@@ -90,6 +93,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->personsTableView->SetTitleLabel(ui->lblPersonTableTitle);
     ui->worldsTableView->SetTitleLabel(ui->lblWorldTableTitle);
     ui->rubiTableView->SetTitleLabel(ui->lblRubiTableTitle);
+
+    // header
+    ui->personsTableView->SetHeaderShow(true, false);
+    ui->worldsTableView->SetHeaderShow(true, false);
+    ui->rubiTableView->SetHeaderShow(true, false);
 
     // start view setting
     view_changer_->Change(GeneralType::Category::BookInfo);
@@ -105,13 +113,13 @@ MainWindow::MainWindow(QWidget *parent)
     highlighter->SetBaseFontSize(kDefaultFontSize);
 
     // connects
-    connect(card_model, &CardModel::UpdatedItemData, ui->draftTreeView, &OutlineView::UpdateItemData);
-    connect(card_model, &CardModel::UpdatedItemData, ui->plotTreeView, &OutlineView::UpdateItemData);
-    connect(persons_model, &PersonsModel::UpdatedItemData, ui->personTreeView, &OutlineView::UpdateItemData);
-    connect(worlds_model, &WorldsModel::UpdatedItemData, ui->worldTreeView, &OutlineView::UpdateItemData);
-    connect(card_model, &CardModel::UpdatedItemData, ui->researchTreeView, &OutlineView::UpdateItemData);
-    connect(card_model, &CardModel::UpdatedItemData, ui->notesTreeView, &OutlineView::UpdateItemData);
-    connect(rubi_model, &RubisModel::UpdatedItemData, ui->rubiTreeView, &OutlineView::UpdateItemData);
+    connect(card_model, &TableItemModel::UpdatedItemData, ui->draftTreeView, &OutlineView::UpdateItemData);
+    connect(card_model, &TableItemModel::UpdatedItemData, ui->plotTreeView, &OutlineView::UpdateItemData);
+    connect(persons_model, &TableItemModel::UpdatedItemData, ui->personTreeView, &OutlineView::UpdateItemData);
+    connect(worlds_model, &TableItemModel::UpdatedItemData, ui->worldTreeView, &OutlineView::UpdateItemData);
+    connect(card_model, &TableItemModel::UpdatedItemData, ui->researchTreeView, &OutlineView::UpdateItemData);
+    connect(card_model, &TableItemModel::UpdatedItemData, ui->notesTreeView, &OutlineView::UpdateItemData);
+    connect(rubi_model, &TableItemModel::UpdatedItemData, ui->rubiTreeView, &OutlineView::UpdateItemData);
 
     // set default
     on_btnBookInfo_clicked();

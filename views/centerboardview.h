@@ -3,6 +3,7 @@
 
 #include <QTableView>
 
+class QLabel;
 class QTreeWidgetItem;
 
 namespace GeneralType {
@@ -16,10 +17,14 @@ public:
     CenterBoardView(QWidget *parent = nullptr);
 
     void SetCategory(GeneralType::Category cat);
+    void SetHeaderShow(bool isShownHorizontal, bool isShownVertical);
+    void SetTitleLabel(QLabel *label);
 
     void UpdateView(const QTreeWidgetItem *item);
 
 private:
+    QLabel *title_label_;
+
     GeneralType::Category cat_;
 };
 
