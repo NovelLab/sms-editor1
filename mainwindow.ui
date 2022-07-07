@@ -1286,11 +1286,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>editor/textedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>OutlineView</class>
    <extends>QTreeWidget</extends>
    <header>views/outlineview.h</header>
@@ -1299,6 +1294,11 @@
    <class>CenterBoardView</class>
    <extends>QTableView</extends>
    <header>views/centerboardview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>editor/textedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
