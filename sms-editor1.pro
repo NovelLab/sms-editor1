@@ -26,24 +26,15 @@ SOURCES += \
     items/treeitem.cpp \
     main.cpp \
     mainwindow.cpp \
-    models/basetablemodel.cpp \
-    models/cardmodel.cpp \
     models/modeldatafactory.cpp \
-    models/personsmodel.cpp \
-    models/rubismodel.cpp \
     models/tableitemmodel.cpp \
-    models/worldsmodel.cpp \
     saveload/savedatafiler.cpp \
     tools/counter.cpp \
     utils/itemutility.cpp \
     views/centerboardview.cpp \
-    views/corkboardview.cpp \
     views/itemfactory.cpp \
     views/outlineview.cpp \
-    views/personstableview.cpp \
-    views/rubitableview.cpp \
     views/viewchanger.cpp \
-    views/worldstableview.cpp \
     xmls/xmlreader.cpp \
     xmls/xmlwriter.cpp
 
@@ -68,24 +59,15 @@ HEADERS += \
     items/countitem.h \
     items/treeitem.h \
     mainwindow.h \
-    models/basetablemodel.h \
-    models/cardmodel.h \
     models/modeldatafactory.h \
-    models/personsmodel.h \
-    models/rubismodel.h \
     models/tableitemmodel.h \
-    models/worldsmodel.h \
     saveload/savedatafiler.h \
     tools/counter.h \
     utils/itemutility.h \
     views/centerboardview.h \
-    views/corkboardview.h \
     views/itemfactory.h \
     views/outlineview.h \
-    views/personstableview.h \
-    views/rubitableview.h \
     views/viewchanger.h \
-    views/worldstableview.h \
     xmls/xmlreader.h \
     xmls/xmlwriter.h
 
