@@ -34,6 +34,7 @@ SOURCES += \
     saveload/savedatafiler.cpp \
     tools/counter.cpp \
     utils/itemutility.cpp \
+    views/centerboardview.cpp \
     views/corkboardview.cpp \
     views/itemfactory.cpp \
     views/outlineview.cpp \
@@ -73,6 +74,7 @@ HEADERS += \
     saveload/savedatafiler.h \
     tools/counter.h \
     utils/itemutility.h \
+    views/centerboardview.h \
     views/corkboardview.h \
     views/itemfactory.h \
     views/outlineview.h \
