@@ -5,6 +5,8 @@
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
+#include <QDebug>
+
 const QVector<int> kColumnCounts = {
     1,//BookInfo,
     2,//Draft,
@@ -169,6 +171,8 @@ QVariant ModelDataFactory::HeaderData(int section) const
         return section < kHeaderOfResearch.count() ? kHeaderOfResearch.at(section): QVariant();
       case GeneralType::Category::Notes:
         return section < kHeaderOfNotes.count() ? kHeaderOfNotes.at(section): QVariant();
+      case GeneralType::Category::Rubi:
+        return section < kHeaderOfRubi.count() ? kHeaderOfRubi.at(section): QVariant();
       case GeneralType::Category::Trash:
         return section < kHeaderOfTrash.count() ? kHeaderOfTrash.at(section): QVariant();
       case GeneralType::Category::None:
