@@ -13,6 +13,7 @@ SOURCES += \
     configs/configdialog.cpp \
     configs/configmodel.cpp \
     configs/globalsetting.cpp \
+    delegate/centerboarddelegate.cpp \
     editor/bookinfoeditor.cpp \
     editor/drafteditor.cpp \
     editor/markdownhighlighter.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     common/configenums.h \
     common/generalenums.h \
     common/itemkeys.h \
+    delegate/centerboarddelegate.h \
     configs/configdialog.h \
     configs/configmodel.h \
     configs/globalsetting.h \

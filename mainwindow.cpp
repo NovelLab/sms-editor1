@@ -6,6 +6,7 @@
 #include "common/itemkeys.h"
 #include "configs/configdialog.h"
 #include "configs/globalsetting.h"
+#include "delegate/centerboarddelegate.h"
 #include "editor/markdownhighlighter.h"
 #include "items/countitem.h"
 #include "models/tableitemmodel.h"
@@ -98,6 +99,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->personsTableView->SetHeaderShow(true, false);
     ui->worldsTableView->SetHeaderShow(true, false);
     ui->rubiTableView->SetHeaderShow(true, false);
+
+    // delegate
+    CenterBoardDelegate *center_delegate = new CenterBoardDelegate();
+    ui->corkboardView->setItemDelegate(center_delegate);
 
     // start view setting
     view_changer_->Change(GeneralType::Category::BookInfo);
