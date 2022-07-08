@@ -6,7 +6,7 @@
 #include "common/itemkeys.h"
 #include "configs/configdialog.h"
 #include "configs/globalsetting.h"
-#include "delegate/centerboarddelegate.h"
+#include "delegate/corkboarddelegate.h"
 #include "editor/markdownhighlighter.h"
 #include "items/countitem.h"
 #include "models/tableitemmodel.h"
@@ -101,7 +101,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->rubiTableView->SetHeaderShow(true, false);
 
     // delegate
-    CenterBoardDelegate *center_delegate = new CenterBoardDelegate();
+    CorkBoardDelegate *center_delegate = new CorkBoardDelegate(ui->corkboardView);
     ui->corkboardView->setItemDelegate(center_delegate);
 
     // start view setting

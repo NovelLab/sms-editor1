@@ -13,7 +13,7 @@ SOURCES += \
     configs/configdialog.cpp \
     configs/configmodel.cpp \
     configs/globalsetting.cpp \
-    delegate/centerboarddelegate.cpp \
+    delegate/corkboarddelegate.cpp \
     editor/bookinfoeditor.cpp \
     editor/drafteditor.cpp \
     editor/markdownhighlighter.cpp \
@@ -45,10 +45,10 @@ HEADERS += \
     common/configenums.h \
     common/generalenums.h \
     common/itemkeys.h \
-    delegate/centerboarddelegate.h \
     configs/configdialog.h \
     configs/configmodel.h \
     configs/globalsetting.h \
+    delegate/corkboarddelegate.h \
     editor/bookinfoeditor.h \
     editor/drafteditor.h \
     editor/markdownhighlighter.h \

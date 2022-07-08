@@ -26,10 +26,6 @@ public:
 public slots:
     void UpdateUi(const QSettings *settings);
 
-protected:
-    virtual int sizeHintForColumn(int column) const override;
-    virtual int sizeHintForRow(int row) const override;
-
 private:
     QLabel *title_label_;
 

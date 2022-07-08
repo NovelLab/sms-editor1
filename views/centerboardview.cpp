@@ -20,6 +20,7 @@ CenterBoardView::CenterBoardView(QWidget *parent)
     this->verticalHeader()->hide();
     this->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     this->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->setGridStyle(Qt::NoPen);
 }
 
 // slots
@@ -69,25 +70,4 @@ void CenterBoardView::UpdateView(const QTreeWidgetItem *item)
             model->AppendChild(data);
         }
     }
-}
-
-// overrides (protected)
-int CenterBoardView::sizeHintForColumn(int column) const
-{
-    if (column < 0 || column >= 2)
-        return 1;
-    switch (column) {
-      case 0:
-        return 200;
-      case 1:
-        return this->width() - 200;
-      default:
-        return 100;
-    }
-}
-
-int CenterBoardView::sizeHintForRow(int row) const
-{
-    Q_UNUSED(row);
-    return kTableRowSize;
 }
