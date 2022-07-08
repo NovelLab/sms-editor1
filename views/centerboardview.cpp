@@ -1,11 +1,13 @@
 #include "centerboardview.h"
 
+#include "common/appsettings.h"
 #include "items/treeitem.h"
 #include "models/tableitemmodel.h"
 #include "utils/itemutility.h"
 
 #include <QHeaderView>
 #include <QLabel>
+#include <QSettings>
 #include <QTreeWidgetItem>
 
 CenterBoardView::CenterBoardView(QWidget *parent)
@@ -13,6 +15,13 @@ CenterBoardView::CenterBoardView(QWidget *parent)
 {
     this->horizontalHeader()->hide();
     this->verticalHeader()->hide();
+}
+
+// slots
+void CenterBoardView::UpdateUi(const QSettings *settings)
+{
+    QString style = "background: url(:CorkBoard.jpg)";
+    this->setStyleSheet(style);
 }
 
 // methods

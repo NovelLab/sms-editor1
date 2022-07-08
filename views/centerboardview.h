@@ -5,6 +5,7 @@
 
 class QLabel;
 class QTreeWidgetItem;
+class QSettings;
 
 namespace GeneralType {
 enum class Category;
@@ -21,6 +22,9 @@ public:
     void SetTitleLabel(QLabel *label);
 
     void UpdateView(const QTreeWidgetItem *item);
+
+public slots:
+    void UpdateUi(const QSettings *settings);
 
 private:
     QLabel *title_label_;

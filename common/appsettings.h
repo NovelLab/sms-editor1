@@ -18,6 +18,8 @@ const QString kUiFontSize = "UI_FONT_SIZE";
 const QString kUiFontFamily = "UI_FONT_FAMILY";
 const QString kUiFontColor = "UI_FONT_COLOR";
 const QString kUiBackground = "UI_BACKGROUND";
+// View
+const QString kViewBackgroundImage = "CorkBoard.jpg";
 // Editor
 const QString kEditorFontSize = "EDITOR_FONT_SIZE";
 const QString kEditorFontFamily = "EDITOR_FONT_FAMILY";

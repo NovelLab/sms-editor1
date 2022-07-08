@@ -124,6 +124,7 @@ MainWindow::MainWindow(QWidget *parent)
     // set default
     on_btnBookInfo_clicked();
     global_setting_->UpdateUi();
+    ui->corkboardView->UpdateUi(settings_);
 }
 
 MainWindow::~MainWindow()
