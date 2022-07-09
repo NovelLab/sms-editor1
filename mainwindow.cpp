@@ -7,6 +7,7 @@
 #include "configs/configdialog.h"
 #include "configs/globalsetting.h"
 #include "delegate/corkboarddelegate.h"
+#include "editor/bookinfoeditor.h"
 #include "editor/markdownhighlighter.h"
 #include "items/countitem.h"
 #include "models/tableitemmodel.h"
@@ -150,7 +151,9 @@ MainWindow::~MainWindow()
 // slots (menu)
 void MainWindow::on_actionClose_triggered()
 {
-    qDebug() << "(unimp) menu - Close";
+    // NOTE: 先にBookInfoEditorにしないと、Treeでitemを選択している状態だとCrashする
+    on_btnBookInfo_clicked();
+    CloseProject_();
 }
 
 void MainWindow::on_actionCompile_triggered()
@@ -507,3 +510,20 @@ void MainWindow::on_actionPreference_triggered()
     }
 }
 
+// methods (private)
+void MainWindow::CloseProject_()
+{
+    // tree
+    draft_tree_->ClearAllItems();
+    plot_tree_->ClearAllItems();
+    person_tree_->ClearAllItems();
+    world_tree_->ClearAllItems();
+    research_tree_->ClearAllItems();
+    notes_tree_->ClearAllItems();
+    rubi_tree_->ClearAllItems();
+    trash_tree_->ClearAllItems();
+    // book info
+    view_changer_->GetBookInfo()->Clear();
+    // project settings
+    settings_->setValue(AppSettings::kProjectPath, "");
+}

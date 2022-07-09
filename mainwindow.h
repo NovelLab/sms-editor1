@@ -90,6 +90,8 @@ private slots:
     void on_btnClearTrash_clicked();
 
 private:
+    void CloseProject_();
+
     Ui::MainWindow *ui;
     QSettings *settings_;
 
