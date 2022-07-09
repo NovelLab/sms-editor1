@@ -122,7 +122,7 @@ void XmlReader::ReadDraftFile_(QTreeWidgetItem *item)
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
     QTreeWidgetItem *child = draft_view_->CreateChild_(item);
-    TreeItem *data = draft_view_->factory_->CreateFolderItem();
+    TreeItem *data = draft_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
     while (xml_.readNextStartElement()) {
