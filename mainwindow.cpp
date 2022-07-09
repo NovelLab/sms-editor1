@@ -152,6 +152,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionClose_triggered()
 {
     // NOTE: 先にBookInfoEditorにしないと、Treeでitemを選択している状態だとCrashする
+    // TODO: すべてReadOnlyにしておく
     on_btnBookInfo_clicked();
     CloseProject_();
 }
@@ -166,7 +167,8 @@ void MainWindow::on_actionCompile_triggered()
 
 void MainWindow::on_actionNew_triggered()
 {
-    qDebug() << "(unimp) menu - New";
+    on_actionClose_triggered();
+    on_actionSave_As_triggered();
 }
 
 void MainWindow::on_actionOpen_triggered()

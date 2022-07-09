@@ -90,6 +90,7 @@ private slots:
     void on_btnClearTrash_clicked();
 
 private:
+    void CreateNewProject_();
     void CloseProject_();
 
     Ui::MainWindow *ui;
