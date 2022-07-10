@@ -123,12 +123,8 @@ void OutlineView::AddFile(const QTreeWidgetItem *item)
         return;
 
     const QTreeWidgetItem *par = GetParentOrRoot_(item);
-    QTreeWidgetItem *child = CreateChild_(par);
+    QTreeWidgetItem *child = CreateChild_(par, GeneralType::ItemType::File);
     child->setText(0, "new file");
-
-    QFileIconProvider provider;
-    QIcon icon = provider.icon(QFileIconProvider::File);
-    child->setIcon(0, icon);
 
     TreeItem *data = factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
@@ -142,11 +138,7 @@ void OutlineView::AddFolder(const QTreeWidgetItem *item)
         return;
 
     const QTreeWidgetItem *par = GetParentOrRoot_(item);
-    QTreeWidgetItem *child = CreateChild_(par);
-
-    QFileIconProvider provider;
-    QIcon icon = provider.icon(QFileIconProvider::Folder);
-    child->setIcon(0, icon);
+    QTreeWidgetItem *child = CreateChild_(par, GeneralType::ItemType::Folder);
 
     TreeItem *data = factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
@@ -253,12 +245,25 @@ void OutlineView::OnTitleChanged(QTreeWidgetItem *item, int column)
 }
 
 // methods (private)
-QTreeWidgetItem* OutlineView::CreateChild_(const QTreeWidgetItem *item)
+QTreeWidgetItem* OutlineView::CreateChild_(const QTreeWidgetItem *item, GeneralType::ItemType type)
 {
     QTreeWidgetItem *child = new QTreeWidgetItem(const_cast<QTreeWidgetItem*>(item));
     child->setText(0, "NEW");
     child->setFlags(child->flags() | Flags());
+    child->setIcon(0, GetItemIcon_(type));
     return child;
+}
+
+QIcon OutlineView::GetItemIcon_(GeneralType::ItemType type)
+{
+    QFileIconProvider provider;
+    QIcon icon;
+    if (type == GeneralType::ItemType::Folder) {
+        icon = provider.icon(QFileIconProvider::Folder);
+    } else if (type == GeneralType::ItemType::File) {
+        icon = provider.icon(QFileIconProvider::File);
+    }
+    return icon;
 }
 
 const QTreeWidgetItem* OutlineView::GetParentOrRoot_(const QTreeWidgetItem *item) const

@@ -2,6 +2,7 @@
 
 #include "ui_mainwindow.h"
 
+#include "common/generalenums.h"
 #include "common/itemkeys.h"
 #include "editor/bookinfoeditor.h"
 #include "items/treeitem.h"
@@ -121,7 +122,7 @@ void XmlReader::ReadDraftFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
-    QTreeWidgetItem *child = draft_view_->CreateChild_(item);
+    QTreeWidgetItem *child = draft_view_->CreateChild_(item, GeneralType::ItemType::File);
     TreeItem *data = draft_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -154,7 +155,7 @@ void XmlReader::ReadDraftFolder_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
 
-    QTreeWidgetItem *child = draft_view_->CreateChild_(item);
+    QTreeWidgetItem *child = draft_view_->CreateChild_(item, GeneralType::ItemType::Folder);
     TreeItem *data = draft_view_->factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -196,7 +197,7 @@ void XmlReader::ReadNotesFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
-    QTreeWidgetItem *child = notes_view_->CreateChild_(item);
+    QTreeWidgetItem *child = notes_view_->CreateChild_(item, GeneralType::ItemType::File);
     TreeItem *data = notes_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -221,7 +222,7 @@ void XmlReader::ReadNotesFolder_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
 
-    QTreeWidgetItem *child = notes_view_->CreateChild_(item);
+    QTreeWidgetItem *child = notes_view_->CreateChild_(item, GeneralType::ItemType::Folder);
     TreeItem *data = notes_view_->factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -261,7 +262,7 @@ void XmlReader::ReadPersonsFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
-    QTreeWidgetItem *child = persons_view_->CreateChild_(item);
+    QTreeWidgetItem *child = persons_view_->CreateChild_(item, GeneralType::ItemType::File);
     TreeItem *data = persons_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -294,7 +295,7 @@ void XmlReader::ReadPersonsFolder_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
 
-    QTreeWidgetItem *child = persons_view_->CreateChild_(item);
+    QTreeWidgetItem *child = persons_view_->CreateChild_(item, GeneralType::ItemType::Folder);
     TreeItem *data = persons_view_->factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -335,7 +336,7 @@ void XmlReader::ReadPlotFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
-    QTreeWidgetItem *child = plot_view_->CreateChild_(item);
+    QTreeWidgetItem *child = plot_view_->CreateChild_(item, GeneralType::ItemType::File);
     TreeItem *data = plot_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -360,7 +361,7 @@ void XmlReader::ReadPlotFolder_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
 
-    QTreeWidgetItem *child = plot_view_->CreateChild_(item);
+    QTreeWidgetItem *child = plot_view_->CreateChild_(item, GeneralType::ItemType::Folder);
     TreeItem *data = plot_view_->factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -400,7 +401,7 @@ void XmlReader::ReadResearchFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
-    QTreeWidgetItem *child = research_view_->CreateChild_(item);
+    QTreeWidgetItem *child = research_view_->CreateChild_(item, GeneralType::ItemType::File);
     TreeItem *data = research_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -425,7 +426,7 @@ void XmlReader::ReadResearchFolder_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
 
-    QTreeWidgetItem *child = research_view_->CreateChild_(item);
+    QTreeWidgetItem *child = research_view_->CreateChild_(item, GeneralType::ItemType::Folder);
     TreeItem *data = research_view_->factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -465,7 +466,7 @@ void XmlReader::ReadRubisFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
-    QTreeWidgetItem *child = rubi_view_->CreateChild_(item);
+    QTreeWidgetItem *child = rubi_view_->CreateChild_(item, GeneralType::ItemType::File);
     TreeItem *data = rubi_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -492,7 +493,7 @@ void XmlReader::ReadRubisFolder_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
 
-    QTreeWidgetItem *child = rubi_view_->CreateChild_(item);
+    QTreeWidgetItem *child = rubi_view_->CreateChild_(item, GeneralType::ItemType::Folder);
     TreeItem *data = rubi_view_->factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -532,7 +533,7 @@ void XmlReader::ReadTrashFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
-    QTreeWidgetItem *child = trash_view_->CreateChild_(item);
+    QTreeWidgetItem *child = trash_view_->CreateChild_(item, GeneralType::ItemType::File);
     TreeItem *data = trash_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -552,7 +553,7 @@ void XmlReader::ReadTrashFolder_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
 
-    QTreeWidgetItem *child = trash_view_->CreateChild_(item);
+    QTreeWidgetItem *child = trash_view_->CreateChild_(item, GeneralType::ItemType::Folder);
     TreeItem *data = trash_view_->factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -592,7 +593,7 @@ void XmlReader::ReadWorldsFile_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "file");
 
-    QTreeWidgetItem *child = worlds_view_->CreateChild_(item);
+    QTreeWidgetItem *child = worlds_view_->CreateChild_(item, GeneralType::ItemType::File);
     TreeItem *data = worlds_view_->factory_->CreateFileItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 
@@ -619,7 +620,7 @@ void XmlReader::ReadWorldsFolder_(QTreeWidgetItem *item)
 {
     Q_ASSERT(xml_.isStartElement() && xml_.name() == "folder");
 
-    QTreeWidgetItem *child = worlds_view_->CreateChild_(item);
+    QTreeWidgetItem *child = worlds_view_->CreateChild_(item, GeneralType::ItemType::Folder);
     TreeItem *data = worlds_view_->factory_->CreateFolderItem();
     child->setData(0, Qt::UserRole, QVariant::fromValue(data));
 

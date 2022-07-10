@@ -10,6 +10,7 @@ class ItemFactory;
 
 namespace GeneralType {
 enum class Category;
+enum class ItemType;
 }
 
 class XmlReader;
@@ -41,7 +42,7 @@ public slots:
     virtual void UpdateItemData(const QModelIndex &index);
 
 protected:
-    virtual QTreeWidgetItem* CreateChild_(const QTreeWidgetItem *item);
+    virtual QTreeWidgetItem* CreateChild_(const QTreeWidgetItem *item, GeneralType::ItemType type);
 
     virtual const QTreeWidgetItem* GetParentOrRoot_(const QTreeWidgetItem *item) const;
 
@@ -55,6 +56,7 @@ private slots:
 
 private:
     friend XmlReader;
+    QIcon GetItemIcon_(GeneralType::ItemType type);
 
     ItemFactory *factory_;
     GeneralType::Category cat_;
