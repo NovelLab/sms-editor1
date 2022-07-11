@@ -11,14 +11,11 @@
 
 #include <QDir>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QMessageBox>
 #include <QSettings>
 
 #include <QDebug>
-
-static const QString kKeyProjectPath = AppSettings::kProjectPath;
-static const QString kKeyBuildPath = AppSettings::kBuildPath;
-static const QString kDefaultOutputFile = DefaultSettings::kBuildFilename;
 
 SaveDataFiler::SaveDataFiler()
     : QObject{}
@@ -30,16 +27,16 @@ SaveDataFiler::SaveDataFiler()
 bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings)
 {
     // TODO: specific output file name
-    QString fileName = kDefaultOutputFile;
-    QString cur_dir = QDir::currentPath();
-    QString build_dir = "build";
+    QString fileName = settings->value(AppSettings::kBuildFilename).toString();
+    QString cur_dir = settings->value(AppSettings::kProjectPath).toString();
+    QString build_dir = settings->value(AppSettings::kBuildPath).toString();
     QDir build_path(cur_dir);
     if (!build_path.exists(build_dir)) {
         build_path.mkdir(build_dir);
     }
 
-    QString f_name = ValidatedFilename_(fileName, "md");
-    QString build_fname = build_path.path() + "/" + build_dir + "/" + f_name;
+    QString f_name = ValidatedFilename_(fileName, settings->value(AppSettings::kBuildExtension).toString());
+    QString build_fname = build_path.path() + QDir::separator() + build_dir + QDir::separator() + f_name;
 
     QFile file(build_fname);
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
@@ -52,8 +49,7 @@ bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings 
 
     NovelBuilder *builder = new NovelBuilder(ui);
     if (builder->Build(&file)) {
-        settings->setValue(kKeyBuildPath, build_dir);
-        settings->setValue(AppSettings::kBuildFilename, build_fname);
+        settings->setValue(AppSettings::kBuildFilename, f_name);
         return true;
     } else {
         return false;
@@ -69,7 +65,9 @@ bool SaveDataFiler::OpenFile(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *
     if (fileName.isEmpty())
         return false;
 
-    settings->setValue(kKeyProjectPath, fileName);
+    QFileInfo f(fileName);
+    settings->setValue(AppSettings::kProjectPath, f.absolutePath());
+    settings->setValue(AppSettings::kProjectFilename, f.fileName());
 
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
@@ -94,7 +92,7 @@ bool SaveDataFiler::OpenFile(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *
 
 bool SaveDataFiler::SaveFile(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings)
 {
-    QString filename = settings->value(kKeyProjectPath).toString();
+    QString filename = settings->value(AppSettings::kProjectPath).toString() + QDir::separator() + settings->value(AppSettings::kProjectFilename).toString();
     if (filename.isEmpty()) {
         return SaveFileAs(mwin, ui, changer, settings);
     } else {
@@ -131,7 +129,9 @@ bool SaveDataFiler::SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger 
 
     XmlWriter writer(ui, changer);
     if (writer.WriteFile(&file)) {
-        settings->setValue(kKeyProjectPath, f_name);
+        QFileInfo f(f_name);
+        settings->setValue(AppSettings::kProjectPath, f.absolutePath());
+        settings->setValue(AppSettings::kProjectFilename, f.fileName());
         return true;
     } else {
         return false;

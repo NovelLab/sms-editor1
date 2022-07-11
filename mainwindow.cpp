@@ -22,9 +22,6 @@
 
 #include <QDebug>
 
-static const int kDefaultFontSize = DefaultSettings::kFontSize;
-static const QString kProjectPath = AppSettings::kProjectPath;
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -34,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
     // settings
     settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope, "sms", "sms");
     settings_->setIniCodec(QTextCodec::codecForName("UTF-8"));
+
+    SetDefaultAppSettings_();
 
     global_setting_ = new GlobalSetting();
 
@@ -114,9 +113,9 @@ MainWindow::MainWindow(QWidget *parent)
     QFont font;
     font.setFamily("Takao");
     font.setFixedPitch(true);
-    font.setPointSize(kDefaultFontSize);
+    font.setPointSize(DefaultSettings::kFontSize);
     ui->mainEditor->setFont(font);
-    highlighter->SetBaseFontSize(kDefaultFontSize);
+    highlighter->SetBaseFontSize(DefaultSettings::kFontSize);
 
     // connects
     connect(card_model, &TableItemModel::UpdatedItemData, ui->draftTreeView, &OutlineView::UpdateItemData);
@@ -527,5 +526,17 @@ void MainWindow::CloseProject_()
     // book info
     view_changer_->GetBookInfo()->Clear();
     // project settings
-    settings_->setValue(AppSettings::kProjectPath, "");
+    settings_->setValue(AppSettings::kProjectFilename, "");
+}
+
+void MainWindow::SetDefaultAppSettings_()
+{
+    if (settings_->value(AppSettings::kProjectPath).toString().isEmpty())
+        settings_->setValue(AppSettings::kProjectPath, DefaultSettings::kProjectPath);
+    if (settings_->value(AppSettings::kBuildPath).toString().isEmpty())
+        settings_->setValue(AppSettings::kBuildPath, DefaultSettings::kBuildPath);
+    if (settings_->value(AppSettings::kBuildFilename).toString().isEmpty())
+        settings_->setValue(AppSettings::kBuildFilename, DefaultSettings::kBuildFilename);
+    if (settings_->value(AppSettings::kBuildExtension).toString().isEmpty())
+        settings_->setValue(AppSettings::kBuildExtension, DefaultSettings::kBuildExtension);
 }

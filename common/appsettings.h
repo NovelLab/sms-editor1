@@ -5,8 +5,10 @@
 
 namespace AppSettings {
 const QString kProjectPath = "PROJECT_PATH";
+const QString kProjectFilename = "PROJECT_FILENAME";
 const QString kBuildPath = "BUILD_PATH";
 const QString kBuildFilename = "BUILD_FILENAME";
+const QString kBuildExtension = "BUILD_EXT";
 }
 
 namespace AppConfigs {
@@ -26,16 +28,21 @@ const QString kEditorFontFamily = "EDITOR_FONT_FAMILY";
 const QString kEditorFontColor = "EDITOR_FONT_COLOR";
 const QString kEditorBackground = "EDITOR_BACKGROUND";
 // Compile
-const QString kBuildDir = "BUILD_DIR";
-const QString kBuildFileName = "BUILD_FILE_NAME";
-const QString kBuildFileType = "BUILD_FILE_TYPE";
+const QString kBuildDir = "COMP_BUILD_DIR";
+const QString kBuildFileName = "COMP_BUILD_FILE_NAME";
+const QString kBuildFileType = "COMP_BUILD_FILE_TYPE";
 }
 
 namespace DefaultSettings {
+// General
+// TODO: linux or win or mac
+const QString kProjectPath = "/";
+const QString kBuildPath = "build";
+const QString kBuildFilename = "output";
+const QString kBuildExtension = "txt";
+// Font
 const int kFontSize = 12;
 const QString kFontColor = "#FFFFFF";
-const QString kBuildPath = "build";
-const QString kBuildFilename = "output.md";
 }
 
 #endif // APPSETTINGS_H

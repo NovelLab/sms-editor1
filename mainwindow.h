@@ -92,6 +92,7 @@ private slots:
 private:
     void CreateNewProject_();
     void CloseProject_();
+    void SetDefaultAppSettings_();
 
     Ui::MainWindow *ui;
     QSettings *settings_;
