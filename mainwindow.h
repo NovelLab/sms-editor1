@@ -93,6 +93,7 @@ private:
     void CreateNewProject_();
     void CloseProject_();
     void SetDefaultAppSettings_();
+    QString GetCharCountFromItem_(const QTreeWidgetItem *item);
 
     Ui::MainWindow *ui;
     QSettings *settings_;

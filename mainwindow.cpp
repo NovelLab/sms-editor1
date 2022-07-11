@@ -279,10 +279,7 @@ void MainWindow::on_draftTreeView_currentItemChanged(QTreeWidgetItem *current, Q
     //Q_UNUSED(current);
     Q_UNUSED(previous);
     view_changer_->Update(GeneralType::Category::Draft);
-    Counter counter;
-    CountItem *item = counter.TextCharCountFrom(current);
-    QString chars = QString("CHAR: %1(%2)").arg(item->DataOf(ItemKeys::Count::Full).toInt()).arg(item->DataOf(ItemKeys::Count::WhiteSpaces).toInt());
-    this->statusBar()->showMessage(chars);
+    this->statusBar()->showMessage(GetCharCountFromItem_(current));
 }
 
 // slots (plot tree)
@@ -291,6 +288,7 @@ void MainWindow::on_plotTreeView_currentItemChanged(QTreeWidgetItem *current, QT
     Q_UNUSED(current);
     Q_UNUSED(previous);
     view_changer_->Update(GeneralType::Category::Plot);
+    this->statusBar()->showMessage(GetCharCountFromItem_(current));
 }
 
 void MainWindow::on_btnFolderPlot_clicked()
@@ -527,6 +525,16 @@ void MainWindow::CloseProject_()
     view_changer_->GetBookInfo()->Clear();
     // project settings
     settings_->setValue(AppSettings::kProjectFilename, "");
+}
+
+QString MainWindow::GetCharCountFromItem_(const QTreeWidgetItem *item)
+{
+    if (!item)
+        return "";
+    Counter counter;
+    CountItem *c_item = counter.TextCharCountFrom(item);
+    QString chars = QString("CHAR: %1(%2)").arg(c_item->DataOf(ItemKeys::Count::Full).toInt()).arg(c_item->DataOf(ItemKeys::Count::WhiteSpaces).toInt());
+    return chars;
 }
 
 void MainWindow::SetDefaultAppSettings_()
