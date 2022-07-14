@@ -36,6 +36,9 @@ public:
     virtual void MoveItem(QTreeWidgetItem *item, OutlineView *view);
     virtual void RemoveToTrash(QTreeWidgetItem *item);
 
+    virtual void CopyItem();
+    virtual void PasteItem();
+
     virtual void ClearAllItems();
 
 public slots:
@@ -60,6 +63,7 @@ private:
 
     ItemFactory *factory_;
     GeneralType::Category cat_;
+    QTreeWidgetItem *tmp_item_ = nullptr;
 };
 
 #endif // OUTLINEVIEW_H

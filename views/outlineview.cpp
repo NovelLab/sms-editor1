@@ -158,6 +158,33 @@ void OutlineView::ClearAllItems()
     this->clear();
 }
 
+void OutlineView::CopyItem()
+{
+    QTreeWidgetItem *cur = this->currentItem();
+    if (cur)
+        tmp_item_ = cur;
+}
+
+void OutlineView::PasteItem()
+{
+    if (!tmp_item_)
+        return;
+
+    QTreeWidgetItem *citem = tmp_item_->clone();
+    QTreeWidgetItem *cur = this->currentItem();
+    if (cur) {
+        ItemUtility util;
+        if (!util.IsValidTreeWidgetItem(cur))
+            return;
+        TreeItem *data = util.ItemFromTreeWidgetItem(cur);
+        if (data->TypeOf() == GeneralType::ItemType::File)
+            return;
+        cur->addChild(citem);
+    } else {
+        this->addTopLevelItem(citem);
+    }
+}
+
 Qt::ItemFlags OutlineView::Flags() const
 {
     return kItemFlags;
@@ -220,6 +247,20 @@ void OutlineView::ContextMenu(const QPoint &pos)
         AddFile(this->currentItem());
     });
     menu.addAction(actAddFile);
+
+    QAction *actCopyFile = new QAction("Copy", this);
+    connect(actCopyFile, &QAction::triggered,
+            [=](){
+        CopyItem();
+    });
+    menu.addAction(actCopyFile);
+
+    QAction *actPasteFile = new QAction("Paste", this);
+    connect(actPasteFile, &QAction::triggered,
+            [=](){
+        PasteItem();
+    });
+    menu.addAction(actPasteFile);
 
     QAction *actDelFile = new QAction("Delete", this);
     connect(actDelFile, &QAction::triggered,
