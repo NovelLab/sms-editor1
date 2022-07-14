@@ -26,6 +26,7 @@ class TreeItem
 {
 public:
     explicit TreeItem(GeneralType::ItemType type, GeneralType::Category category);
+    TreeItem(const TreeItem &item);
     ~TreeItem();
 
     QVariant DataOf(int column) const;

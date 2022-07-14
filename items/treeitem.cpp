@@ -14,6 +14,14 @@ TreeItem::TreeItem(GeneralType::ItemType type, GeneralType::Category category)
 
 }
 
+TreeItem::TreeItem(const TreeItem &item)
+{
+    values_ = item.values_;
+    type_ = item.type_;
+    category_ = item.category_;
+    uuid_ = QUuid::createUuid();
+}
+
 TreeItem::~TreeItem()
 {
     values_.clear();

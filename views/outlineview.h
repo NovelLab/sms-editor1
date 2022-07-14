@@ -60,6 +60,7 @@ private slots:
 private:
     friend XmlReader;
     QIcon GetItemIcon_(GeneralType::ItemType type);
+    QTreeWidgetItem* CloneItem_(const QTreeWidgetItem *item);
 
     ItemFactory *factory_;
     GeneralType::Category cat_;

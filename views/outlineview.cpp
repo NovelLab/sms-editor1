@@ -170,7 +170,7 @@ void OutlineView::PasteItem()
     if (!tmp_item_)
         return;
 
-    QTreeWidgetItem *citem = tmp_item_->clone();
+    QTreeWidgetItem *citem = this->CloneItem_(tmp_item_);
     QTreeWidgetItem *cur = this->currentItem();
     if (cur) {
         ItemUtility util;
@@ -293,6 +293,19 @@ QTreeWidgetItem* OutlineView::CreateChild_(const QTreeWidgetItem *item, GeneralT
     child->setFlags(child->flags() | Flags());
     child->setIcon(0, GetItemIcon_(type));
     return child;
+}
+
+QTreeWidgetItem* OutlineView::CloneItem_(const QTreeWidgetItem *item)
+{
+    QTreeWidgetItem *clone_item = item->clone();
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(clone_item);
+    TreeItem *c_data = data;
+    clone_item->setData(0, Qt::UserRole, QVariant::fromValue(c_data));
+    for (int i = 0; i < clone_item->childCount(); ++i) {
+        this->CloneItem_(clone_item->child(i));
+    }
+    return clone_item;
 }
 
 QIcon OutlineView::GetItemIcon_(GeneralType::ItemType type)
