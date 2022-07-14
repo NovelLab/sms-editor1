@@ -14,17 +14,23 @@ TreeItem::TreeItem(GeneralType::ItemType type, GeneralType::Category category)
 
 }
 
-TreeItem::TreeItem(const TreeItem &item)
+TreeItem::TreeItem(const TreeItem *item)
 {
-    values_ = item.values_;
-    type_ = item.type_;
-    category_ = item.category_;
+    values_ = item->values_;
+    type_ = item->type_;
+    category_ = item->category_;
     uuid_ = QUuid::createUuid();
 }
 
 TreeItem::~TreeItem()
 {
     values_.clear();
+}
+
+TreeItem* TreeItem::clone(TreeItem *item)
+{
+    TreeItem *clone_item = new TreeItem(item);
+    return clone_item;
 }
 
 // methods

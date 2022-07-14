@@ -25,9 +25,11 @@ enum class ItemType;
 class TreeItem
 {
 public:
+    explicit TreeItem(const TreeItem *item);
     explicit TreeItem(GeneralType::ItemType type, GeneralType::Category category);
-    TreeItem(const TreeItem &item);
     ~TreeItem();
+
+    TreeItem* clone(TreeItem *item);
 
     QVariant DataOf(int column) const;
     QVariant DataOf(ItemKeys::CommonKey key) const;

@@ -12,6 +12,8 @@
 #include <QMenu>
 #include <QMimeData>
 
+#include <QDebug>
+
 static const QStringList kMimeTypes = {"text/plain"};
 static const Qt::ItemFlags kItemFlags = Qt::ItemIsEnabled
         | Qt::ItemIsEditable
@@ -300,7 +302,7 @@ QTreeWidgetItem* OutlineView::CloneItem_(const QTreeWidgetItem *item)
     QTreeWidgetItem *clone_item = item->clone();
     ItemUtility util;
     TreeItem *data = util.ItemFromTreeWidgetItem(clone_item);
-    TreeItem *c_data = data;
+    TreeItem *c_data = new TreeItem(data);
     clone_item->setData(0, Qt::UserRole, QVariant::fromValue(c_data));
     for (int i = 0; i < clone_item->childCount(); ++i) {
         this->CloneItem_(clone_item->child(i));
