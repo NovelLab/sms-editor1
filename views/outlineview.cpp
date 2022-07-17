@@ -194,13 +194,9 @@ void OutlineView::GlobalPasteItem()
     if (!this->GetGTmp())
         return;
     QTreeWidgetItem *citem = this->ConvertItem_(this->GetGTmp(), cat_);
-    ItemUtility util;
-    for (int i = 0; i < citem->childCount(); ++i) {
-        TreeItem *d = util.ItemFromTreeWidgetItem(citem->child(i));
-    }
     QTreeWidgetItem *cur = this->currentItem();
     if (cur) {
-        //ItemUtility util;
+        ItemUtility util;
         if (!util.IsValidTreeWidgetItem(cur))
             return;
         TreeItem *data = util.ItemFromTreeWidgetItem(cur);
