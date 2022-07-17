@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // size settings
     ui->frameChanger->setMaximumWidth(120);
-    ui->outlineTab->setMaximumWidth(200);
+    ui->outlineTab->setMaximumWidth(300);
     ui->sideTab->setMaximumWidth(400);
 
     ui->outlineTab->tabBar()->hide();
