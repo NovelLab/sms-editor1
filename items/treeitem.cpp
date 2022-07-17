@@ -22,6 +22,14 @@ TreeItem::TreeItem(const TreeItem *item)
     uuid_ = QUuid::createUuid();
 }
 
+TreeItem::TreeItem(const TreeItem *item, GeneralType::Category cat)
+{
+    values_ = item->values_;
+    type_ = item->type_;
+    category_ = cat;
+    uuid_ = QUuid::createUuid();
+}
+
 TreeItem::~TreeItem()
 {
     values_.clear();

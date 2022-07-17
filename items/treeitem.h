@@ -26,6 +26,7 @@ class TreeItem
 {
 public:
     explicit TreeItem(const TreeItem *item);
+    explicit TreeItem(const TreeItem *item, GeneralType::Category cat);
     explicit TreeItem(GeneralType::ItemType type, GeneralType::Category category);
     ~TreeItem();
 

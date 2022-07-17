@@ -2,8 +2,8 @@
 #define OUTLINEVIEW_H
 
 #include <QTreeWidget>
+#include <QTreeWidgetItem>
 
-class QTreeWidgetItem;
 class TreeItem;
 class XmlReader;
 class ItemFactory;
@@ -15,6 +15,8 @@ enum class ItemType;
 
 class XmlReader;
 
+static QTreeWidgetItem* g_tmp_;
+
 class OutlineView : public QTreeWidget
 {
     Q_OBJECT
@@ -22,6 +24,8 @@ public:
     static OutlineView* trash_;
     static OutlineView* GetTrashBox() {return trash_;}
     static void SetTrashBox(OutlineView *trash) {trash_ = trash;}
+    static inline QTreeWidgetItem* GetGTmp() {return g_tmp_;}
+    static inline void SetGTmp(QTreeWidgetItem *item) {g_tmp_ = item;}
 
     explicit OutlineView(QWidget *parent = nullptr);
     ~OutlineView();
@@ -38,6 +42,8 @@ public:
 
     virtual void CopyItem();
     virtual void PasteItem();
+
+    virtual void GlobalPasteItem();
 
     virtual void ClearAllItems();
 
@@ -61,6 +67,7 @@ private:
     friend XmlReader;
     QIcon GetItemIcon_(GeneralType::ItemType type);
     QTreeWidgetItem* CloneItem_(const QTreeWidgetItem *item);
+    QTreeWidgetItem* ConvertItem_(const QTreeWidgetItem *item, GeneralType::Category dst_cat);
 
     ItemFactory *factory_;
     GeneralType::Category cat_;

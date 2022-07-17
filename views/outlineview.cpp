@@ -163,8 +163,10 @@ void OutlineView::ClearAllItems()
 void OutlineView::CopyItem()
 {
     QTreeWidgetItem *cur = this->currentItem();
-    if (cur)
+    if (cur) {
         tmp_item_ = cur;
+        this->SetGTmp(cur);
+    }
 }
 
 void OutlineView::PasteItem()
@@ -176,6 +178,29 @@ void OutlineView::PasteItem()
     QTreeWidgetItem *cur = this->currentItem();
     if (cur) {
         ItemUtility util;
+        if (!util.IsValidTreeWidgetItem(cur))
+            return;
+        TreeItem *data = util.ItemFromTreeWidgetItem(cur);
+        if (data->TypeOf() == GeneralType::ItemType::File)
+            return;
+        cur->addChild(citem);
+    } else {
+        this->addTopLevelItem(citem);
+    }
+}
+
+void OutlineView::GlobalPasteItem()
+{
+    if (!this->GetGTmp())
+        return;
+    QTreeWidgetItem *citem = this->ConvertItem_(this->GetGTmp(), cat_);
+    ItemUtility util;
+    for (int i = 0; i < citem->childCount(); ++i) {
+        TreeItem *d = util.ItemFromTreeWidgetItem(citem->child(i));
+    }
+    QTreeWidgetItem *cur = this->currentItem();
+    if (cur) {
+        //ItemUtility util;
         if (!util.IsValidTreeWidgetItem(cur))
             return;
         TreeItem *data = util.ItemFromTreeWidgetItem(cur);
@@ -264,6 +289,18 @@ void OutlineView::ContextMenu(const QPoint &pos)
     });
     menu.addAction(actPasteFile);
 
+    if (cat_ == GeneralType::Category::Draft
+            || cat_ == GeneralType::Category::Plot
+            || cat_ == GeneralType::Category::Notes) {
+
+        QAction *actGPasteFile = new QAction("GPaste", this);
+        connect(actGPasteFile, &QAction::triggered,
+                [=](){
+            GlobalPasteItem();
+        });
+        menu.addAction(actGPasteFile);
+    }
+
     QAction *actDelFile = new QAction("Delete", this);
     connect(actDelFile, &QAction::triggered,
             [=](){
@@ -305,7 +342,26 @@ QTreeWidgetItem* OutlineView::CloneItem_(const QTreeWidgetItem *item)
     TreeItem *c_data = new TreeItem(data);
     clone_item->setData(0, Qt::UserRole, QVariant::fromValue(c_data));
     for (int i = 0; i < clone_item->childCount(); ++i) {
-        this->CloneItem_(clone_item->child(i));
+        QTreeWidgetItem *child = this->CloneItem_(clone_item->child(i));
+        QTreeWidgetItem *old = clone_item->takeChild(i);
+        clone_item->insertChild(i, child);
+        delete old;
+    }
+    return clone_item;
+}
+
+QTreeWidgetItem* OutlineView::ConvertItem_(const QTreeWidgetItem *item, GeneralType::Category dst_cat)
+{
+    QTreeWidgetItem *clone_item = item->clone();
+    ItemUtility util;
+    TreeItem *data = util.ItemFromTreeWidgetItem(clone_item);
+    TreeItem *c_data = new TreeItem(data, dst_cat);
+    clone_item->setData(0, Qt::UserRole, QVariant::fromValue(c_data));
+    for (int i = 0; i < clone_item->childCount(); ++i) {
+        QTreeWidgetItem *child = this->ConvertItem_(clone_item->child(i), dst_cat);
+        QTreeWidgetItem *old = clone_item->takeChild(i);
+        clone_item->insertChild(i, child);
+        delete old;
     }
     return clone_item;
 }
