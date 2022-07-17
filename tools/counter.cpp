@@ -43,11 +43,11 @@ int Counter::CountFile_(const QTreeWidgetItem *item, ItemKeys::Count type)
     ItemUtility util;
     TreeItem *data = util.ItemFromTreeWidgetItem(item);
     int count = 0;
+    QString base_text = data->DataOf(ItemKeys::CommonKey::Text).toString().trimmed();
     if (ItemKeys::Count::Full == type) {
-        count = data->DataOf(ItemKeys::CommonKey::Text).toString().length();
+        count = base_text.remove(QChar('\n')).length();
     } else if (ItemKeys::Count::WhiteSpaces == type) {
-        QString txt = data->DataOf(ItemKeys::CommonKey::Text).toString().trimmed();
-        count = txt.simplified().remove(QChar(' ')).length();
+        count = base_text.simplified().remove(QChar(' ')).length();
     }
     return count;
 }
