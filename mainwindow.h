@@ -40,6 +40,7 @@ private slots:
     void on_actionPreference_triggered();
     // menu - build
     void on_actionCompile_triggered();
+    void on_actionCompile_to_Novel_triggered();
     // category buttons
     void on_btnBookInfo_clicked();
     void on_btnDraft_clicked();

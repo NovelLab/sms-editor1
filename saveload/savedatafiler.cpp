@@ -5,6 +5,7 @@
 
 #include "builder/novelbuilder.h"
 #include "common/appsettings.h"
+#include "common/buildenums.h"
 #include "views/viewchanger.h"
 #include "xmls/xmlreader.h"
 #include "xmls/xmlwriter.h"
@@ -24,7 +25,7 @@ SaveDataFiler::SaveDataFiler()
 }
 
 // methods
-bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings)
+bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, BuildType type)
 {
     // TODO: specific output file name
     QString fileName = settings->value(AppSettings::kBuildFilename).toString();
@@ -48,7 +49,7 @@ bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings 
     }
 
     NovelBuilder *builder = new NovelBuilder(ui);
-    if (builder->Build(&file)) {
+    if (builder->Build(&file, type)) {
         settings->setValue(AppSettings::kBuildFilename, f_name);
         return true;
     } else {

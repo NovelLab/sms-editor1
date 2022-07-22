@@ -1193,6 +1193,7 @@
      <string>Build</string>
     </property>
     <addaction name="actionCompile"/>
+    <addaction name="actionCompile_to_Novel"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -1296,6 +1297,11 @@
   <action name="actionPreference">
    <property name="text">
     <string>Preference</string>
+   </property>
+  </action>
+  <action name="actionCompile_to_Novel">
+   <property name="text">
+    <string>Compile to Novel</string>
    </property>
   </action>
  </widget>

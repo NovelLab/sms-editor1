@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    builder/formatter.cpp \
     builder/novelbuilder.cpp \
     configs/configdialog.cpp \
     configs/configmodel.cpp \
@@ -40,8 +41,10 @@ SOURCES += \
     xmls/xmlwriter.cpp
 
 HEADERS += \
+    builder/formatter.h \
     builder/novelbuilder.h \
     common/appsettings.h \
+    common/buildenums.h \
     common/configenums.h \
     common/generalenums.h \
     common/itemkeys.h \

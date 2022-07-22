@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "common/appsettings.h"
+#include "common/buildenums.h"
 #include "common/generalenums.h"
 #include "common/itemkeys.h"
 #include "configs/configdialog.h"
@@ -159,7 +160,15 @@ void MainWindow::on_actionClose_triggered()
 void MainWindow::on_actionCompile_triggered()
 {
     SaveDataFiler filer;
-    if (filer.BuildToFile(this, ui, settings_)) {
+    if (filer.BuildToFile(this, ui, settings_, BuildType::Simple)) {
+        this->statusBar()->showMessage("build successfull!", 2000);
+    }
+}
+
+void MainWindow::on_actionCompile_to_Novel_triggered()
+{
+    SaveDataFiler filer;
+    if (filer.BuildToFile(this, ui, settings_, BuildType::Novel)) {
         this->statusBar()->showMessage("build successfull!", 2000);
     }
 }

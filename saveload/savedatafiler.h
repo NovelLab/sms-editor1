@@ -10,6 +10,7 @@ QT_END_NAMESPACE
 class QSettings;
 class MainWindow;
 class ViewChanger;
+enum class BuildType;
 
 class SaveDataFiler: public QObject
 {
@@ -21,7 +22,7 @@ public:
     bool SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings);
 
     // TODO: view changer using for book-title etc.
-    bool BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings);
+    bool BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, BuildType type);
 
 private:
     bool SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings, const QString &filename);

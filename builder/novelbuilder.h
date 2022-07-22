@@ -10,13 +10,14 @@ QT_END_NAMESPACE
 class QTreeWidgetItem;
 
 class OutlineView;
+enum class BuildType;
 
 class NovelBuilder
 {
 public:
     explicit NovelBuilder(const Ui::MainWindow *ui);
 
-    bool Build(QIODevice *devic);
+    bool Build(QIODevice *devic, BuildType type);
 
 private:
     QStringList OutputStrsFromFile(const QTreeWidgetItem *item);

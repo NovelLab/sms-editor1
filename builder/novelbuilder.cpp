@@ -2,11 +2,15 @@
 
 #include "ui_mainwindow.h"
 
+#include "builder/formatter.h"
+#include "common/buildenums.h"
 #include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
 #include <QTextStream>
+
+#include <QDebug>
 
 NovelBuilder::NovelBuilder(const Ui::MainWindow *ui)
 {
@@ -14,7 +18,7 @@ NovelBuilder::NovelBuilder(const Ui::MainWindow *ui)
 }
 
 // methods
-bool NovelBuilder::Build(QIODevice *device)
+bool NovelBuilder::Build(QIODevice *device, BuildType type)
 {
     ItemUtility util;
     QStringList outputs;
@@ -31,10 +35,11 @@ bool NovelBuilder::Build(QIODevice *device)
     if (outputs.isEmpty())
         return false;
 
-    // TODO: format
+    Formatter formatter;
+    QStringList formatted = formatter.FormatByType(type, outputs);
     QTextStream out(device);
-    for (int i = 0; i < outputs.count(); ++i) {
-        out << outputs.at(i) << "\n";
+    for (int i = 0; i < formatted.count(); ++i) {
+        out << formatted.at(i);
     }
     device->close();
     return true;
@@ -47,7 +52,7 @@ QStringList NovelBuilder::OutputStrsFromFile(const QTreeWidgetItem *item)
     QStringList outputs;
     if (util.IsValidTreeWidgetItem(item)) {
         TreeItem *data = util.ItemFromTreeWidgetItem(item);
-        outputs << data->DataOf(ItemKeys::Draft::Text).toString();
+        outputs << data->DataOf(ItemKeys::Draft::Text).toString().split("\n");
     }
     return outputs;
 }
