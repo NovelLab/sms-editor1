@@ -91,6 +91,7 @@ void XmlWriter::WriteDraftFile_(const QTreeWidgetItem *item)
     xml_.writeStartElement("file");
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
+    xml_.writeTextElement("build", QVariant(item->checkState(1)).toString());
     xml_.writeTextElement("synopsys", data->DataOf(1).toString());
     xml_.writeTextElement("text", data->DataOf(2).toString());
     xml_.writeTextElement("note", data->DataOf(3).toString());
@@ -113,6 +114,7 @@ void XmlWriter::WriteDraftFolder_(const QTreeWidgetItem *item)
 
     xml_.writeTextElement("title", data->DataOf(0).toString());
     xml_.writeTextElement("folding", QVariant(item->isExpanded()).toString());
+    xml_.writeTextElement("build", QVariant(item->checkState(1)).toString());
 
     for (int i = 0; i < item->childCount(); ++i) {
         QTreeWidgetItem *child = item->child(i);

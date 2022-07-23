@@ -38,6 +38,10 @@ OutlineView::OutlineView(QWidget *parent)
     // NOTE: custom menu using
     this->setContextMenuPolicy(Qt::CustomContextMenu);
 
+    if (cat_ == GeneralType::Category::Draft) {
+        this->setColumnCount(2);
+    }
+
     connect(this, &QTreeWidget::itemChanged, this, &OutlineView::OnTitleChanged);
     connect(this, &QTreeWidget::customContextMenuRequested, this, &OutlineView::ContextMenu);
 }
@@ -326,6 +330,9 @@ QTreeWidgetItem* OutlineView::CreateChild_(const QTreeWidgetItem *item, GeneralT
     QTreeWidgetItem *child = new QTreeWidgetItem(const_cast<QTreeWidgetItem*>(item));
     child->setText(0, "NEW");
     child->setFlags(child->flags() | Flags());
+    if (cat_ == GeneralType::Category::Draft) {
+        child->setCheckState(1, Qt::Checked);
+    }
     child->setIcon(0, GetItemIcon_(type));
     return child;
 }

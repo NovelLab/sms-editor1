@@ -32,6 +32,8 @@ bool NovelBuilder::Build(QIODevice *device, BuildType type, bool with_rubi)
     for (int i = 0; i < draft_view_->topLevelItemCount(); ++i) {
         QTreeWidgetItem *item = draft_view_->topLevelItem(i);
         if (util.IsValidTreeWidgetItem(item)) {
+            if (item->checkState(1) == Qt::Unchecked)
+                continue;
             if (util.IsFolder(item)) {
                 outputs << OutputStrsFromFolder(item);
             } else if (util.IsFile(item)) {
@@ -62,7 +64,7 @@ QStringList NovelBuilder::OutputStrsFromFile(const QTreeWidgetItem *item)
 {
     ItemUtility util;
     QStringList outputs;
-    if (util.IsValidTreeWidgetItem(item)) {
+    if (util.IsValidTreeWidgetItem(item) && item->checkState(1) == Qt::Checked) {
         TreeItem *data = util.ItemFromTreeWidgetItem(item);
         outputs << data->DataOf(ItemKeys::Draft::Text).toString().split("\n");
     }
@@ -74,6 +76,8 @@ QStringList NovelBuilder::OutputStrsFromFolder(const QTreeWidgetItem *item)
     ItemUtility util;
     QStringList outputs;
     for (int i = 0; i < item->childCount(); ++i) {
+        if (item->checkState(1) == Qt::Unchecked)
+            continue;
         QTreeWidgetItem *child = item->child(i);
         if (util.IsValidTreeWidgetItem(child)) {
             if (util.IsFolder(child)) {

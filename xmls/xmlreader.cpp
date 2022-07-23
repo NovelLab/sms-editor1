@@ -131,6 +131,8 @@ void XmlReader::ReadDraftFile_(QTreeWidgetItem *item)
             QString title = xml_.readElementText();
             child->setText(0, title);
             data->SetData(0, title);
+        } else if (xml_.name() == "build") {
+            child->setCheckState(1, static_cast<Qt::CheckState>(QVariant(xml_.readElementText()).toInt()));
         } else if (xml_.name() == "synopsys") {
             data->SetData(1, xml_.readElementText());
         } else if (xml_.name() == "text") {
@@ -166,6 +168,8 @@ void XmlReader::ReadDraftFolder_(QTreeWidgetItem *item)
             data->SetData(0, title);
         } else if (xml_.name() == "folding") {
             child->setExpanded(QVariant(xml_.readElementText()).toBool());
+        } else if (xml_.name() == "build") {
+            child->setCheckState(1, static_cast<Qt::CheckState>(QVariant(xml_.readElementText()).toInt()));
         } else if (xml_.name() == "folder") {
             ReadDraftFolder_(child);
         } else if (xml_.name() == "file") {

@@ -122,6 +122,11 @@
              <string>Draft</string>
             </property>
            </column>
+           <column>
+            <property name="text">
+             <string>Build</string>
+            </property>
+           </column>
           </widget>
          </item>
          <item>
