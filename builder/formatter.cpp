@@ -26,25 +26,50 @@ QStringList Formatter::FormatByType(BuildType type, const QStringList &data)
 QStringList Formatter::NovelFormat_(const QStringList &data)
 {
     QStringList formatted;
+    bool shown_headline = true;
+    bool in_paragraph = false;
+    bool in_dialogue = false;
 
     for (int i = 0; i < data.count(); ++i) {
         QString text = data.at(i);
-        if (text.startsWith("「")
-                || text.startsWith("『")
-                || text.startsWith("# ")) {
-            formatted << text + "\n";
-        } else if (text == "") {
-            formatted << "\n";
-        } else {
-            if (text.endsWith("。")
-                    || text.endsWith("、")
-                    || text.endsWith("」")
-                    || text.endsWith("』")
-                    || text.endsWith("？")
-                    || text.endsWith("！")) {
-                formatted << "　" + text + "\n";
+        if (IsHeadline_(text)) {
+            if (in_paragraph || in_dialogue) {
+                in_paragraph = false;
+                in_dialogue = false;
+                formatted << "\n";
+            }
+            // headline
+            // TODO: shown switch
+            if (shown_headline) {
+                formatted << text + "\n";
+            }
+        } else if (IsDialogueStart_(text)){
+            // dialogue start
+            if (IsDialogueEnd_(text)) {
+                formatted << text + "\n";
             } else {
-                formatted << "　" + text + "。\n";
+                in_dialogue = true;
+                formatted << DescriptionEndValid(text);
+            }
+        } else if (IsBreakline_(text)) {
+            // TODO: last formatted text check and endmark replace.
+            in_paragraph = false;
+            in_dialogue = false;
+            formatted << "\n";
+            if (IsBreakline_(text, true))
+                formatted << "\n";
+        } else {
+            // description
+            if (in_dialogue) {
+                // continue dialogues
+                formatted << DescriptionEndValid(text);
+            } else if (in_paragraph) {
+                // continue paragraph
+                formatted << DescriptionEndValid(text);
+            } else {
+                // TODO: institute line check
+                in_paragraph = true;
+                formatted << "　" + DescriptionEndValid(text);
             }
         }
     }
@@ -59,4 +84,52 @@ QStringList Formatter::SimpleFormat_(const QStringList &data)
         formatted << data.at(i) + "\n";
     }
     return formatted;
+}
+
+bool Formatter::IsBreakline_(const QString &text, bool is_mark) const
+{
+    if (is_mark) {
+        return (text == "!BR" || text == "!br");
+    } else {
+        return (text == "!BR"
+            || text == "!br"
+            || text.startsWith("---")
+            || text.startsWith("***")
+            || text == "");
+    }
+}
+
+bool Formatter::IsDialogueEnd_(const QString &text) const
+{
+    return (text.endsWith("」")
+            || text.endsWith("』")
+            || text.endsWith("）"));
+}
+
+bool Formatter::IsDialogueStart_(const QString &text) const
+{
+    return (text.startsWith("「")
+            || text.startsWith("『")
+            || text.startsWith("（"));
+}
+
+bool Formatter::IsHeadline_(const QString &text) const
+{
+    return (text.startsWith("# ")
+            || text.startsWith("## ")
+            || text.startsWith("### "));
+}
+
+QString Formatter::DescriptionEndValid(const QString &text)
+{
+    if (text.endsWith("。")
+            || text.endsWith("、")
+            || text.endsWith("」")
+            || text.endsWith("』")
+            || text.endsWith("？")
+            || text.endsWith("！")) {
+        return text;
+    } else {
+        return text + "。";
+    }
 }
