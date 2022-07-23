@@ -10,25 +10,26 @@ Formatter::Formatter()
 }
 
 // methods
-QStringList Formatter::FormatByType(BuildType type, const QStringList &data)
+QStringList Formatter::FormatByType(BuildType type, BuildStyle style, const QStringList &data)
 {
     switch (type) {
       case BuildType::Simple:
         return SimpleFormat_(data);
       case BuildType::Novel:
-        return NovelFormat_(data);
+        return NovelFormat_(style, data);
       default:
         return SimpleFormat_(data);
     }
 }
 
 // methods (private)
-QStringList Formatter::NovelFormat_(const QStringList &data)
+QStringList Formatter::NovelFormat_(BuildStyle style, const QStringList &data)
 {
     QStringList formatted;
     bool shown_headline = true;
     bool in_paragraph = false;
     bool in_dialogue = false;
+    bool is_smartphone = style == BuildStyle::Smartphone;
 
     for (int i = 0; i < data.count(); ++i) {
         QString text = data.at(i);
@@ -45,9 +46,12 @@ QStringList Formatter::NovelFormat_(const QStringList &data)
             }
         } else if (IsDialogueStart_(text)){
             // dialogue start
-            if (in_paragraph || in_dialogue) {
+            if (in_paragraph) {
                 formatted << "\n";
                 in_paragraph = false;
+            }
+            if (is_smartphone || in_dialogue) {
+                formatted << "\n";
             }
             in_dialogue = true;
             if (IsDialogueEnd_(text)) {
@@ -59,6 +63,9 @@ QStringList Formatter::NovelFormat_(const QStringList &data)
             // TODO: last formatted text check and endmark replace.
             if (in_paragraph || in_dialogue) {
                 formatted << "\n";
+                if (in_dialogue && is_smartphone) {
+                    formatted << "\n";
+                }
                 in_paragraph = false;
                 in_dialogue = false;
             } else {

@@ -49,7 +49,7 @@ bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings 
     }
 
     NovelBuilder *builder = new NovelBuilder(ui);
-    if (builder->Build(&file, type, with_rubi)) {
+    if (builder->Build(settings, &file, type, with_rubi)) {
         settings->setValue(AppSettings::kBuildFilename, f_name);
         return true;
     } else {

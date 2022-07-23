@@ -1200,6 +1200,8 @@
     <addaction name="actionCompile"/>
     <addaction name="actionCompile_to_Novel"/>
     <addaction name="actionComple_to_Novel_Rubi"/>
+    <addaction name="separator"/>
+    <addaction name="actionSmartphone_Style"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -1313,6 +1315,14 @@
   <action name="actionComple_to_Novel_Rubi">
    <property name="text">
     <string>Comple to Novel (Rubi)</string>
+   </property>
+  </action>
+  <action name="actionSmartphone_Style">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Smartphone Style</string>
    </property>
   </action>
  </widget>

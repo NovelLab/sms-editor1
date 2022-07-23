@@ -9,6 +9,7 @@ const QString kProjectFilename = "PROJECT_FILENAME";
 const QString kBuildPath = "BUILD_PATH";
 const QString kBuildFilename = "BUILD_FILENAME";
 const QString kBuildExtension = "BUILD_EXT";
+const QString kBuildDialogSpace = "BUILD_DIALOG_SPACE";
 }
 
 namespace AppConfigs {

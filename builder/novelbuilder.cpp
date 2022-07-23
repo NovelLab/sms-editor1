@@ -4,11 +4,13 @@
 
 #include "builder/formatter.h"
 #include "builder/rubimaker.h"
+#include "common/appsettings.h"
 #include "common/buildenums.h"
 #include "common/itemkeys.h"
 #include "items/treeitem.h"
 #include "utils/itemutility.h"
 
+#include <QSettings>
 #include <QTextStream>
 
 #include <QDebug>
@@ -25,7 +27,7 @@ NovelBuilder::~NovelBuilder()
 }
 
 // methods
-bool NovelBuilder::Build(QIODevice *device, BuildType type, bool with_rubi)
+bool NovelBuilder::Build(QSettings *settings, QIODevice *device, BuildType type, bool with_rubi)
 {
     ItemUtility util;
     QStringList outputs;
@@ -44,8 +46,12 @@ bool NovelBuilder::Build(QIODevice *device, BuildType type, bool with_rubi)
     if (outputs.isEmpty())
         return false;
 
+    BuildStyle style = BuildStyle::Simple;
+    if (settings->value(AppSettings::kBuildDialogSpace).toBool())
+        style = BuildStyle::Smartphone;
+
     Formatter formatter;
-    QStringList formatted = formatter.FormatByType(type, outputs);
+    QStringList formatted = formatter.FormatByType(type, style, outputs);
 
     if (with_rubi) {
         formatted = rubimaker_->AddRubi(formatted);

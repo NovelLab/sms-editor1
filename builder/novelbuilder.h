@@ -8,7 +8,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class QTreeWidgetItem;
-
+class QSettings;
 class OutlineView;
 class RubiMaker;
 enum class BuildType;
@@ -19,7 +19,7 @@ public:
     explicit NovelBuilder(const Ui::MainWindow *ui);
     ~NovelBuilder();
 
-    bool Build(QIODevice *devic, BuildType type, bool with_rubi = false);
+    bool Build(QSettings *settings, QIODevice *devic, BuildType type, bool with_rubi = false);
 
 private:
     QStringList OutputStrsFromFile(const QTreeWidgetItem *item);

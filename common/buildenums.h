@@ -7,4 +7,10 @@ enum class BuildType {
     None = 99,
 };
 
+enum class BuildStyle {
+    Simple = 0,
+    Smartphone,
+    None = 99,
+};
+
 #endif // BUILDENUMS_H

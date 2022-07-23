@@ -566,3 +566,10 @@ void MainWindow::SetDefaultAppSettings_()
         settings_->setValue(AppSettings::kBuildExtension, DefaultSettings::kBuildExtension);
 }
 
+
+void MainWindow::on_actionSmartphone_Style_triggered()
+{
+    bool checked = ui->actionSmartphone_Style->isChecked();
+    settings_->setValue(AppSettings::kBuildDialogSpace, checked);
+}
+

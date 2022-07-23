@@ -91,6 +91,8 @@ private slots:
     void on_trashTreeView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
     void on_btnClearTrash_clicked();
 
+    void on_actionSmartphone_Style_triggered();
+
 private:
     void CreateNewProject_();
     void CloseProject_();
