@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     builder/formatter.cpp \
     builder/novelbuilder.cpp \
+    builder/rubimaker.cpp \
     configs/configdialog.cpp \
     configs/configmodel.cpp \
     configs/globalsetting.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
 HEADERS += \
     builder/formatter.h \
     builder/novelbuilder.h \
+    builder/rubimaker.h \
     common/appsettings.h \
     common/buildenums.h \
     common/configenums.h \

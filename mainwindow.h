@@ -41,6 +41,7 @@ private slots:
     // menu - build
     void on_actionCompile_triggered();
     void on_actionCompile_to_Novel_triggered();
+    void on_actionComple_to_Novel_Rubi_triggered();
     // category buttons
     void on_btnBookInfo_clicked();
     void on_btnDraft_clicked();

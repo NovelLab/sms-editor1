@@ -25,7 +25,7 @@ SaveDataFiler::SaveDataFiler()
 }
 
 // methods
-bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, BuildType type)
+bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, BuildType type, bool with_rubi)
 {
     // TODO: specific output file name
     QString fileName = settings->value(AppSettings::kBuildFilename).toString();
@@ -49,7 +49,7 @@ bool SaveDataFiler::BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings 
     }
 
     NovelBuilder *builder = new NovelBuilder(ui);
-    if (builder->Build(&file, type)) {
+    if (builder->Build(&file, type, with_rubi)) {
         settings->setValue(AppSettings::kBuildFilename, f_name);
         return true;
     } else {

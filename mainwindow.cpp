@@ -173,6 +173,14 @@ void MainWindow::on_actionCompile_to_Novel_triggered()
     }
 }
 
+void MainWindow::on_actionComple_to_Novel_Rubi_triggered()
+{
+    SaveDataFiler filer;
+    if (filer.BuildToFile(this, ui, settings_, BuildType::Novel, true)) {
+        this->statusBar()->showMessage("build successfull!", 2000);
+    }
+}
+
 void MainWindow::on_actionNew_triggered()
 {
     on_actionClose_triggered();
@@ -557,3 +565,4 @@ void MainWindow::SetDefaultAppSettings_()
     if (settings_->value(AppSettings::kBuildExtension).toString().isEmpty())
         settings_->setValue(AppSettings::kBuildExtension, DefaultSettings::kBuildExtension);
 }
+

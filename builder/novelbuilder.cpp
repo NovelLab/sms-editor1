@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 
 #include "builder/formatter.h"
+#include "builder/rubimaker.h"
 #include "common/buildenums.h"
 #include "common/itemkeys.h"
 #include "items/treeitem.h"
@@ -15,10 +16,16 @@
 NovelBuilder::NovelBuilder(const Ui::MainWindow *ui)
 {
     draft_view_ = ui->draftTreeView;
+    rubimaker_ = new RubiMaker(ui);
+}
+
+NovelBuilder::~NovelBuilder()
+{
+    delete rubimaker_;
 }
 
 // methods
-bool NovelBuilder::Build(QIODevice *device, BuildType type)
+bool NovelBuilder::Build(QIODevice *device, BuildType type, bool with_rubi)
 {
     ItemUtility util;
     QStringList outputs;
@@ -37,6 +44,11 @@ bool NovelBuilder::Build(QIODevice *device, BuildType type)
 
     Formatter formatter;
     QStringList formatted = formatter.FormatByType(type, outputs);
+
+    if (with_rubi) {
+        formatted = rubimaker_->AddRubi(formatted);
+    }
+
     QTextStream out(device);
     for (int i = 0; i < formatted.count(); ++i) {
         out << formatted.at(i);

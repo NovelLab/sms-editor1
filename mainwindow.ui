@@ -1194,6 +1194,7 @@
     </property>
     <addaction name="actionCompile"/>
     <addaction name="actionCompile_to_Novel"/>
+    <addaction name="actionComple_to_Novel_Rubi"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -1302,6 +1303,11 @@
   <action name="actionCompile_to_Novel">
    <property name="text">
     <string>Compile to Novel</string>
+   </property>
+  </action>
+  <action name="actionComple_to_Novel_Rubi">
+   <property name="text">
+    <string>Comple to Novel (Rubi)</string>
    </property>
   </action>
  </widget>

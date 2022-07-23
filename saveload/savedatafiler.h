@@ -22,7 +22,7 @@ public:
     bool SaveFileAs(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings);
 
     // TODO: view changer using for book-title etc.
-    bool BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, BuildType type);
+    bool BuildToFile(MainWindow *mwin, Ui::MainWindow *ui, QSettings *settings, BuildType type, bool with_rubi = false);
 
 private:
     bool SaveFile_(MainWindow *mwin, Ui::MainWindow *ui, ViewChanger *changer, QSettings *settings, const QString &filename);
