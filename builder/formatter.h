@@ -20,6 +20,7 @@ private:
     bool IsDialogueStart_(const QString &text) const;
     bool IsDialogueEnd_(const QString &text) const;
     bool IsBreakline_(const QString &text, bool is_mark = false) const;
+    bool IsInstruction_(const QString &text) const;
 
     QString DescriptionEndValid(const QString &text);
 };

@@ -45,19 +45,32 @@ QStringList Formatter::NovelFormat_(const QStringList &data)
             }
         } else if (IsDialogueStart_(text)){
             // dialogue start
+            if (in_paragraph || in_dialogue) {
+                formatted << "\n";
+                in_paragraph = false;
+            }
+            in_dialogue = true;
             if (IsDialogueEnd_(text)) {
-                formatted << text + "\n";
+                formatted << text;
             } else {
-                in_dialogue = true;
                 formatted << DescriptionEndValid(text);
             }
         } else if (IsBreakline_(text)) {
             // TODO: last formatted text check and endmark replace.
-            in_paragraph = false;
-            in_dialogue = false;
-            formatted << "\n";
+            if (in_paragraph || in_dialogue) {
+                formatted << "\n";
+                in_paragraph = false;
+                in_dialogue = false;
+            } else {
+                formatted << "\n";
+            }
             if (IsBreakline_(text, true))
                 formatted << "\n";
+        } else if (IsInstruction_(text)) {
+            // TODO: instruction command switch
+            if (text.startsWith("!")) {
+                formatted << text.replace("!", "") + "\n";
+            }
         } else {
             // description
             if (in_dialogue) {
@@ -120,6 +133,11 @@ bool Formatter::IsHeadline_(const QString &text) const
             || text.startsWith("### "));
 }
 
+bool Formatter::IsInstruction_(const QString &text) const
+{
+    return (text.startsWith("!"));
+}
+
 QString Formatter::DescriptionEndValid(const QString &text)
 {
     if (text.endsWith("。")
@@ -127,7 +145,8 @@ QString Formatter::DescriptionEndValid(const QString &text)
             || text.endsWith("」")
             || text.endsWith("』")
             || text.endsWith("？")
-            || text.endsWith("！")) {
+            || text.endsWith("！")
+            || text.endsWith("（了）")) {
         return text;
     } else {
         return text + "。";
